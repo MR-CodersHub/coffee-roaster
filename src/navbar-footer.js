@@ -247,11 +247,6 @@
                     <p class="text-sm text-slate-500 dark:text-slate-400">
                         © 2026 Veloura Coffee. All rights reserved.
                     </p>
-                    <div class="flex gap-6 text-sm">
-                        <a href="#" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-600 transition">Privacy Policy</a>
-                        <a href="#" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-600 transition">Terms of Service</a>
-                        <a href="#" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-600 transition">Sitemap</a>
-                    </div>
                     <div class="flex gap-3">
                         <img src="https://img.shields.io/badge/Visa-1A1F71?style=flat-square&logo=visa&logoColor=white" alt="Visa" class="h-6">
                         <img src="https://img.shields.io/badge/Mastercard-EB001B?style=flat-square&logo=mastercard&logoColor=white" alt="Mastercard" class="h-6">
