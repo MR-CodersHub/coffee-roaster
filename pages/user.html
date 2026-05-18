@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Veloura Reserve | User Dashboard</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- LUCIDE -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode:'class',
+        }
+    </script>
+
+    <style>
+
+        *{
+            font-family:'Inter',sans-serif;
+        }
+
+        .heading-font{
+            font-family:'Cormorant Garamond',serif;
+        }
+
+        body{
+            overflow-x:hidden;
+        }
+
+        .glass{
+            background:rgba(15,23,42,0.58);
+            backdrop-filter:blur(18px);
+            border:1px solid rgba(255,255,255,0.06);
+        }
+
+        .card-hover{
+            transition:all .4s ease;
+        }
+
+        .card-hover:hover{
+            transform:translateY(-8px);
+        }
+
+        .sidebar-link{
+            transition:all .3s ease;
+        }
+
+        .sidebar-link:hover{
+            background:rgba(255,255,255,0.06);
+        }
+
+        .active-link{
+            background:#b45309;
+            color:white;
+        }
+
+    </style>
+
+</head>
+
+<body class="bg-slate-950 text-white">
+
+    <div class="flex min-h-screen">
+
+        <!-- SIDEBAR -->
+        <aside class="hidden lg:flex flex-col w-[300px] border-r border-white/10 bg-black/30 backdrop-blur-xl p-8">
+
+            <!-- LOGO -->
+            <div class="flex items-center gap-4 mb-16">
+
+                <img
+                    src="../assets/brand-logo.png"
+                    class="w-14 h-14 object-contain"
+                >
+
+                <div>
+
+                    <h2 class="heading-font text-4xl font-bold">
+                        Veloura
+                    </h2>
+
+                    <p class="uppercase tracking-[0.2em] text-sm text-slate-400">
+                        User Dashboard
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- NAV -->
+            <nav class="flex flex-col gap-4">
+
+                <a href="#"
+                    class="sidebar-link active-link flex items-center gap-4 px-5 py-4 rounded-2xl font-medium">
+
+                    <i data-lucide="layout-dashboard"></i>
+                    Overview
+
+                </a>
+                
+
+                <a href="../index.html"
+                    class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-300">
+
+                    <i data-lucide="credit-card"></i>
+                    Home
+
+                </a>
+
+                <a href="./service.html"
+                    class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-300">
+
+                    <i data-lucide="shopping-bag"></i>
+                    Products
+
+                </a>
+
+                <a href="./booking.html"
+                    class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-300">
+
+                    <i data-lucide="credit-card"></i>
+                    Booking
+
+                </a>
+
+
+            </nav>
+
+            <!-- MEMBERSHIP CARD -->
+            <div class="mt-auto">
+
+                <div class="rounded-[2rem] overflow-hidden relative">
+
+                    <!-- BG -->
+                    <img
+                        src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=2070&auto=format&fit=crop"
+                        class="absolute inset-0 w-full h-full object-cover"
+                    >
+
+                    <div class="absolute inset-0 bg-black/75"></div>
+
+                      </div>
+
+            </div>
+
+        </aside>
+
+        <!-- MAIN -->
+        <main class="flex-1">
+
+            <!-- TOPBAR -->
+            <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
+
+                <div class="px-6 md:px-10 py-6 flex items-center justify-between">
+
+                    <!-- LEFT -->
+                    <div>
+
+                        <p class="uppercase tracking-[0.3em] text-amber-400 text-sm mb-2">
+                            Welcome Back
+                        </p>
+
+                        <h1 class="heading-font text-5xl font-bold">
+                            User
+                        </h1>
+
+                    </div>
+
+                    <!-- RIGHT -->
+                    <div class="flex items-center gap-5">
+
+                        <!-- SEARCH -->
+                        <div class="hidden md:flex items-center gap-3 px-5 h-14 rounded-2xl bg-white/5 border border-white/10">
+
+                            <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
+
+                            <input
+                                type="text"
+                                placeholder="Search reserve collection..."
+                                class="bg-transparent outline-none text-sm placeholder:text-slate-500"
+                            >
+
+                        </div>
+
+                        <!-- CART -->
+                        <button
+                            class="relative w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center"
+                        >
+
+                            <i data-lucide="shopping-cart"></i>
+
+                            <span class="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-amber-700 text-xs flex items-center justify-center">
+                                3
+                            </span>
+
+                        </button>
+
+                        <!-- PROFILE -->
+                        <button
+                            class="w-14 h-14 rounded-2xl bg-amber-700 flex items-center justify-center shadow-xl"
+                        >
+                            <i data-lucide="user"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- CONTENT -->
+            <section class="p-6 md:p-10">
+
+                <!-- HERO CARD -->
+                <div class="relative rounded-[2.5rem] overflow-hidden mb-10 min-h-[420px]">
+
+                    <!-- BG -->
+                    <img
+                        src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2070&auto=format&fit=crop"
+                        class="absolute inset-0 w-full h-full object-cover"
+                    >
+
+                    <div class="absolute inset-0 bg-black/70"></div>
+
+                    <!-- CONTENT -->
+                    <div class="relative z-10 h-full p-10 md:p-16 flex flex-col justify-end">
+
+                        <p class="uppercase tracking-[0.3em] text-sm text-amber-400 mb-5">
+                            Reserve Collection
+                        </p>
+
+                        <h2 class="heading-font text-5xl md:text-7xl leading-none font-bold mb-8 max-w-4xl">
+
+                            Discover Rare
+                            Coffee Experiences
+
+                        </h2>
+
+                        <p class="text-xl text-slate-300 leading-relaxed max-w-2xl mb-10">
+
+                            Curated reserve beans, artisan roasting,
+                            and premium coffee crafted for enthusiasts.
+
+                        </p>
+
+                        <div class="flex flex-wrap gap-5">
+
+                            <button
+                                class="px-8 py-4 rounded-2xl bg-amber-700 hover:bg-amber-600 transition font-semibold"
+                            >
+                                Explore Collection
+                            </button>
+
+                            <button
+                                class="px-8 py-4 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-xl hover:bg-white/10 transition"
+                            >
+                                View Membership
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- STATS -->
+                <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-10">
+
+                    <!-- CARD -->
+                    <div class="glass rounded-[2rem] p-8 card-hover">
+
+                        <div class="flex items-center justify-between mb-10">
+
+                            <div>
+
+                                <p class="uppercase tracking-[0.2em] text-sm text-slate-400 mb-3">
+                                    Orders
+                                </p>
+
+                                <h2 class="text-5xl font-bold">
+                                    28
+                                </h2>
+
+                            </div>
+
+                           
+
+                        </div>
+
+                        <p class="text-green-400 text-sm">
+                            +4 this month
+                        </p>
+
+                    </div>
+
+                    <!-- CARD -->
+                    <div class="glass rounded-[2rem] p-8 card-hover">
+
+                        <div class="flex items-center justify-between mb-10">
+
+                            <div>
+
+                                <p class="uppercase tracking-[0.2em] text-sm text-slate-400 mb-3">
+                                    Reward Points
+                                </p>
+
+                                <h2 class="text-5xl font-bold">
+                                    3.8K
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+                        <p class="text-green-400 text-sm">
+                            Premium member benefits
+                        </p>
+
+                    </div>
+
+                    <!-- CARD -->
+                    <div class="glass rounded-[2rem] p-8 card-hover">
+
+                        <div class="flex items-center justify-between mb-10">
+
+                            <div>
+
+                                <p class="uppercase tracking-[0.2em] text-sm text-slate-400 mb-3">
+                                    Membership
+                                </p>
+
+                                <h2 class="text-4xl font-bold">
+                                    Gold
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+                        <p class="text-green-400 text-sm">
+                            Active subscription
+                        </p>
+
+                    </div>
+
+                    <!-- CARD -->
+                    <div class="glass rounded-[2rem] p-8 card-hover">
+
+                        <div class="flex items-center justify-between mb-10">
+
+                            <div>
+
+                                <p class="uppercase tracking-[0.2em] text-sm text-slate-400 mb-3">
+                                    Wishlist
+                                </p>
+
+                                <h2 class="text-5xl font-bold">
+                                    12
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+                        <p class="text-green-400 text-sm">
+                            Saved reserve items
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- SECOND ROW -->
+                <div class="grid xl:grid-cols-3 gap-8 mb-10">
+
+                    <!-- RECENT ORDERS -->
+                    <div class="xl:col-span-2 glass rounded-[2rem] overflow-hidden">
+
+                        <!-- HEADER -->
+                        <div class="p-8 border-b border-white/10 flex items-center justify-between">
+
+                            <div>
+
+                                <p class="uppercase tracking-[0.2em] text-amber-400 text-sm mb-3">
+                                    Order Activity
+                                </p>
+
+                                <h2 class="heading-font text-5xl font-bold">
+                                    Recent Orders
+                                </h2>
+
+                            </div>
+
+                            <button
+                                class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-sm"
+                            >
+                                View All
+                            </button>
+
+                        </div>
+
+                        <!-- TABLE -->
+                        <div class="overflow-x-auto">
+
+                            <table class="w-full min-w-[850px]">
+
+                                <thead>
+
+                                    <tr class="border-b border-white/10 text-left">
+
+                                        <th class="p-6 text-slate-400 font-medium">
+                                            Product
+                                        </th>
+
+                                        <th class="p-6 text-slate-400 font-medium">
+                                            Date
+                                        </th>
+
+                                        <th class="p-6 text-slate-400 font-medium">
+                                            Price
+                                        </th>
+
+                                        <th class="p-6 text-slate-400 font-medium">
+                                            Status
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                    <!-- ROW -->
+                                    <tr class="border-b border-white/5 hover:bg-white/5 transition">
+
+                                        <td class="p-6 font-semibold">
+                                            Geisha Signature
+                                        </td>
+
+                                        <td class="p-6">
+                                            Jan 10, 2026
+                                        </td>
+
+                                        <td class="p-6">
+                                            ₹4,500
+                                        </td>
+
+                                        <td class="p-6">
+
+                                            <span class="px-4 py-2 rounded-full bg-green-500/20 text-green-400 text-sm">
+                                                Delivered
+                                            </span>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <!-- ROW -->
+                                    <tr class="border-b border-white/5 hover:bg-white/5 transition">
+
+                                        <td class="p-6 font-semibold">
+                                            Reserve Subscription
+                                        </td>
+
+                                        <td class="p-6">
+                                            Jan 08, 2026
+                                        </td>
+
+                                        <td class="p-6">
+                                            ₹2,800
+                                        </td>
+
+                                        <td class="p-6">
+
+                                            <span class="px-4 py-2 rounded-full bg-yellow-500/20 text-yellow-400 text-sm">
+                                                Processing
+                                            </span>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <!-- ROW -->
+                                    <tr class="hover:bg-white/5 transition">
+
+                                        <td class="p-6 font-semibold">
+                                            Ethiopian Reserve
+                                        </td>
+
+                                        <td class="p-6">
+                                            Jan 02, 2026
+                                        </td>
+
+                                        <td class="p-6">
+                                            ₹3,100
+                                        </td>
+
+                                        <td class="p-6">
+
+                                            <span class="px-4 py-2 rounded-full bg-blue-500/20 text-blue-400 text-sm">
+                                                Shipped
+                                            </span>
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                    <!-- MEMBERSHIP -->
+                    <div class="glass rounded-[2rem] p-8">
+
+                        <p class="uppercase tracking-[0.2em] text-amber-400 text-sm mb-3">
+                            Membership Status
+                        </p>
+
+                        <h2 class="heading-font text-5xl font-bold mb-10">
+                            Gold Tier
+                        </h2>
+
+                        <!-- PROGRESS -->
+                        <div class="mb-10">
+
+                            <div class="flex items-center justify-between mb-4">
+
+                                <span class="text-slate-400">
+                                    Progress to Platinum
+                                </span>
+
+                                <span class="font-semibold">
+                                    78%
+                                </span>
+
+                            </div>
+
+                            <div class="h-3 rounded-full bg-white/10 overflow-hidden">
+
+                                <div class="h-full w-[78%] bg-amber-700 rounded-full"></div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- BENEFITS -->
+                        <div class="space-y-6">
+
+                            <div class="flex items-start gap-4">
+
+                                <div class="w-10 h-10 rounded-xl bg-amber-700 flex items-center justify-center shrink-0">
+
+                                    <i data-lucide="check"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h4 class="font-semibold mb-1">
+                                        Exclusive Reserve Access
+                                    </h4>
+
+                                    <p class="text-sm text-slate-400">
+                                        Early access to rare collections
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-start gap-4">
+
+                                <div class="w-10 h-10 rounded-xl bg-amber-700 flex items-center justify-center shrink-0">
+
+                                    <i data-lucide="check"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h4 class="font-semibold mb-1">
+                                        Monthly Deliveries
+                                    </h4>
+
+                                    <p class="text-sm text-slate-400">
+                                        Personalized reserve selections
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-start gap-4">
+
+                                <div class="w-10 h-10 rounded-xl bg-amber-700 flex items-center justify-center shrink-0">
+
+                                    <i data-lucide="check"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h4 class="font-semibold mb-1">
+                                        Priority Support
+                                    </h4>
+
+                                    <p class="text-sm text-slate-400">
+                                        Dedicated premium assistance
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <button
+                            class="w-full mt-10 py-4 rounded-2xl bg-amber-700 hover:bg-amber-600 transition font-semibold"
+                        >
+                            Upgrade Plan
+                        </button>
+
+                    </div>
+
+                
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+
+        lucide.createIcons();
+
+    </script>
+
+</body>
+</html>

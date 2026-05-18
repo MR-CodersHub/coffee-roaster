@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>About Us | Veloura Reserve</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- LUCIDE -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <style>
+
+        *{
+            font-family: 'Inter', sans-serif;
+        }
+
+        .heading-font{
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        body{
+            overflow-x:hidden;
+        }
+
+        .glass{
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .dark .glass{
+            background: rgba(15,23,42,0.5);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .hero-overlay{
+            background:
+            linear-gradient(
+                to top,
+                rgba(0,0,0,0.85),
+                rgba(0,0,0,0.5),
+                rgba(0,0,0,0.2)
+            );
+        }
+
+        .card-hover{
+            transition: all .4s ease;
+        }
+
+        .card-hover:hover{
+            transform: translateY(-10px);
+        }
+
+        .image-hover{
+            transition: transform .6s ease;
+        }
+
+        .group:hover .image-hover{
+            transform: scale(1.08);
+        }
+
+        .fade-up{
+            animation: fadeUp 1s ease forwards;
+        }
+
+        @keyframes fadeUp{
+            from{
+                opacity:0;
+                transform: translateY(40px);
+            }
+
+            to{
+                opacity:1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+
+</head>
+
+<body class="bg-[#f8f5f1] dark:bg-slate-950 text-slate-900 dark:text-white">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="mt-5 h-20 px-6 rounded-2xl glass flex items-center justify-between">
+
+                <!-- LOGO -->
+                <a href="#" class="flex items-center gap-3">
+
+                    <img
+                        src="./assets/logo.png"
+                        class="w-12 h-12 object-contain"
+                    >
+
+                    <h2 class="heading-font text-3xl font-bold">
+                        Veloura Reserve
+                    </h2>
+
+                </a>
+
+                <!-- NAV -->
+                <nav class="hidden lg:flex items-center gap-10">
+
+                    <a href="#" class="hover:text-amber-700 transition font-medium">
+                        Home
+                    </a>
+
+                    <a href="#" class="text-amber-700 font-semibold">
+                        About
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition font-medium">
+                        Collections
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition font-medium">
+                        Membership
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition font-medium">
+                        Contact
+                    </a>
+
+                </nav>
+
+                <!-- RIGHT -->
+                <div class="flex items-center gap-4">
+
+                    <!-- THEME -->
+                    <button
+                        id="theme-toggle"
+                        class="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 shadow-md flex items-center justify-center hover:scale-105 transition"
+                    >
+                        <i data-lucide="moon"></i>
+                    </button>
+
+                    <!-- PROFILE -->
+                    <div class="relative">
+
+                        <button
+                            id="profile-btn"
+                            class="w-11 h-11 rounded-full bg-amber-700 text-white flex items-center justify-center shadow-lg"
+                        >
+                            <i data-lucide="user"></i>
+                        </button>
+
+                        <!-- MENU -->
+                        <div
+                            id="profile-menu"
+                            class="hidden absolute right-0 mt-4 w-56 rounded-2xl bg-white dark:bg-slate-900 shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden"
+                        >
+
+                            <a href="#"
+                                class="flex items-center gap-3 px-5 py-4 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                                <i data-lucide="log-in"></i>
+                                Login
+                            </a>
+
+                            <a href="#"
+                                class="flex items-center gap-3 px-5 py-4 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                                <i data-lucide="user-plus"></i>
+                                Signup
+                            </a>
+
+                            <a href="#"
+                                class="flex items-center gap-3 px-5 py-4 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                                <i data-lucide="layout-dashboard"></i>
+                                User Dashboard
+                            </a>
+
+                            <a href="#"
+                                class="flex items-center gap-3 px-5 py-4 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                                <i data-lucide="shield-check"></i>
+                                Admin Dashboard
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <!-- MOBILE -->
+                    <button
+                        id="mobile-btn"
+                        class="lg:hidden w-11 h-11 rounded-xl bg-white dark:bg-slate-900 shadow-md flex items-center justify-center"
+                    >
+                        <i data-lucide="menu"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- HERO -->
+    <section class="relative min-h-[80vh] flex items-end overflow-hidden">
+
+        <!-- BG -->
+        <img
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop"
+            class="absolute inset-0 w-full h-full object-cover"
+        >
+
+        <!-- OVERLAY -->
+        <div class="absolute inset-0 hero-overlay"></div>
+
+        <!-- CONTENT -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 pb-24 w-full">
+
+            <div class="max-w-4xl fade-up">
+
+                <span class="inline-flex px-5 py-2 rounded-full glass text-sm uppercase tracking-[0.2em] text-white mb-8">
+                    About Veloura Reserve
+                </span>
+
+                <h1 class="heading-font text-6xl md:text-8xl font-bold leading-none text-white mb-8">
+
+                    Crafted Through
+                    Passion & Precision
+
+                </h1>
+
+                <p class="text-xl md:text-2xl text-slate-200 leading-relaxed max-w-3xl">
+
+                    We believe coffee is more than a beverage.
+                    It is ritual, culture, craftsmanship, and connection.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- STORY -->
+    <section class="py-28 bg-white dark:bg-slate-950">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+                <!-- IMAGE -->
+                <div>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1974&auto=format&fit=crop"
+                        class="rounded-[2rem] shadow-2xl"
+                    >
+
+                </div>
+
+                <!-- CONTENT -->
+                <div>
+
+                    <p class="uppercase tracking-[0.3em] text-amber-700 text-sm mb-5">
+                        Our Story
+                    </p>
+
+                    <h2 class="heading-font text-5xl md:text-6xl font-bold mb-8">
+
+                        Built Around
+                        Specialty Coffee
+
+                    </h2>
+
+                    <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+
+                        Veloura Reserve started with a simple belief:
+                        exceptional coffee should feel personal, intentional,
+                        and unforgettable.
+
+                    </p>
+
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+
+                        We source premium beans from carefully selected farms,
+                        roast them in small batches, and deliver coffee experiences
+                        crafted for modern coffee enthusiasts.
+
+                    </p>
+
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+
+                        Some people chase luxury watches.
+                        Others collect cars.
+                        Coffee people spend fifteen minutes describing acidity notes
+                        like poets trapped inside chemistry textbooks.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- VALUES -->
+    <section class="py-28 bg-[#f3ede7] dark:bg-slate-900">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <!-- TITLE -->
+            <div class="text-center max-w-3xl mx-auto mb-20">
+
+                <p class="uppercase tracking-[0.3em] text-amber-700 text-sm mb-5">
+                    Our Values
+                </p>
+
+                <h2 class="heading-font text-5xl md:text-6xl font-bold mb-6">
+
+                    What Drives Us
+
+                </h2>
+
+                <p class="text-lg text-slate-600 dark:text-slate-400">
+
+                    Every cup reflects our commitment to quality,
+                    sustainability, and craftsmanship.
+
+                </p>
+
+            </div>
+
+            <!-- GRID -->
+            <div class="grid md:grid-cols-3 gap-10">
+
+                <!-- CARD -->
+                <div class="bg-white dark:bg-slate-950 rounded-[2rem] p-10 shadow-xl card-hover">
+
+                    <i data-lucide="leaf" class="w-12 h-12 text-amber-700 mb-6"></i>
+
+                    <h3 class="heading-font text-4xl font-bold mb-4">
+                        Ethical Sourcing
+                    </h3>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        We partner directly with farms committed to
+                        sustainability, fair trade, and responsible practices.
+                    </p>
+
+                </div>
+
+                <!-- CARD -->
+                <div class="bg-white dark:bg-slate-950 rounded-[2rem] p-10 shadow-xl card-hover">
+
+                    <i data-lucide="flame" class="w-12 h-12 text-amber-700 mb-6"></i>
+
+                    <h3 class="heading-font text-4xl font-bold mb-4">
+                        Artisan Roasting
+                    </h3>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Every roast profile is carefully designed to
+                        highlight unique flavor characteristics.
+                    </p>
+
+                </div>
+
+                <!-- CARD -->
+                <div class="bg-white dark:bg-slate-950 rounded-[2rem] p-10 shadow-xl card-hover">
+
+                    <i data-lucide="heart-handshake" class="w-12 h-12 text-amber-700 mb-6"></i>
+
+                    <h3 class="heading-font text-4xl font-bold mb-4">
+                        Community
+                    </h3>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        We believe coffee creates meaningful connections
+                        between people, stories, and cultures.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TEAM -->
+    <section class="py-28 bg-white dark:bg-slate-950">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <!-- TITLE -->
+            <div class="text-center max-w-3xl mx-auto mb-20">
+
+                <p class="uppercase tracking-[0.3em] text-amber-700 text-sm mb-5">
+                    Meet The Team
+                </p>
+
+                <h2 class="heading-font text-5xl md:text-6xl font-bold mb-6">
+
+                    The People Behind
+                    The Roast
+
+                </h2>
+
+            </div>
+
+            <!-- TEAM GRID -->
+            <div class="grid md:grid-cols-3 gap-10">
+
+                <!-- MEMBER -->
+                <div class="group">
+
+                    <div class="overflow-hidden rounded-[2rem] shadow-xl">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=987&auto=format&fit=crop"
+                            class="image-hover w-full h-[450px] object-cover"
+                        >
+
+                    </div>
+
+                    <div class="mt-6">
+
+                        <h3 class="text-3xl heading-font font-bold mb-2">
+                            Daniel Foster
+                        </h3>
+
+                        <p class="text-amber-700 font-medium">
+                            Founder & Head Roaster
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- MEMBER -->
+                <div class="group">
+
+                    <div class="overflow-hidden rounded-[2rem] shadow-xl">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=687&auto=format&fit=crop"
+                            class="image-hover w-full h-[450px] object-cover"
+                        >
+
+                    </div>
+
+                    <div class="mt-6">
+
+                        <h3 class="text-3xl heading-font font-bold mb-2">
+                            Olivia Bennett
+                        </h3>
+
+                        <p class="text-amber-700 font-medium">
+                            Coffee Curator
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- MEMBER -->
+                <div class="group">
+
+                    <div class="overflow-hidden rounded-[2rem] shadow-xl">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=987&auto=format&fit=crop"
+                            class="image-hover w-full h-[450px] object-cover"
+                        >
+
+                    </div>
+
+                    <div class="mt-6">
+
+                        <h3 class="text-3xl heading-font font-bold mb-2">
+                            Ethan Walker
+                        </h3>
+
+                        <p class="text-amber-700 font-medium">
+                            Brewing Specialist
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- STATS -->
+    <section class="py-24 bg-[#f3ede7] dark:bg-slate-900">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="grid md:grid-cols-4 gap-10 text-center">
+
+                <div>
+                    <h3 class="text-5xl font-bold text-amber-700 mb-4">
+                        12+
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400">
+                        Years Experience
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-5xl font-bold text-amber-700 mb-4">
+                        40+
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400">
+                        Global Farms
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-5xl font-bold text-amber-700 mb-4">
+                        15K+
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400">
+                        Customers Served
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-5xl font-bold text-amber-700 mb-4">
+                        100%
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400">
+                        Specialty Grade
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CTA -->
+    <section class="relative py-32 overflow-hidden">
+
+        <img
+            src="https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=2070&auto=format&fit=crop"
+            class="absolute inset-0 w-full h-full object-cover"
+        >
+
+        <div class="absolute inset-0 bg-black/75"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-6">
+
+            <p class="uppercase tracking-[0.3em] text-amber-400 text-sm mb-5">
+                Discover More
+            </p>
+
+            <h2 class="heading-font text-5xl md:text-7xl font-bold text-white mb-8">
+
+                Experience Coffee
+                Crafted Differently
+
+            </h2>
+
+            <p class="text-xl text-slate-300 leading-relaxed mb-12">
+
+                Explore our reserve collection and discover coffee
+                experiences designed with passion and precision.
+
+            </p>
+
+            <a
+                href="#"
+                class="inline-flex px-10 py-5 rounded-2xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold text-lg shadow-2xl"
+            >
+                Explore Collection
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-14 bg-white dark:bg-black border-t border-slate-200 dark:border-white/10">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="flex flex-col md:flex-row justify-between gap-10">
+
+                <div>
+
+                    <h2 class="heading-font text-4xl font-bold mb-4">
+                        Veloura Reserve
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
+                        Premium specialty coffee crafted through
+                        passion, precision, and artisan roasting.
+                    </p>
+
+                </div>
+
+                <div class="flex gap-8 text-slate-600 dark:text-slate-400">
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Instagram
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Twitter
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        LinkedIn
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="border-t border-slate-200 dark:border-white/10 mt-10 pt-8 text-sm text-slate-500">
+                © 2026 Veloura Reserve. All rights reserved.
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+
+        lucide.createIcons();
+
+        // THEME
+        const themeToggle = document.getElementById("theme-toggle");
+
+        themeToggle.addEventListener("click", () => {
+
+            document.documentElement.classList.toggle("dark");
+
+            if(document.documentElement.classList.contains("dark")){
+                localStorage.setItem("theme","dark");
+            }else{
+                localStorage.setItem("theme","light");
+            }
+
+        });
+
+        if(
+            localStorage.getItem("theme") === "dark" ||
+            (
+                !localStorage.getItem("theme") &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+            )
+        ){
+            document.documentElement.classList.add("dark");
+        }
+
+        // PROFILE MENU
+        const profileBtn = document.getElementById("profile-btn");
+        const profileMenu = document.getElementById("profile-menu");
+
+        profileBtn.addEventListener("click", () => {
+            profileMenu.classList.toggle("hidden");
+        });
+
+        // MOBILE MENU
+        const mobileBtn = document.getElementById("mobile-btn");
+
+        mobileBtn.addEventListener("click", () => {
+            alert("Add your mobile navigation here.");
+        });
+
+    </script>
+
+</body>
+</html>

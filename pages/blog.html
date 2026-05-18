@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Journal | Veloura Reserve</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- LUCIDE -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <style>
+
+        *{
+            font-family: 'Inter', sans-serif;
+        }
+
+        .heading-font{
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        body{
+            overflow-x:hidden;
+        }
+
+        .glass{
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .dark .glass{
+            background: rgba(15,23,42,0.55);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .hero-overlay{
+            background:
+            linear-gradient(
+                to top,
+                rgba(0,0,0,0.9),
+                rgba(0,0,0,0.6),
+                rgba(0,0,0,0.25)
+            );
+        }
+
+        .card-hover{
+            transition: all .45s ease;
+        }
+
+        .card-hover:hover{
+            transform: translateY(-10px);
+        }
+
+        .image-hover{
+            transition: transform .7s ease;
+        }
+
+        .group:hover .image-hover{
+            transform: scale(1.08);
+        }
+
+        .fade-up{
+            animation: fadeUp 1s ease forwards;
+        }
+
+        @keyframes fadeUp{
+
+            from{
+                opacity:0;
+                transform: translateY(40px);
+            }
+
+            to{
+                opacity:1;
+                transform: translateY(0);
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body class="bg-[#f8f5f1] dark:bg-slate-950 text-slate-900 dark:text-white">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="mt-5 h-20 px-6 rounded-2xl glass flex items-center justify-between">
+
+                <!-- LOGO -->
+                <a href="#" class="flex items-center gap-3">
+
+                    <img
+                        src="./assets/logo.png"
+                        class="w-12 h-12 object-contain"
+                    >
+
+                    <h2 class="heading-font text-3xl font-bold">
+                        Veloura Reserve
+                    </h2>
+
+                </a>
+
+                <!-- NAV -->
+                <nav class="hidden lg:flex items-center gap-10">
+
+                    <a href="#" class="hover:text-amber-700 transition font-medium">
+                        Home
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition font-medium">
+                        About
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition font-medium">
+                        Services
+                    </a>
+
+                    <a href="#" class="text-amber-700 font-semibold">
+                        Journal
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition font-medium">
+                        Contact
+                    </a>
+
+                </nav>
+
+                <!-- RIGHT -->
+                <div class="flex items-center gap-4">
+
+                    <!-- THEME -->
+                    <button
+                        id="theme-toggle"
+                        class="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 shadow-md flex items-center justify-center hover:scale-105 transition"
+                    >
+                        <i data-lucide="moon"></i>
+                    </button>
+
+                    <!-- PROFILE -->
+                    <button
+                        class="w-11 h-11 rounded-full bg-amber-700 text-white flex items-center justify-center shadow-lg"
+                    >
+                        <i data-lucide="user"></i>
+                    </button>
+
+                    <!-- MOBILE -->
+                    <button
+                        id="mobile-btn"
+                        class="lg:hidden w-11 h-11 rounded-xl bg-white dark:bg-slate-900 shadow-md flex items-center justify-center"
+                    >
+                        <i data-lucide="menu"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- HERO -->
+    <section class="relative min-h-[85vh] flex items-end overflow-hidden">
+
+        <!-- BG -->
+        <img
+            src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?auto=format&fit=crop&w=1200&q=80"
+            class="absolute inset-0 w-full h-full object-cover"
+        >
+
+        <!-- OVERLAY -->
+        <div class="absolute inset-0 hero-overlay"></div>
+
+        <!-- CONTENT -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 pb-28 w-full">
+
+            <div class="max-w-4xl fade-up">
+
+                <span class="inline-flex px-5 py-2 rounded-full glass text-sm uppercase tracking-[0.2em]  mb-8">
+                    Coffee Journal
+                </span>
+
+                <h1 class="heading-font text-6xl md:text-8xl font-bold leading-none text-white mb-8">
+
+                    Stories,
+                    Rituals &
+                    Coffee Culture
+
+                </h1>
+
+                <p class="text-xl md:text-2xl text-slate-200 leading-relaxed max-w-3xl">
+
+                    Explore specialty coffee insights, brewing techniques,
+                    origin stories, and the evolving culture behind every cup.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FEATURED ARTICLE -->
+    <section class="py-32 bg-white dark:bg-slate-950">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+                <!-- IMAGE -->
+                <div class="overflow-hidden rounded-[2rem] shadow-2xl">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1974&auto=format&fit=crop"
+                        class="w-full h-full object-cover image-hover"
+                    >
+
+                </div>
+
+                <!-- CONTENT -->
+                <div>
+
+                    <p class="uppercase tracking-[0.3em] text-amber-700 text-sm mb-5">
+                        Featured Story
+                    </p>
+
+                    <h2 class="heading-font text-5xl md:text-6xl font-bold mb-8 leading-tight">
+
+                        Why Specialty Coffee
+                        Became a Lifestyle
+
+                    </h2>
+
+                    <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
+
+                        Coffee evolved from a daily necessity into a ritual
+                        shaped by craftsmanship, storytelling, and culture.
+
+                    </p>
+
+                    <div class="flex items-center gap-6 mb-10 text-sm text-slate-500 dark:text-slate-400">
+
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="calendar"></i>
+                            Jan 12, 2026
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="clock-3"></i>
+                            8 min read
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="./blog1.html"
+                        class="inline-flex px-8 py-4 rounded-2xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold"
+                    >
+                        Read Article
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ARTICLES -->
+    <section class="py-32 bg-[#f3ede7] dark:bg-slate-900">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <!-- TITLE -->
+            <div class="text-center max-w-3xl mx-auto mb-24">
+
+                <p class="uppercase tracking-[0.3em] text-amber-700 text-sm mb-5">
+                    Latest Articles
+                </p>
+
+                <h2 class="heading-font text-5xl md:text-7xl font-bold mb-8">
+
+                    Explore the Journal
+
+                </h2>
+
+                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+
+                    Thoughts, techniques, and stories from the world
+                    of specialty coffee and artisan roasting.
+
+                </p>
+
+            </div>
+
+            <!-- GRID -->
+            <div class="grid lg:grid-cols-3 gap-10">
+
+                <!-- CARD -->
+                <article class="group bg-white dark:bg-slate-950 rounded-[2rem] overflow-hidden shadow-xl card-hover">
+
+                    <div class="overflow-hidden h-[320px]">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1974&auto=format&fit=crop"
+                            class="image-hover w-full h-full object-cover"
+                        >
+
+                    </div>
+
+                    <div class="p-8">
+
+                        <div class="flex items-center gap-3 mb-5 text-sm text-amber-700 uppercase tracking-[0.2em]">
+
+                            <i data-lucide="coffee"></i>
+                            Brewing
+
+                        </div>
+
+                        <h3 class="heading-font text-4xl font-bold mb-5 leading-tight">
+
+                            Mastering the Perfect Pour Over
+
+                        </h3>
+
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+
+                            Learn how extraction, grind size, and water temperature
+                            completely change flavor profiles.
+
+                        </p>
+
+                        <div class="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+
+                            <span>6 min read</span>
+
+                            <a href="./blog2.html" class="text-amber-700 font-semibold">
+                                Read More
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <!-- CARD -->
+                <article class="group bg-white dark:bg-slate-950 rounded-[2rem] overflow-hidden shadow-xl card-hover">
+
+                    <div class="overflow-hidden h-[320px]">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=2070&auto=format&fit=crop"
+                            class="image-hover w-full h-full object-cover"
+                        >
+
+                    </div>
+
+                    <div class="p-8">
+
+                        <div class="flex items-center gap-3 mb-5 text-sm text-amber-700 uppercase tracking-[0.2em]">
+
+                            <i data-lucide="globe"></i>
+                            Origins
+
+                        </div>
+
+                        <h3 class="heading-font text-4xl font-bold mb-5 leading-tight">
+
+                            Exploring Rare Coffee Origins
+
+                        </h3>
+
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+
+                            Discover how altitude, climate, and farming traditions
+                            shape unique coffee flavors worldwide.
+
+                        </p>
+
+                        <div class="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+
+                            <span>7 min read</span>
+
+                            <a href="./blog3.html" class="text-amber-700 font-semibold">
+                                Read More
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <!-- CARD -->
+                <article class="group bg-white dark:bg-slate-950 rounded-[2rem] overflow-hidden shadow-xl card-hover">
+
+                    <div class="overflow-hidden h-[320px]">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?q=80&w=1974&auto=format&fit=crop"
+                            class="image-hover w-full h-full object-cover"
+                        >
+
+                    </div>
+
+                    <div class="p-8">
+
+                        <div class="flex items-center gap-3 mb-5 text-sm text-amber-700 uppercase tracking-[0.2em]">
+
+                            <i data-lucide="flame"></i>
+                            Roasting
+
+                        </div>
+
+                        <h3 class="heading-font text-4xl font-bold mb-5 leading-tight">
+
+                            The Art of Small Batch Roasting
+
+                        </h3>
+
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+
+                            Precision roasting transforms green beans
+                            into layered and memorable flavor experiences.
+
+                        </p>
+
+                        <div class="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+
+                            <span>9 min read</span>
+
+                            <a href="./blog4.html" class="text-amber-700 font-semibold">
+                                Read More
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="py-32 bg-white dark:bg-slate-950">
+
+        <div class="max-w-4xl mx-auto px-6 text-center">
+
+            <p class="uppercase tracking-[0.3em] text-amber-700 text-sm mb-5">
+                Stay Updated
+            </p>
+
+            <h2 class="heading-font text-5xl md:text-7xl font-bold mb-8">
+
+                Join the Journal
+
+            </h2>
+
+            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-12">
+
+                Receive brewing insights, reserve collection updates,
+                and coffee stories directly in your inbox.
+
+            </p>
+
+            <!-- FORM -->
+            <form class="flex flex-col sm:flex-row gap-5 justify-center">
+
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    class="px-6 py-5 rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 outline-none w-full sm:w-[420px]"
+                >
+
+                <button
+                    class="px-8 py-5 rounded-2xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold"
+                >
+                    Subscribe
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- CTA -->
+    <section class="relative py-36 overflow-hidden">
+
+        <!-- BG -->
+        <img
+            src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2070&auto=format&fit=crop"
+            class="absolute inset-0 w-full h-full object-cover"
+        >
+
+        <!-- OVERLAY -->
+        <div class="absolute inset-0 bg-black/80"></div>
+
+        <!-- CONTENT -->
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-6">
+
+            <p class="uppercase tracking-[0.3em] text-amber-400 text-sm mb-5">
+                Explore More
+            </p>
+
+            <h2 class="heading-font text-5xl md:text-7xl font-bold text-white mb-8">
+
+                Coffee is More
+                Than a Drink
+
+            </h2>
+
+            <p class="text-xl text-slate-300 leading-relaxed mb-12">
+
+                Somewhere between chemistry, ritual, and survival strategy,
+                humans created specialty coffee culture. Surprisingly beautiful outcome.
+
+            </p>
+
+            <a
+                href="./service.html"
+                class="inline-flex px-10 py-5 rounded-2xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold text-lg shadow-2xl"
+            >
+                Explore Reserve Collection
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-14 bg-white dark:bg-black border-t border-slate-200 dark:border-white/10">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="flex flex-col md:flex-row justify-between gap-10">
+
+                <div>
+
+                    <h2 class="heading-font text-4xl font-bold mb-4">
+                        Veloura Reserve
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
+                        Stories, rituals, and coffee culture
+                        crafted around specialty coffee experiences.
+                    </p>
+
+                </div>
+
+                <div class="flex gap-8 text-slate-600 dark:text-slate-400">
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Instagram
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Twitter
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        LinkedIn
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="border-t border-slate-200 dark:border-white/10 mt-10 pt-8 text-sm text-slate-500">
+                © 2026 Veloura Reserve. All rights reserved.
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+
+        lucide.createIcons();
+
+        // THEME
+        const themeToggle = document.getElementById("theme-toggle");
+
+        themeToggle.addEventListener("click", () => {
+
+            document.documentElement.classList.toggle("dark");
+
+            if(document.documentElement.classList.contains("dark")){
+                localStorage.setItem("theme","dark");
+            }else{
+                localStorage.setItem("theme","light");
+            }
+
+        });
+
+        if(
+            localStorage.getItem("theme") === "dark" ||
+            (
+                !localStorage.getItem("theme") &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+            )
+        ){
+            document.documentElement.classList.add("dark");
+        }
+
+    </script>
+
+</body>
+</html>

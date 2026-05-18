@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Why Specialty Coffee Became a Lifestyle | Veloura Reserve</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- LUCIDE -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode:'class',
+        }
+    </script>
+
+    <style>
+
+        *{
+            font-family:'Inter',sans-serif;
+        }
+
+        .heading-font{
+            font-family:'Cormorant Garamond',serif;
+        }
+
+        body{
+            overflow-x:hidden;
+        }
+
+        .glass{
+            background:rgba(255,255,255,0.78);
+            backdrop-filter:blur(16px);
+            border:1px solid rgba(255,255,255,0.25);
+        }
+
+        .dark .glass{
+            background:rgba(15,23,42,0.55);
+            border:1px solid rgba(255,255,255,0.08);
+        }
+
+        .hero-overlay{
+            background:
+            linear-gradient(
+                to top,
+                rgba(0,0,0,0.92),
+                rgba(0,0,0,0.55),
+                rgba(0,0,0,0.2)
+            );
+        }
+
+        .article-content p{
+            margin-bottom:2rem;
+            line-height:2;
+            color:#475569;
+            font-size:1.1rem;
+        }
+
+        .dark .article-content p{
+            color:#94a3b8;
+        }
+
+        .article-content h2{
+            font-size:3rem;
+            margin-bottom:2rem;
+            margin-top:4rem;
+            font-family:'Cormorant Garamond',serif;
+            font-weight:700;
+            line-height:1.1;
+        }
+
+        .article-content blockquote{
+            border-left:4px solid #b45309;
+            padding-left:2rem;
+            margin:3rem 0;
+            font-size:1.5rem;
+            line-height:1.7;
+            font-family:'Cormorant Garamond',serif;
+            color:#0f172a;
+        }
+
+        .dark .article-content blockquote{
+            color:white;
+        }
+
+        .card-hover{
+            transition:all .4s ease;
+        }
+
+        .card-hover:hover{
+            transform:translateY(-8px);
+        }
+
+        .image-hover{
+            transition:transform .6s ease;
+        }
+
+        .group:hover .image-hover{
+            transform:scale(1.05);
+        }
+
+    </style>
+
+</head>
+
+<body class="bg-[#f6f1ea] dark:bg-slate-950 text-slate-900 dark:text-white">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="mt-5 h-20 px-6 rounded-2xl glass flex items-center justify-between">
+
+                <!-- LOGO -->
+                <a href="#" class="flex items-center gap-3">
+
+                    <img
+                        src="./assets/logo.png"
+                        class="w-12 h-12 object-contain"
+                    >
+
+                    <h2 class="heading-font text-3xl font-bold">
+                        Veloura Reserve
+                    </h2>
+
+                </a>
+
+                <!-- NAV -->
+                <nav class="hidden lg:flex items-center gap-10">
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Home
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        About
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Services
+                    </a>
+
+                    <a href="#" class="text-amber-700 font-semibold">
+                        Journal
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Contact
+                    </a>
+
+                </nav>
+
+                <!-- RIGHT -->
+                <div class="flex items-center gap-4">
+
+                    <button
+                        class="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 shadow-lg flex items-center justify-center"
+                    >
+                        <i data-lucide="moon"></i>
+                    </button>
+
+                    <button
+                        class="w-11 h-11 rounded-full bg-amber-700 text-white flex items-center justify-center shadow-lg"
+                    >
+                        <i data-lucide="user"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- HERO -->
+    <section class="relative min-h-screen overflow-hidden flex items-end">
+
+        <!-- BG -->
+        <img
+            src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=2070&auto=format&fit=crop"
+            class="absolute inset-0 w-full h-full object-cover"
+        >
+
+        <!-- OVERLAY -->
+        <div class="absolute inset-0 hero-overlay"></div>
+
+        <!-- CONTENT -->
+        <div class="relative z-10 max-w-6xl mx-auto px-6 pb-24 w-full text-center">
+
+            <p class="uppercase tracking-[0.35em] text-sm text-amber-400 mb-6">
+                Origins
+            </p>
+
+            <h1 class="heading-font text-6xl md:text-8xl leading-none font-bold text-white mb-10">
+
+                Exploring Rare Coffee Origins
+
+            </h1>
+
+            <p class="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-4xl mx-auto mb-12">
+
+                Coffee evolved from daily necessity into a ritual shaped
+                by craftsmanship, storytelling, aesthetics, and culture.
+
+            </p>
+
+            <!-- META -->
+            <div class="flex flex-wrap items-center justify-center gap-8 text-slate-300">
+
+                <div class="flex items-center gap-3">
+
+                    <i data-lucide="calendar"></i>
+
+                    Jan 12, 2026
+
+                </div>
+
+                <div class="flex items-center gap-3">
+
+                    <i data-lucide="clock-3"></i>
+
+                    8 min read
+
+                </div>
+
+                <div class="flex items-center gap-3">
+
+                    <i data-lucide="pen-line"></i>
+
+                    By Veloura Journal
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ARTICLE -->
+    <section class="py-32 bg-white dark:bg-slate-950">
+
+        <div class="max-w-5xl mx-auto px-6">
+
+            <!-- FEATURE IMAGE -->
+            <div class="overflow-hidden rounded-[2.5rem] shadow-2xl mb-20 group">
+
+                <img
+                    src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=2070&auto=format&fit=crop"
+                    class="image-hover w-full h-[650px] object-cover"
+                >
+
+            </div>
+
+            <!-- ARTICLE CONTENT -->
+            <div class="article-content">
+
+                <p>
+
+                    Coffee was once simply fuel. People drank it quickly,
+                    mostly half-awake, usually while questioning their career decisions
+                    before sunrise. Then specialty coffee appeared and somehow transformed
+                    caffeine into culture, identity, and architecture-grade interior aesthetics.
+
+                </p>
+
+                <p>
+
+                    Modern coffee spaces became more than cafés.
+                    They turned into creative environments, social rituals,
+                    and carefully designed experiences built around craftsmanship.
+
+                </p>
+
+                <blockquote>
+
+                    “Specialty coffee isn’t only about taste anymore.
+                    It’s about atmosphere, ritual, and emotional experience.”
+
+                </blockquote>
+
+                <h2>
+                    The Rise of Coffee Rituals
+                </h2>
+
+                <p>
+
+                    Brewing methods became part of the storytelling.
+                    Pour-over stations, espresso rituals, hand grinders,
+                    and precision scales introduced a slower, intentional relationship with coffee.
+
+                </p>
+
+                <p>
+
+                    Humans really looked at a bean and decided it deserved
+                    laboratory-level attention. Surprisingly, the results were excellent.
+
+                </p>
+
+                <!-- IMAGE -->
+                <div class="overflow-hidden rounded-[2.5rem] shadow-xl my-20">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2070&auto=format&fit=crop"
+                        class="w-full h-[550px] object-cover"
+                    >
+
+                </div>
+
+                <h2>
+                    Design Became Part of the Experience
+                </h2>
+
+                <p>
+
+                    Specialty coffee shops embraced architecture,
+                    lighting, textures, music, and minimal design.
+                    The environment became inseparable from the drink itself.
+
+                </p>
+
+                <p>
+
+                    Warm wood interiors, ceramic cups, ambient jazz,
+                    and soft lighting shaped emotional connection around coffee consumption.
+                    Entire industries now exist because humans enjoy dramatic beverages.
+
+                </p>
+
+                <h2>
+                    Social Identity and Coffee Culture
+                </h2>
+
+                <p>
+
+                    Coffee culture evolved into a reflection of lifestyle.
+                    People connected specialty coffee with creativity,
+                    productivity, travel, and modern urban living.
+
+                </p>
+
+                <p>
+
+                    Certain cafés became meeting places for designers,
+                    entrepreneurs, students, artists, and remote workers.
+                    Coffee transformed into a shared social language.
+
+                </p>
+
+                <!-- IMAGE -->
+                <div class="overflow-hidden rounded-[2.5rem] shadow-xl my-20">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?q=80&w=1974&auto=format&fit=crop"
+                        class="w-full h-[550px] object-cover"
+                    >
+
+                </div>
+
+                <h2>
+                    Craftsmanship Matters More Than Ever
+                </h2>
+
+                <p>
+
+                    Today’s specialty coffee movement values sourcing,
+                    ethical farming, roasting precision, and transparency.
+                    Consumers increasingly care about where beans come from
+                    and how they are processed.
+
+                </p>
+
+                <p>
+
+                    Roasters now speak about altitude, fermentation,
+                    roast curves, and tasting notes with near-religious seriousness.
+                    Entire communities formed around understanding flavor complexity.
+
+                </p>
+
+                <blockquote>
+
+                    “Coffee became a modern ritual because people
+                    wanted experiences that felt intentional.”
+
+                </blockquote>
+
+                <h2>
+                    The Future of Specialty Coffee
+                </h2>
+
+                <p>
+
+                    Specialty coffee continues to evolve through innovation,
+                    sustainability, and personalization.
+                    Subscription services, reserve collections,
+                    and curated experiences now define premium coffee brands.
+
+                </p>
+
+                <p>
+
+                    Somewhere along the way, humanity turned roasted seeds
+                    into emotional comfort, artistic expression,
+                    and identity branding. Honestly, considering the alternatives,
+                    it could have gone much worse.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- AUTHOR -->
+    <section class="py-24 bg-[#f3ede7] dark:bg-slate-900">
+
+        <div class="max-w-5xl mx-auto px-6">
+
+            <div class="bg-white dark:bg-slate-950 rounded-[2.5rem] p-10 md:p-14 shadow-2xl">
+
+                <div class="flex flex-col md:flex-row gap-10 items-center">
+
+                    <!-- IMAGE -->
+                    <img
+                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop"
+                        class="w-36 h-36 rounded-full object-cover"
+                    >
+
+                    <!-- CONTENT -->
+                    <div>
+
+                        <p class="uppercase tracking-[0.3em] text-sm text-amber-700 mb-4">
+                            Written By
+                        </p>
+
+                        <h3 class="heading-font text-5xl font-bold mb-5">
+                            Veloura Editorial
+                        </h3>
+
+                        <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+
+                            Exploring craftsmanship, coffee culture,
+                            design, roasting philosophy, and the evolving
+                            rituals surrounding specialty coffee experiences.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- RELATED ARTICLES -->
+    <section class="py-32 bg-white dark:bg-slate-950">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <!-- TITLE -->
+            <div class="text-center max-w-3xl mx-auto mb-24">
+
+                <p class="uppercase tracking-[0.3em] text-sm text-amber-700 mb-5">
+                    Continue Reading
+                </p>
+
+                <h2 class="heading-font text-5xl md:text-7xl font-bold mb-8">
+
+                    Related Stories
+
+                </h2>
+
+            </div>
+
+            <!-- GRID -->
+            <div class="grid lg:grid-cols-3 gap-10">
+
+                <!-- CARD -->
+                <article class="bg-[#f6f1ea] dark:bg-slate-900 rounded-[2rem] overflow-hidden shadow-xl card-hover">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1974&auto=format&fit=crop"
+                        class="w-full h-[320px] object-cover"
+                    >
+
+                    <div class="p-8">
+
+                        <p class="uppercase tracking-[0.2em] text-sm text-amber-700 mb-4">
+                            Brewing
+                        </p>
+
+                        <h3 class="heading-font text-4xl font-bold mb-5">
+
+                            Mastering the Perfect Pour Over
+
+                        </h3>
+
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+
+                            Exploring floral complexity and bright acidity
+                            from Ethiopia’s renowned coffee regions.
+
+                        </p>
+
+                        <a href="./blog2.html"
+                            class="px-6 py-3 rounded-xl bg-amber-700 hover:bg-amber-600 transition text-white font-medium"
+                        >
+                            Read Story
+                        </a>
+
+                    </div>
+
+                </article>
+
+                <!-- CARD -->
+                <article class="bg-[#f6f1ea] dark:bg-slate-900 rounded-[2rem] overflow-hidden shadow-xl card-hover">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1974&auto=format&fit=crop"
+                        class="w-full h-[320px] object-cover"
+                    >
+
+                    <div class="p-8">
+
+                        <p class="uppercase tracking-[0.2em] text-sm text-amber-700 mb-4">
+                            Featured Stories
+                        </p>
+
+                        <h3 class="heading-font text-4xl font-bold mb-5">
+
+                         Why Specialty Coffee Became a Lifestyle
+
+                        </h3>
+
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+
+                         Discover how altitude, climate, and farming traditions
+                            shape unique coffee flavors worldwide.
+
+
+                        </p>
+
+                        <a href="./blog1.html"
+                            class="px-6 py-3 rounded-xl bg-amber-700 hover:bg-amber-600 transition text-white font-medium"
+                        >
+                            Read Story
+                        </a>
+
+                    </div>
+
+                </article>
+
+                <!-- CARD -->
+                <article class="bg-[#f6f1ea] dark:bg-slate-900 rounded-[2rem] overflow-hidden shadow-xl card-hover">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2070&auto=format&fit=crop"
+                        class="w-full h-[320px] object-cover"
+                    >
+
+                    <div class="p-8">
+
+                        <p class="uppercase tracking-[0.2em] text-sm text-amber-700 mb-4">
+                            Roasting
+                        </p>
+
+                        <h3 class="heading-font text-4xl font-bold mb-5">
+
+                            The Art of Small Roasting
+
+                        </h3>
+
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+
+                            Exploring clarity, extraction, and slow
+                            coffee rituals in modern brewing.
+
+                        </p>
+
+                        <a href="./blog4.html"
+                            class="px-6 py-3 rounded-xl bg-amber-700 hover:bg-amber-600 transition text-white font-medium"
+                        >
+                            Read Story
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NEWSLETTER -->
+    <section class="relative py-36 overflow-hidden">
+
+        <!-- BG -->
+        <img
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop"
+            class="absolute inset-0 w-full h-full object-cover"
+        >
+
+        <!-- OVERLAY -->
+        <div class="absolute inset-0 bg-black/80"></div>
+
+        <!-- CONTENT -->
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-6">
+
+            <p class="uppercase tracking-[0.3em] text-sm text-amber-400 mb-5">
+                Veloura Journal
+            </p>
+
+            <h2 class="heading-font text-5xl md:text-7xl font-bold text-white mb-8">
+
+                Stories Brewed
+                Around Culture
+
+            </h2>
+
+            <p class="text-xl text-slate-300 leading-relaxed mb-12">
+
+                Subscribe for coffee stories, reserve collections,
+                roasting insights, and modern coffee culture.
+
+            </p>
+
+            <!-- FORM -->
+            <div class="flex flex-col sm:flex-row gap-5 max-w-2xl mx-auto">
+
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    class="flex-1 h-16 rounded-2xl px-6 bg-white/10 border border-white/10 text-white placeholder:text-slate-400 outline-none"
+                >
+
+                <button
+                    class="px-10 h-16 rounded-2xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold"
+                >
+                    Subscribe
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-14 bg-white dark:bg-black border-t border-slate-200 dark:border-white/10">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="flex flex-col md:flex-row justify-between gap-10">
+
+                <div>
+
+                    <h2 class="heading-font text-4xl font-bold mb-4">
+                        Veloura Reserve
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
+                        Premium specialty coffee experiences crafted
+                        through culture, design, and craftsmanship.
+                    </p>
+
+                </div>
+
+                <div class="flex gap-8 text-slate-600 dark:text-slate-400">
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Instagram
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Twitter
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        LinkedIn
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="border-t border-slate-200 dark:border-white/10 mt-10 pt-8 text-sm text-slate-500">
+                © 2026 Veloura Reserve. All rights reserved.
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+
+        lucide.createIcons();
+
+    </script>
+
+</body>
+</html>

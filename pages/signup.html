@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Veloura Reserve | Sign Up</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- LUCIDE -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode:'class',
+        }
+    </script>
+
+    <style>
+
+        *{
+            font-family:'Inter',sans-serif;
+        }
+
+        .heading-font{
+            font-family:'Cormorant Garamond',serif;
+        }
+
+        body{
+            overflow-x:hidden;
+        }
+
+        .glass{
+            background:rgba(15,23,42,0.72);
+            backdrop-filter:blur(18px);
+            border:1px solid rgba(255,255,255,0.08);
+        }
+
+        .input-style{
+            background:rgba(255,255,255,0.04);
+            border:1px solid rgba(255,255,255,0.08);
+            transition:all .3s ease;
+        }
+
+        .input-style:focus{
+            border-color:#b45309;
+            background:rgba(255,255,255,0.06);
+        }
+
+        input{
+            outline:none;
+        }
+
+    </style>
+
+</head>
+
+<body class="bg-black text-white min-h-screen relative flex items-center justify-center px-6 py-10">
+
+    <!-- BG -->
+    <img
+        src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=2070&auto=format&fit=crop"
+        class="absolute inset-0 w-full h-full object-cover"
+    >
+
+    <!-- OVERLAY -->
+    <div class="absolute inset-0 bg-black/80"></div>
+
+    <!-- SIGNUP CARD -->
+    <div class="relative z-10 w-full max-w-md glass rounded-[2.5rem] p-8 md:p-10 shadow-2xl">
+
+        <!-- LOGO -->
+        <a href="../index.html" class="flex items-center justify-center gap-3 mb-10">
+            <img
+                src="../assets/brand-logo.png"
+                class="w-12 h-12 object-contain"
+            >
+
+            <h2 class="heading-font text-4xl font-bold">
+                Veloura
+            </h2>
+            
+
+        </a>
+
+        <!-- TOP -->
+        <div class="text-center mb-10">
+
+            <p class="uppercase tracking-[0.3em] text-xs text-amber-400 mb-4">
+                Join Veloura Reserve
+            </p>
+
+            <h1 class="heading-font text-5xl font-bold mb-4">
+                Create Account
+            </h1>
+
+            <p class="text-slate-400 leading-relaxed">
+
+                Begin your reserve coffee journey
+                with curated specialty experiences.
+
+            </p>
+
+        </div>
+
+        <!-- FORM -->
+        <form class="space-y-6">
+
+            <!-- NAME -->
+            <div>
+
+                <label class="block text-sm text-slate-400 mb-3">
+                    Full Name
+                </label>
+
+                <div class="relative">
+
+                    <i
+                        data-lucide="user"
+                        class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5"
+                    ></i>
+
+                    <input
+                        type="text"
+                        placeholder="Enter your name"
+                        class="input-style w-full h-14 rounded-2xl pl-14 pr-5 placeholder:text-slate-500"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- EMAIL -->
+            <div>
+
+                <label class="block text-sm text-slate-400 mb-3">
+                    Email Address
+                </label>
+
+                <div class="relative">
+
+                    <i
+                        data-lucide="mail"
+                        class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5"
+                    ></i>
+
+                    <input
+                        type="email"
+                        placeholder="Enter your email"
+                        class="input-style w-full h-14 rounded-2xl pl-14 pr-5 placeholder:text-slate-500"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- PASSWORD -->
+            <div>
+
+                <label class="block text-sm text-slate-400 mb-3">
+                    Password
+                </label>
+
+                <div class="relative">
+
+                    <i
+                        data-lucide="lock"
+                        class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5"
+                    ></i>
+
+                    <input
+                        type="password"
+                        placeholder="Create password"
+                        class="input-style w-full h-14 rounded-2xl pl-14 pr-14 placeholder:text-slate-500"
+                    >
+
+                    <button
+                        type="button"
+                        class="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500"
+                    >
+                        <i data-lucide="eye"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- CONFIRM -->
+            <div>
+
+                <label class="block text-sm text-slate-400 mb-3">
+                    Confirm Password
+                </label>
+
+                <div class="relative">
+
+                    <i
+                        data-lucide="shield-check"
+                        class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5"
+                    ></i>
+
+                    <input
+                        type="password"
+                        placeholder="Confirm password"
+                        class="input-style w-full h-14 rounded-2xl pl-14 pr-5 placeholder:text-slate-500"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- TERMS -->
+            <label class="flex items-start gap-3 text-sm text-slate-400 cursor-pointer leading-relaxed">
+
+                <input
+                    type="checkbox"
+                    class="accent-amber-700 w-4 h-4 mt-1"
+                >
+
+                I agree to the terms and reserve membership policies.
+
+            </label>
+
+            <!-- BUTTON -->
+            <button
+                class="w-full h-14 rounded-2xl bg-amber-700 hover:bg-amber-600 transition font-semibold shadow-xl"
+            >
+                Create Account
+            </button>
+
+        </form>
+
+        <!-- DIVIDER -->
+        <div class="flex items-center gap-4 my-8">
+
+            <div class="flex-1 h-[1px] bg-white/10"></div>
+
+            <span class="text-xs tracking-[0.2em] text-slate-500 uppercase">
+                Or Continue
+            </span>
+
+            <div class="flex-1 h-[1px] bg-white/10"></div>
+
+        </div>
+
+        <!-- SOCIAL -->
+        <div class="grid grid-cols-2 gap-4">
+
+            <!-- GOOGLE -->
+            <button
+                class="h-14 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition flex items-center justify-center gap-3 text-sm"
+            >
+
+                <img
+                    src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"
+                    class="w-5 h-5 object-contain"
+                >
+
+                Google
+
+            </button>
+
+            <!-- APPLE -->
+            <button
+                class="h-14 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition flex items-center justify-center gap-3 text-sm"
+            >
+
+                <i data-lucide="apple"></i>
+
+                Apple
+
+            </button>
+
+        </div>
+
+        <!-- LOGIN -->
+        <div class="mt-8 text-center">
+
+            <p class="text-sm text-slate-400">
+
+                Already have an account?
+
+                <a
+                    href="./login.html"
+                    class="text-amber-400 hover:text-amber-300 transition font-semibold"
+                >
+                    Sign In
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+
+        lucide.createIcons();
+
+    </script>
+
+</body>
+</html>

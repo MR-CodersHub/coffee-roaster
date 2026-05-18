@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Small Batch Roasting | Veloura Reserve</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- LUCIDE -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode:'class',
+        }
+    </script>
+
+    <style>
+
+        *{
+            font-family:'Inter',sans-serif;
+        }
+
+        .heading-font{
+            font-family:'Cormorant Garamond',serif;
+        }
+
+        body{
+            overflow-x:hidden;
+        }
+
+        .glass{
+            background:rgba(255,255,255,0.75);
+            backdrop-filter:blur(14px);
+            border:1px solid rgba(255,255,255,0.3);
+        }
+
+        .dark .glass{
+            background:rgba(15,23,42,0.55);
+            border:1px solid rgba(255,255,255,0.08);
+        }
+
+        .hero-overlay{
+            background:
+            linear-gradient(
+                to top,
+                rgba(0,0,0,0.92),
+                rgba(0,0,0,0.55),
+                rgba(0,0,0,0.25)
+            );
+        }
+
+        .card-hover{
+            transition:all .4s ease;
+        }
+
+        .card-hover:hover{
+            transform:translateY(-8px);
+        }
+
+        .image-hover{
+            transition:transform .6s ease;
+        }
+
+        .group:hover .image-hover{
+            transform:scale(1.06);
+        }
+
+    </style>
+
+</head>
+
+<body class="bg-[#f6f1ea] dark:bg-slate-950 text-slate-900 dark:text-white">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="mt-5 h-20 px-6 rounded-2xl glass flex items-center justify-between">
+
+                <!-- LOGO -->
+                <a href="#" class="flex items-center gap-3">
+
+                    <img
+                        src="./assets/logo.png"
+                        class="w-12 h-12 object-contain"
+                    >
+
+                    <h2 class="heading-font text-3xl font-bold">
+                        Veloura Reserve
+                    </h2>
+
+                </a>
+
+                <!-- NAV -->
+                <nav class="hidden lg:flex items-center gap-10">
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Home
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        About
+                    </a>
+
+                    <a href="#" class="text-amber-700 font-semibold">
+                        Services
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Membership
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Contact
+                    </a>
+
+                </nav>
+
+                <!-- RIGHT -->
+                <div class="flex items-center gap-4">
+
+                    <button
+                        class="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 shadow-lg flex items-center justify-center"
+                    >
+                        <i data-lucide="moon"></i>
+                    </button>
+
+                    <button
+                        class="w-11 h-11 rounded-full bg-amber-700 text-white flex items-center justify-center shadow-lg"
+                    >
+                        <i data-lucide="user"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- HERO -->
+    <section class="relative min-h-screen overflow-hidden flex items-end">
+
+        <!-- BG -->
+        <img
+            src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?q=80&w=1974&auto=format&fit=crop"
+            class="absolute inset-0 w-full h-full object-cover"
+        >
+
+        <!-- OVERLAY -->
+        <div class="absolute inset-0 hero-overlay"></div>
+
+        <!-- CONTENT -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 pb-28 w-full">
+
+            <div class="max-w-4xl">
+
+                <p class="uppercase tracking-[0.3em] text-sm text-amber-400 mb-6">
+                    Signature Roasting Service
+                </p>
+
+                <h1 class="heading-font text-6xl md:text-8xl leading-none font-bold text-white mb-8">
+
+                    Small Batch
+                    Roasting
+
+                </h1>
+
+                <p class="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-3xl mb-12">
+
+                    Precision-crafted coffee roasting designed to preserve
+                    complexity, aroma, and exceptional flavor profiles.
+
+                </p>
+
+                <div class="flex flex-wrap gap-5">
+
+                    <button
+                        class="px-8 py-4 rounded-2xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold"
+                    >
+                        Reserve a Roast
+                    </button>
+
+                    <button
+                        class="px-8 py-4 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-xl text-white hover:bg-white/10 transition"
+                    >
+                        Explore Collections
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- INTRO -->
+    <section class="py-32 bg-white dark:bg-slate-950">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+                <!-- IMAGE -->
+                <div class="overflow-hidden rounded-[2.5rem] shadow-2xl group">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop"
+                        class="image-hover w-full h-full object-cover"
+                    >
+
+                </div>
+
+                <!-- CONTENT -->
+                <div>
+
+                    <p class="uppercase tracking-[0.3em] text-sm text-amber-700 mb-5">
+                        Roasting Philosophy
+                    </p>
+
+                    <h2 class="heading-font text-5xl md:text-6xl font-bold mb-8">
+
+                        Crafted for
+                        Flavor Precision
+
+                    </h2>
+
+                    <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+
+                        Every roast profile is developed carefully to reveal
+                        the natural characteristics of each bean origin.
+
+                    </p>
+
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-10">
+
+                        Humans discovered that slightly changing heat curves
+                        transforms flavor completely. Tiny roasted chemistry experiments
+                        somehow became an art form. Beautifully obsessive species.
+
+                    </p>
+
+                    <!-- FEATURES -->
+                    <div class="space-y-6">
+
+                        <div class="flex items-start gap-4">
+
+                            <i data-lucide="check-circle" class="text-amber-700 mt-1"></i>
+
+                            <div>
+
+                                <h4 class="font-semibold text-lg mb-1">
+                                    Specialty Grade Beans
+                                </h4>
+
+                                <p class="text-slate-600 dark:text-slate-400">
+                                    Carefully sourced premium coffee origins.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="flex items-start gap-4">
+
+                            <i data-lucide="check-circle" class="text-amber-700 mt-1"></i>
+
+                            <div>
+
+                                <h4 class="font-semibold text-lg mb-1">
+                                    Precision Roast Profiles
+                                </h4>
+
+                                <p class="text-slate-600 dark:text-slate-400">
+                                    Controlled roasting for balanced flavor clarity.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="flex items-start gap-4">
+
+                            <i data-lucide="check-circle" class="text-amber-700 mt-1"></i>
+
+                            <div>
+
+                                <h4 class="font-semibold text-lg mb-1">
+                                    Fresh Weekly Roasting
+                                </h4>
+
+                                <p class="text-slate-600 dark:text-slate-400">
+                                    Roasted fresh to preserve aroma and complexity.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PROCESS -->
+    <section class="py-32 bg-[#f3ede7] dark:bg-slate-900">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <!-- TITLE -->
+            <div class="text-center max-w-3xl mx-auto mb-24">
+
+                <p class="uppercase tracking-[0.3em] text-sm text-amber-700 mb-5">
+                    Craft Process
+                </p>
+
+                <h2 class="heading-font text-5xl md:text-7xl font-bold mb-8">
+
+                    From Bean
+                    to Roast
+
+                </h2>
+
+                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+
+                    Our roasting process balances science, timing,
+                    and craftsmanship for exceptional coffee experiences.
+
+                </p>
+
+            </div>
+
+            <!-- GRID -->
+            <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
+
+                <!-- CARD -->
+                <div class="bg-white dark:bg-slate-950 rounded-[2rem] p-10 shadow-xl card-hover">
+
+                    <div class="w-16 h-16 rounded-2xl bg-amber-700 text-white flex items-center justify-center mb-8">
+
+                        <i data-lucide="globe"></i>
+
+                    </div>
+
+                    <h3 class="heading-font text-4xl font-bold mb-5">
+                        Sourcing
+                    </h3>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+
+                        Premium beans selected from ethical farms
+                        across renowned coffee regions.
+
+                    </p>
+
+                </div>
+
+                <!-- CARD -->
+                <div class="bg-white dark:bg-slate-950 rounded-[2rem] p-10 shadow-xl card-hover">
+
+                    <div class="w-16 h-16 rounded-2xl bg-amber-700 text-white flex items-center justify-center mb-8">
+
+                        <i data-lucide="flame"></i>
+
+                    </div>
+
+                    <h3 class="heading-font text-4xl font-bold mb-5">
+                        Roasting
+                    </h3>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+
+                        Carefully profiled roast curves developed
+                        for flavor balance and sweetness.
+
+                    </p>
+
+                </div>
+
+                <!-- CARD -->
+                <div class="bg-white dark:bg-slate-950 rounded-[2rem] p-10 shadow-xl card-hover">
+
+                    <div class="w-16 h-16 rounded-2xl bg-amber-700 text-white flex items-center justify-center mb-8">
+
+                        <i data-lucide="package"></i>
+
+                    </div>
+
+                    <h3 class="heading-font text-4xl font-bold mb-5">
+                        Packaging
+                    </h3>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+
+                        Freshly sealed immediately after roasting
+                        for maximum aroma retention.
+
+                    </p>
+
+                </div>
+
+                <!-- CARD -->
+                <div class="bg-white dark:bg-slate-950 rounded-[2rem] p-10 shadow-xl card-hover">
+
+                    <div class="w-16 h-16 rounded-2xl bg-amber-700 text-white flex items-center justify-center mb-8">
+
+                        <i data-lucide="truck"></i>
+
+                    </div>
+
+                    <h3 class="heading-font text-4xl font-bold mb-5">
+                        Delivery
+                    </h3>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+
+                        Delivered directly to homes, cafes,
+                        and specialty coffee enthusiasts.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ROAST TYPES -->
+    <section class="py-32 bg-white dark:bg-slate-950">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <!-- TITLE -->
+            <div class="text-center max-w-3xl mx-auto mb-24">
+
+                <p class="uppercase tracking-[0.3em] text-sm text-amber-700 mb-5">
+                    Roast Collections
+                </p>
+
+                <h2 class="heading-font text-5xl md:text-7xl font-bold mb-8">
+
+                    Signature
+                    Roast Profiles
+
+                </h2>
+
+            </div>
+
+            <!-- GRID -->
+            <div class="grid lg:grid-cols-3 gap-10">
+
+                <!-- CARD -->
+                <div class="overflow-hidden rounded-[2rem] shadow-xl bg-[#f6f1ea] dark:bg-slate-900">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=2070&auto=format&fit=crop"
+                        class="w-full h-[350px] object-cover"
+                    >
+
+                    <div class="p-8">
+
+                        <p class="uppercase tracking-[0.2em] text-sm text-amber-700 mb-4">
+                            Light Roast
+                        </p>
+
+                        <h3 class="heading-font text-4xl font-bold mb-5">
+                            Floral & Citrus
+                        </h3>
+
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+
+                            Bright acidity with floral aromatics
+                            and delicate fruit-forward complexity.
+
+                        </p>
+
+                        <a href="./booking.html"
+                            class="px-6 py-3 rounded-xl bg-amber-700 hover:bg-amber-600 transition text-white font-medium"
+                        >
+                           Order Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD -->
+                <div class="overflow-hidden rounded-[2rem] shadow-xl bg-[#f6f1ea] dark:bg-slate-900">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1974&auto=format&fit=crop"
+                        class="w-full h-[350px] object-cover"
+                    >
+
+                    <div class="p-8">
+
+                        <p class="uppercase tracking-[0.2em] text-sm text-amber-700 mb-4">
+                            Medium Roast
+                        </p>
+
+                        <h3 class="heading-font text-4xl font-bold mb-5">
+                            Balanced & Sweet
+                        </h3>
+
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+
+                            Smooth caramel sweetness balanced
+                            with chocolate and nutty undertones.
+
+                        </p>
+
+                        <a href="./booking.html"
+                            class="px-6 py-3 rounded-xl bg-amber-700 hover:bg-amber-600 transition text-white font-medium"
+                        >
+                            Order Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD -->
+                <div class="overflow-hidden rounded-[2rem] shadow-xl bg-[#f6f1ea] dark:bg-slate-900">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2070&auto=format&fit=crop"
+                        class="w-full h-[350px] object-cover"
+                    >
+
+                    <div class="p-8">
+
+                        <p class="uppercase tracking-[0.2em] text-sm text-amber-700 mb-4">
+                            Dark Roast
+                        </p>
+
+                        <h3 class="heading-font text-4xl font-bold mb-5">
+                            Bold & Smoky
+                        </h3>
+
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+
+                            Rich body with intense cocoa notes
+                            and a deep roasted finish.
+
+                        </p>
+
+                        <a href="./booking.html"
+                            class="px-6 py-3 rounded-xl bg-amber-700 hover:bg-amber-600 transition text-white font-medium"
+                        >
+                            Order Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CTA -->
+    <section class="relative py-36 overflow-hidden">
+
+        <!-- BG -->
+        <img
+            src="https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1974&auto=format&fit=crop"
+            class="absolute inset-0 w-full h-full object-cover"
+        >
+
+        <!-- OVERLAY -->
+        <div class="absolute inset-0 bg-black/80"></div>
+
+        <!-- CONTENT -->
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-6">
+
+            <p class="uppercase tracking-[0.3em] text-sm text-amber-400 mb-5">
+                Reserve Coffee Experience
+            </p>
+
+            <h2 class="heading-font text-5xl md:text-7xl font-bold text-white mb-8">
+
+                Experience
+                Precision Roasting
+
+            </h2>
+
+            <p class="text-xl text-slate-300 leading-relaxed mb-12">
+
+                Discover specialty coffee roasted with craftsmanship,
+                precision, and obsessive attention to detail.
+
+            </p>
+
+            <a href="./contact.html"
+                class="px-10 py-5 rounded-2xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold text-lg shadow-2xl"
+            >
+                Reserve Your Roast
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-14 bg-white dark:bg-black border-t border-slate-200 dark:border-white/10">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="flex flex-col md:flex-row justify-between gap-10">
+
+                <div>
+
+                    <h2 class="heading-font text-4xl font-bold mb-4">
+                        Veloura Reserve
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
+                        Premium specialty coffee experiences crafted
+                        through precision roasting and modern coffee culture.
+                    </p>
+
+                </div>
+
+                <div class="flex gap-8 text-slate-600 dark:text-slate-400">
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Instagram
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Twitter
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        LinkedIn
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="border-t border-slate-200 dark:border-white/10 mt-10 pt-8 text-sm text-slate-500">
+                © 2026 Veloura Reserve. All rights reserved.
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+
+        lucide.createIcons();
+
+    </script>
+
+</body>
+</html>

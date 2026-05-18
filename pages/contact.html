@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Contact | Veloura Reserve</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- LUCIDE -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <style>
+
+        *{
+            font-family: 'Inter', sans-serif;
+        }
+
+        .heading-font{
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        body{
+            overflow-x:hidden;
+        }
+
+        .glass{
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .dark .glass{
+            background: rgba(15,23,42,0.55);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .hero-overlay{
+            background:
+            linear-gradient(
+                to top,
+                rgba(0,0,0,0.9),
+                rgba(0,0,0,0.6),
+                rgba(0,0,0,0.25)
+            );
+        }
+
+        .card-hover{
+            transition: all .45s ease;
+        }
+
+        .card-hover:hover{
+            transform: translateY(-8px);
+        }
+
+        .fade-up{
+            animation: fadeUp 1s ease forwards;
+        }
+
+        @keyframes fadeUp{
+
+            from{
+                opacity:0;
+                transform: translateY(40px);
+            }
+
+            to{
+                opacity:1;
+                transform: translateY(0);
+            }
+
+        }
+
+        input,
+        textarea,
+        select{
+            outline:none;
+        }
+
+    </style>
+
+</head>
+
+<body class="bg-[#f8f5f1] dark:bg-slate-950 text-slate-900 dark:text-white">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="mt-5 h-20 px-6 rounded-2xl glass flex items-center justify-between">
+
+                <!-- LOGO -->
+                <a href="#" class="flex items-center gap-3">
+
+                    <img
+                        src="./assets/logo.png"
+                        class="w-12 h-12 object-contain"
+                    >
+
+                    <h2 class="heading-font text-3xl font-bold">
+                        Veloura Reserve
+                    </h2>
+
+                </a>
+
+                <!-- NAV -->
+                <nav class="hidden lg:flex items-center gap-10">
+
+                    <a href="#" class="hover:text-amber-700 transition font-medium">
+                        Home
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition font-medium">
+                        About
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition font-medium">
+                        Services
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition font-medium">
+                        Journal
+                    </a>
+
+                    <a href="#" class="text-amber-700 font-semibold">
+                        Contact
+                    </a>
+
+                </nav>
+
+                <!-- RIGHT -->
+                <div class="flex items-center gap-4">
+
+                    <!-- THEME -->
+                    <button
+                        id="theme-toggle"
+                        class="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 shadow-md flex items-center justify-center hover:scale-105 transition"
+                    >
+                        <i data-lucide="moon"></i>
+                    </button>
+
+                    <!-- PROFILE -->
+                    <button
+                        class="w-11 h-11 rounded-full bg-amber-700 text-white flex items-center justify-center shadow-lg"
+                    >
+                        <i data-lucide="user"></i>
+                    </button>
+
+                    <!-- MOBILE -->
+                    <button
+                        id="mobile-btn"
+                        class="lg:hidden w-11 h-11 rounded-xl bg-white dark:bg-slate-900 shadow-md flex items-center justify-center"
+                    >
+                        <i data-lucide="menu"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- HERO -->
+    <section class="relative min-h-[85vh] flex items-end overflow-hidden">
+
+        <!-- BG -->
+        <img
+            src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80"
+            class="absolute inset-0 w-full h-full object-cover"
+        >
+
+        <!-- OVERLAY -->
+        <div class="absolute inset-0 hero-overlay"></div>
+
+        <!-- CONTENT -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 pb-24 w-full">
+
+            <div class="max-w-4xl fade-up">
+
+                <span class="inline-flex px-5 py-2 rounded-full glass text-sm uppercase tracking-[0.2em]  mb-8">
+                    Get in Touch
+                </span>
+
+                <h1 class="heading-font text-6xl md:text-8xl font-bold leading-none text-white mb-8">
+
+                    Let’s Talk
+                    About Coffee
+
+                </h1>
+
+                <p class="text-xl md:text-2xl text-slate-200 leading-relaxed max-w-3xl">
+
+                    Whether you're looking for reserve collections,
+                    partnerships, or subscription services, we’d love to hear from you.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="py-32 bg-white dark:bg-slate-950">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="grid lg:grid-cols-2 gap-20">
+
+                <!-- LEFT -->
+                <div>
+
+                    <p class="uppercase tracking-[0.3em] text-amber-700 text-sm mb-5">
+                        Contact Information
+                    </p>
+
+                    <h2 class="heading-font text-5xl md:text-6xl font-bold mb-8">
+
+                        Start the
+                        Conversation
+
+                    </h2>
+
+                    <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-12">
+
+                        Reach out for partnerships, coffee consultations,
+                        reserve memberships, or wholesale collaborations.
+
+                    </p>
+
+                    <!-- INFO -->
+                    <div class="space-y-8">
+
+                        <!-- ITEM -->
+                        <div class="flex items-start gap-5">
+
+                            <div class="w-14 h-14 rounded-2xl bg-amber-700 text-white flex items-center justify-center">
+                                <i data-lucide="mail"></i>
+                            </div>
+
+                            <div>
+
+                                <h4 class="text-2xl heading-font font-bold mb-2">
+                                    Email
+                                </h4>
+
+                                <p class="text-slate-600 dark:text-slate-400">
+                                    hello@velourareserve.com
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <!-- ITEM -->
+                        <div class="flex items-start gap-5">
+
+                            <div class="w-14 h-14 rounded-2xl bg-amber-700 text-white flex items-center justify-center">
+                                <i data-lucide="phone"></i>
+                            </div>
+
+                            <div>
+
+                                <h4 class="text-2xl heading-font font-bold mb-2">
+                                    Phone
+                                </h4>
+
+                                <p class="text-slate-600 dark:text-slate-400">
+                                    +91 98765 43210
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <!-- ITEM -->
+                        <div class="flex items-start gap-5">
+
+                            <div class="w-14 h-14 rounded-2xl bg-amber-700 text-white flex items-center justify-center">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+
+                            <div>
+
+                                <h4 class="text-2xl heading-font font-bold mb-2">
+                                    Studio
+                                </h4>
+
+                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    22 Artisan Street,<br>
+                                    Chennai, Tamil Nadu
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- FORM -->
+                <div class="bg-[#f3ede7] dark:bg-slate-900 rounded-[2rem] p-10 shadow-2xl">
+
+                    <p class="uppercase tracking-[0.3em] text-amber-700 text-sm mb-5">
+                        Send Message
+                    </p>
+
+                    <h3 class="heading-font text-5xl font-bold mb-10">
+
+                        Contact Form
+
+                    </h3>
+
+                    <form class="space-y-6">
+
+                        <!-- NAME -->
+                        <div>
+
+                            <label class="block mb-3 font-medium">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                placeholder="Enter your full name"
+                                class="w-full px-6 py-5 rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950"
+                            >
+
+                        </div>
+
+                        <!-- EMAIL -->
+                        <div>
+
+                            <label class="block mb-3 font-medium">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                placeholder="Enter your email"
+                                class="w-full px-6 py-5 rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950"
+                            >
+
+                        </div>
+
+                        <!-- SUBJECT -->
+                        <div>
+
+                            <label class="block mb-3 font-medium">
+                                Service Type
+                            </label>
+
+                            <select
+                                class="w-full px-6 py-5 rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950"
+                            >
+
+                                <option>General Inquiry</option>
+                                <option>Subscription Service</option>
+                                <option>Wholesale Partnership</option>
+                                <option>Reserve Membership</option>
+                                <option>Business Collaboration</option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- MESSAGE -->
+                        <div>
+
+                            <label class="block mb-3 font-medium">
+                                Message
+                            </label>
+
+                            <textarea
+                                rows="6"
+                                placeholder="Write your message..."
+                                class="w-full px-6 py-5 rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 resize-none"
+                            ></textarea>
+
+                        </div>
+
+                        <!-- BUTTON -->
+                        <button
+                            class="w-full py-5 rounded-2xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold text-lg shadow-xl"
+                        >
+                            Send Message
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CTA -->
+    <section class="relative py-36 overflow-hidden">
+
+        <!-- BG -->
+        <img
+            src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=2070&auto=format&fit=crop"
+            class="absolute inset-0 w-full h-full object-cover"
+        >
+
+        <!-- OVERLAY -->
+        <div class="absolute inset-0 bg-black/80"></div>
+
+        <!-- CONTENT -->
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-6">
+
+            <p class="uppercase tracking-[0.3em] text-amber-400 text-sm mb-5">
+                Why Veloura
+            </p>
+
+            <h2 class="heading-font text-5xl md:text-7xl font-bold text-white mb-8">
+
+                Crafted Around
+                    Experience
+
+
+            </h2>
+
+            <p class="text-xl text-slate-300 leading-relaxed mb-12">
+
+                Somewhere between ritual, chemistry, and obsession,
+                humans created specialty coffee culture. Surprisingly elegant outcome.
+
+            </p>
+<!-- GRID -->
+            <div class="grid md:grid-cols-3 gap-10">
+
+                <!-- CARD -->
+                <div class="bg-white dark:bg-slate-950 rounded-[2rem] p-10 shadow-xl card-hover">
+
+                    <i data-lucide="flame" class="w-14 h-14 text-amber-700 mb-8"></i>
+
+                    <h3 class="heading-font text-4xl font-bold mb-5">
+                        Artisan Roasting
+                    </h3>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+
+                        Carefully roasted specialty coffee crafted
+                        with precision and consistency.
+
+                    </p>
+
+                </div>
+
+                <!-- CARD -->
+                <div class="bg-white dark:bg-slate-950 rounded-[2rem] p-10 shadow-xl card-hover">
+
+                    <i data-lucide="gem" class="w-14 h-14 text-amber-700 mb-8"></i>
+
+                    <h3 class="heading-font text-4xl font-bold mb-5">
+                        Reserve Collections
+                    </h3>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+
+                        Rare coffee experiences curated for
+                        enthusiasts and luxury hospitality.
+
+                    </p>
+
+                </div>
+
+                <!-- CARD -->
+                <div class="bg-white dark:bg-slate-950 rounded-[2rem] p-10 shadow-xl card-hover">
+
+                    <i data-lucide="heart-handshake" class="w-14 h-14 text-amber-700 mb-8"></i>
+
+                    <h3 class="heading-font text-4xl font-bold mb-5">
+                        Personalized Service
+                    </h3>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+
+                        Coffee solutions tailored for homes,
+                        cafes, offices, and hospitality spaces.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-14 bg-white dark:bg-black border-t border-slate-200 dark:border-white/10">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="flex flex-col md:flex-row justify-between gap-10">
+
+                <div>
+
+                    <h2 class="heading-font text-4xl font-bold mb-4">
+                        Veloura Reserve
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
+                        Luxury specialty coffee experiences crafted
+                        through precision, culture, and artisan roasting.
+                    </p>
+
+                </div>
+
+                <div class="flex gap-8 text-slate-600 dark:text-slate-400">
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Instagram
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        Twitter
+                    </a>
+
+                    <a href="#" class="hover:text-amber-700 transition">
+                        LinkedIn
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="border-t border-slate-200 dark:border-white/10 mt-10 pt-8 text-sm text-slate-500">
+                © 2026 Veloura Reserve. All rights reserved.
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+
+        lucide.createIcons();
+
+        // THEME
+        const themeToggle = document.getElementById("theme-toggle");
+
+        themeToggle.addEventListener("click", () => {
+
+            document.documentElement.classList.toggle("dark");
+
+            if(document.documentElement.classList.contains("dark")){
+                localStorage.setItem("theme","dark");
+            }else{
+                localStorage.setItem("theme","light");
+            }
+
+        });
+
+        if(
+            localStorage.getItem("theme") === "dark" ||
+            (
+                !localStorage.getItem("theme") &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+            )
+        ){
+            document.documentElement.classList.add("dark");
+        }
+
+    </script>
+
+</body>
+</html>
