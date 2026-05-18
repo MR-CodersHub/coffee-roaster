@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>Veloura Reserve | User Dashboard</title>
+    <link rel="icon" type="image/png" href="../assets/brand-logo.png">
 
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
@@ -64,6 +65,9 @@
 
     </style>
 
+
+    <!-- VELOURA UNIFIED NAVBAR & FOOTER -->
+    <script src="../src/navbar-footer.js" defer></script>
 </head>
 
 <body class="bg-slate-950 text-white">
@@ -157,64 +161,7 @@
         <main class="flex-1">
 
             <!-- TOPBAR -->
-            <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
-
-                <div class="px-6 md:px-10 py-6 flex items-center justify-between">
-
-                    <!-- LEFT -->
-                    <div>
-
-                        <p class="uppercase tracking-[0.3em] text-amber-400 text-sm mb-2">
-                            Welcome Back
-                        </p>
-
-                        <h1 class="heading-font text-5xl font-bold">
-                            User
-                        </h1>
-
-                    </div>
-
-                    <!-- RIGHT -->
-                    <div class="flex items-center gap-5">
-
-                        <!-- SEARCH -->
-                        <div class="hidden md:flex items-center gap-3 px-5 h-14 rounded-2xl bg-white/5 border border-white/10">
-
-                            <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
-
-                            <input
-                                type="text"
-                                placeholder="Search reserve collection..."
-                                class="bg-transparent outline-none text-sm placeholder:text-slate-500"
-                            >
-
-                        </div>
-
-                        <!-- CART -->
-                        <button
-                            class="relative w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center"
-                        >
-
-                            <i data-lucide="shopping-cart"></i>
-
-                            <span class="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-amber-700 text-xs flex items-center justify-center">
-                                3
-                            </span>
-
-                        </button>
-
-                        <!-- PROFILE -->
-                        <button
-                            class="w-14 h-14 rounded-2xl bg-amber-700 flex items-center justify-center shadow-xl"
-                        >
-                            <i data-lucide="user"></i>
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </header>
+            <header></header>
 
             <!-- CONTENT -->
             <section class="p-6 md:p-10">
@@ -645,11 +592,7 @@
     </div>
 
     <!-- SCRIPT -->
-    <script>
-
-        lucide.createIcons();
-
-    </script>
+    
 
 </body>
 </html>
