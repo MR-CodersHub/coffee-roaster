@@ -145,7 +145,7 @@
                     <!-- PRICE -->
                     <div class="flex items-center gap-5 mb-10">
 
-                        <h2 class="text-5xl font-bold text-slate-900 dark:text-white">
+                        <h2 id="product-price" class="text-5xl font-bold text-slate-900 dark:text-white">
                             ₹1,899
                         </h2>
 
@@ -251,10 +251,10 @@
 
                         </div>
 
-                        <button id="add-to-cart"
+                        <a href="./booking.html"><button id="add-to-cart"
                             class="flex-1 h-14 rounded-2xl bg-amber-700 hover:bg-amber-600 active:scale-95 transition-all text-white font-semibold shadow-xl cursor-pointer">
                             Add to Cart
-                        </button>
+                        </button></a>   
 
                     </div>
 
@@ -555,6 +555,20 @@
         const toast      = document.getElementById('cart-toast');
         const toastMsg   = document.getElementById('toast-msg');
 
+        const productName = document.querySelector('h1.heading-font').textContent.trim();
+        const productImage = document.querySelector('img')?.src || '';
+
+        const saveCartItem = (item) => {
+            const cart = JSON.parse(localStorage.getItem('velouraCart') || '[]');
+            const existingIndex = cart.findIndex(i => i.name === item.name && i.size === item.size && i.price === item.price);
+            if (existingIndex !== -1) {
+                cart[existingIndex].quantity += item.quantity;
+            } else {
+                cart.push(item);
+            }
+            localStorage.setItem('velouraCart', JSON.stringify(cart));
+        };
+
         // --- Quantity ---
         document.getElementById('qty-minus').addEventListener('click', () => {
             if(quantity > 1){ quantity--; qtyDisplay.textContent = quantity; }
@@ -586,6 +600,15 @@
 
         // --- Add to Cart ---
         document.getElementById('add-to-cart').addEventListener('click', () => {
+            saveCartItem({
+                id: productName.toLowerCase().replace(/\s+/g, '-'),
+                name: productName,
+                size: selectedSize,
+                price: selectedPrice,
+                quantity,
+                image: productImage,
+            });
+
             toastMsg.textContent = `${quantity} × ${selectedSize} added to cart!`;
             toast.classList.remove('translate-y-[200%]','opacity-0');
             toast.classList.add('translate-y-0','opacity-100');
