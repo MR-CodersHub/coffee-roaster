@@ -200,6 +200,7 @@
 
                     </div>
 
+                    
                     <!-- OPTIONS -->
                     <div class="mb-10">
 
@@ -207,23 +208,20 @@
                             Select Size
                         </h4>
 
-                        <div class="flex flex-wrap gap-4">
+                        <div id="size-options" class="flex flex-wrap gap-4">
 
-                            <button
-                                class="px-6 py-4 rounded-2xl border-2 border-amber-700 bg-amber-700 text-white font-medium"
-                            >
+                            <button data-size="250g" data-price="1299"
+                                class="size-btn active px-6 py-4 rounded-2xl border-2 border-amber-700 bg-amber-700 text-white font-medium transition">
                                 250g
                             </button>
 
-                            <button
-                                class="px-6 py-4 rounded-2xl border border-slate-300 dark:border-white/10 hover:border-amber-700 transition"
-                            >
+                            <button data-size="500g" data-price="2199"
+                                class="size-btn px-6 py-4 rounded-2xl border-2 border-slate-300 dark:border-white/10 hover:border-amber-700 transition">
                                 500g
                             </button>
 
-                            <button
-                                class="px-6 py-4 rounded-2xl border border-slate-300 dark:border-white/10 hover:border-amber-700 transition"
-                            >
+                            <button data-size="1kg" data-price="3899"
+                                class="size-btn px-6 py-4 rounded-2xl border-2 border-slate-300 dark:border-white/10 hover:border-amber-700 transition">
                                 1kg
                             </button>
 
@@ -236,27 +234,24 @@
 
                         <div class="flex items-center border border-slate-300 dark:border-white/10 rounded-2xl overflow-hidden">
 
-                            <button
-                                class="w-14 h-14 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-900 transition"
-                            >
-                                -
+                            <button id="qty-minus"
+                                class="w-14 h-14 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-900 transition text-lg font-bold select-none cursor-pointer">
+                                −
                             </button>
 
-                            <div class="w-16 h-14 flex items-center justify-center font-semibold">
+                            <div id="qty-display" class="w-16 h-14 flex items-center justify-center font-semibold text-lg">
                                 1
                             </div>
 
-                            <button
-                                class="w-14 h-14 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-900 transition"
-                            >
+                            <button id="qty-plus"
+                                class="w-14 h-14 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-900 transition text-lg font-bold select-none cursor-pointer">
                                 +
                             </button>
 
                         </div>
 
-                        <button
-                            class="flex-1 h-14 rounded-2xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold shadow-xl"
-                        >
+                        <button id="add-to-cart"
+                            class="flex-1 h-14 rounded-2xl bg-amber-700 hover:bg-amber-600 active:scale-95 transition-all text-white font-semibold shadow-xl cursor-pointer">
                             Add to Cart
                         </button>
 
@@ -482,11 +477,11 @@
 
                         </p>
 
-                        <button
+                        <a href="product1.html"><button
                             class="w-full h-14 rounded-2xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold"
                         >
                             View Product
-                        </button>
+                        </button></a>
 
                     </div>
 
@@ -525,11 +520,11 @@
 
                         </p>
 
-                        <button
+                        <a href="product3.html"><button
                             class="w-full h-14 rounded-2xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold"
                         >
                             View Product
-                        </button>
+                        </button></a>
 
                     </div>
 
@@ -547,6 +542,60 @@
     <footer></footer>
 
     <!-- SCRIPT -->
+     <!-- SCRIPT -->
+    <script>
+    (function(){
+        let quantity = 1;
+        let selectedPrice = 1299;
+        let selectedSize = '250g';
+
+        const qtyDisplay = document.getElementById('qty-display');
+        const priceEl    = document.getElementById('product-price');
+        const toast      = document.getElementById('cart-toast');
+        const toastMsg   = document.getElementById('toast-msg');
+
+        // --- Quantity ---
+        document.getElementById('qty-minus').addEventListener('click', () => {
+            if(quantity > 1){ quantity--; qtyDisplay.textContent = quantity; }
+        });
+
+        document.getElementById('qty-plus').addEventListener('click', () => {
+            if(quantity < 99){ quantity++; qtyDisplay.textContent = quantity; }
+        });
+
+        // --- Size selector ---
+        const sizeBtns = document.querySelectorAll('.size-btn');
+        const activeClasses   = ['border-amber-700','bg-amber-700','text-white'];
+        const inactiveClasses = ['border-slate-300','dark:border-white/10'];
+
+        sizeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                sizeBtns.forEach(b => {
+                    b.classList.remove(...activeClasses);
+                    b.classList.add(...inactiveClasses);
+                });
+                btn.classList.add(...activeClasses);
+                btn.classList.remove(...inactiveClasses);
+
+                selectedSize  = btn.dataset.size;
+                selectedPrice = parseInt(btn.dataset.price);
+                priceEl.textContent = '₹' + selectedPrice.toLocaleString('en-IN');
+            });
+        });
+
+        // --- Add to Cart ---
+        document.getElementById('add-to-cart').addEventListener('click', () => {
+            toastMsg.textContent = `${quantity} × ${selectedSize} added to cart!`;
+            toast.classList.remove('translate-y-[200%]','opacity-0');
+            toast.classList.add('translate-y-0','opacity-100');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-[200%]','opacity-0');
+                toast.classList.remove('translate-y-0','opacity-100');
+            }, 2500);
+        });
+    })();
+    </script>
     
 
 </body>
