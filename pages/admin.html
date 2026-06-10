@@ -66,8 +66,6 @@
     </style>
 
 
-    <!-- VELOURA UNIFIED NAVBAR & FOOTER -->
-    <script src="../src/navbar-footer.js" defer></script>
 </head>
 
 <body class="bg-slate-950 text-white">
@@ -78,20 +76,20 @@
         <aside class="w-[300px] hidden lg:flex flex-col border-r border-white/10 bg-black/30 backdrop-blur-xl p-8">
 
             <!-- LOGO -->
-            <div class="flex items-center gap-4 mb-16">
+            <div class="flex flex-col items-center text-center gap-4 mb-16">
 
                 <img
                     src="../assets/brand-logo.png"
-                    class="w-14 h-14 object-contain"
+                    class="w-16 h-16 object-contain"
                 >
 
                 <div>
 
-                    <h2 class="heading-font text-4xl font-bold">
+                    <h2 class="heading-font text-3xl font-bold uppercase tracking-wider">
                         Veloura
                     </h2>
 
-                    <p class="text-sm text-slate-400 uppercase tracking-[0.2em]">
+                    <p class="text-xs text-slate-400 uppercase tracking-[0.2em] mt-2">
                         Admin Panel
                     </p>
 
@@ -102,6 +100,8 @@
             <!-- NAV -->
             <nav class="flex flex-col gap-4">
 
+                <p class="uppercase tracking-[0.1em] text-xs text-slate-500 font-semibold mb-2 ml-2">Menu</p>
+
                 <a href="#"
                     class="sidebar-link active-link flex items-center gap-4 px-5 py-4 rounded-2xl font-medium">
 
@@ -110,42 +110,93 @@
 
                 </a>
 
-                 <a href="../index.html"
+                <a href="#"
                     class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-300">
 
-                    <i data-lucide="home"></i>
-                    Home
+                    <i data-lucide="users"></i>
+                    Users
 
                 </a>
 
-                <a href="./service.html"
+                <a href="#"
                     class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-300">
 
-                    <i data-lucide="shopping-bag"></i>
-                    Services
+                    <i data-lucide="coffee"></i>
+                    Products
 
                 </a>
 
-
-                <a href="./blog.html"
+                <a href="#"
                     class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-300">
 
-                    <i data-lucide="newspaper"></i>
-                    Blogs
+                    <i data-lucide="shopping-cart"></i>
+                    Orders
+
+                </a>
+
+                <a href="#"
+                    class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-300">
+
+                    <i data-lucide="bar-chart"></i>
+                    Analytics
 
                 </a>
 
             </nav>
 
-            
+            <!-- BOTTOM CONTROLS -->
+            <div class="mt-auto flex flex-col gap-3">
+                <p class="uppercase tracking-[0.1em] text-xs text-slate-500 font-semibold mb-1 ml-2">System</p>
+                
+                <button id="theme-toggle" class="sidebar-link flex items-center justify-between px-5 py-4 rounded-2xl text-slate-300 w-full text-left">
+                    <span class="flex items-center gap-4">
+                        <i data-lucide="moon" class="dark-icon"></i>
+                        <span class="theme-text">Dark Mode</span>
+                    </span>
+                    <div class="w-10 h-6 bg-slate-700 rounded-full relative">
+                        <div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full transition-all theme-switch"></div>
+                    </div>
+                </button>
+
+                <button id="rtl-toggle" class="sidebar-link flex items-center justify-between px-5 py-4 rounded-2xl text-slate-300 w-full text-left">
+                    <span class="flex items-center gap-4">
+                        <i data-lucide="align-right"></i>
+                        <span>RTL Mode</span>
+                    </span>
+                </button>
+
+                <a href="../index.html" id="logout-btn" class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-red-400 hover:text-red-300 hover:bg-red-500/10 mt-2">
+                    <i data-lucide="log-out"></i>
+                    Logout
+                </a>
+            </div>
 
         </aside>
 
         <!-- MAIN -->
-        <main class="flex-1">
+        <main class="flex-1 overflow-hidden flex flex-col">
 
             <!-- TOPBAR -->
-            <header></header>
+            <header class="h-24 px-10 flex items-center justify-between border-b border-white/10 bg-black/30 backdrop-blur-xl shrink-0">
+                <div>
+                    <h1 class="text-3xl font-bold heading-font" id="welcome-headline">Admin Dashboard</h1>
+                </div>
+                <div class="relative group cursor-pointer z-50">
+                    <div class="w-12 h-12 rounded-full bg-amber-700 flex items-center justify-center font-bold text-lg text-white" id="profile-avatar">
+                        A
+                    </div>
+                    <!-- Dropdown -->
+                    <div class="absolute right-0 mt-2 w-48 bg-slate-900 border border-white/10 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                        <div class="p-4 border-b border-white/10">
+                            <p class="font-bold text-sm text-white" id="dropdown-name">Admin</p>
+                        </div>
+                        <div class="p-2">
+                            <a href="#" class="block px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition">Profile</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition">Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
 
             <!-- CONTENT -->
             <section class="p-6 md:p-10">
@@ -576,7 +627,54 @@
     </div>
 
     <!-- SCRIPT -->
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // User Data
+            const userName = localStorage.getItem('velouraUserName') || 'Admin';
+            document.getElementById('welcome-headline').textContent = `Welcome back, ${userName}!`;
+            document.getElementById('dropdown-name').textContent = userName;
+            document.getElementById('profile-avatar').textContent = userName.charAt(0).toUpperCase();
 
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeSwitch = themeToggle.querySelector('.theme-switch');
+            const htmlElement = document.documentElement;
+
+            const isDark = localStorage.getItem('velouraTheme') !== 'light';
+            if (isDark) {
+                htmlElement.classList.add('dark');
+                themeSwitch.classList.add('translate-x-4');
+            } else {
+                htmlElement.classList.remove('dark');
+                themeSwitch.classList.remove('translate-x-4');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                htmlElement.classList.toggle('dark');
+                themeSwitch.classList.toggle('translate-x-4');
+                localStorage.setItem('velouraTheme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+            });
+
+            // RTL Toggle
+            const rtlToggle = document.getElementById('rtl-toggle');
+            const isRtl = localStorage.getItem('velouraRtl') === 'true';
+            if (isRtl) {
+                htmlElement.dir = 'rtl';
+            }
+
+            rtlToggle.addEventListener('click', () => {
+                const newDir = htmlElement.dir === 'rtl' ? 'ltr' : 'rtl';
+                htmlElement.dir = newDir;
+                localStorage.setItem('velouraRtl', newDir === 'rtl' ? 'true' : 'false');
+            });
+
+            // Logout
+            document.getElementById('logout-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('velouraUserName');
+                window.location.href = '../index.html';
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Product Details | Veloura Reserve</title>
+    <link rel="icon" type="image/png" href="../assets/brand-logo.png">
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- LUCIDE -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .heading-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .card-hover {
+            transition: all .4s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+        }
+
+        .image-hover {
+            transition: transform .6s ease;
+        }
+
+        .group:hover .image-hover {
+            transform: scale(1.05);
+        }
+
+        .tab-btn.active {
+            border-bottom: 3px solid #b45309;
+            color: #b45309;
+            font-weight: 600;
+        }
+    </style>
+
+    <!-- DATA LAYER & SHARED SYSTEM -->
+    <script src="../src/products.js" defer></script>
+    <script src="../src/navbar-footer.js" defer></script>
+</head>
+
+<body class="bg-[#f6f1ea] dark:bg-slate-950 text-slate-900 dark:text-white">
+
+    <!-- HEADER -->
+    <header></header>
+
+    <!-- PRODUCT DISPLAY SECTION -->
+    <section class="pt-32 sm:pt-40 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            
+            <div class="grid lg:grid-cols-2 gap-12 sm:gap-20 items-start">
+                <!-- LEFT: IMAGE GALLERY -->
+                <div class="sticky top-28">
+                    <!-- Main Gallery Image -->
+                    <div class="overflow-hidden rounded-[2.5rem] shadow-2xl group mb-6 bg-slate-250 dark:bg-slate-900">
+                        <img id="main-product-img" src="" alt="Coffee Roast" class="image-hover w-full h-[350px] sm:h-[500px] object-cover">
+                    </div>
+                    <!-- Thumbnails Gallery Row -->
+                    <div id="gallery-thumbnails" class="grid grid-cols-3 gap-4">
+                        <!-- Dynamic Thumbnails -->
+                    </div>
+                </div>
+
+                <!-- RIGHT: PRODUCT OPTIONS & DESCRIPTION -->
+                <div>
+                    <p id="product-meta" class="uppercase tracking-[0.3em] text-xs sm:text-sm text-amber-700 dark:text-amber-500 font-semibold mb-3">
+                        Origin • Roast
+                    </p>
+                    
+                    <h1 id="product-name" class="heading-font text-4xl sm:text-6xl leading-tight font-bold mb-6 text-slate-900 dark:text-white">
+                        Product Title
+                    </h1>
+
+                    <!-- Price & Stock Indicator -->
+                    <div class="flex items-center gap-5 mb-8">
+                        <h2 id="product-price" class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
+                            ₹0
+                        </h2>
+                        <span class="px-4 py-1.5 rounded-full bg-green-500/15 text-green-500 text-xs font-semibold uppercase tracking-wider">
+                            In Stock
+                        </span>
+                    </div>
+
+                    <!-- Short Description -->
+                    <p id="product-short-desc" class="text-base sm:text-lg text-slate-650 dark:text-slate-350 leading-relaxed mb-8">
+                        Short descriptor goes here...
+                    </p>
+
+                    <!-- Tasting Notes Badge row -->
+                    <div class="mb-10">
+                        <h3 class="font-bold text-sm uppercase tracking-wider text-slate-400 mb-4">Tasting Notes</h3>
+                        <div id="product-tasting-notes" class="flex flex-wrap gap-2.5">
+                            <!-- Notes badges -->
+                        </div>
+                    </div>
+
+                    <!-- Size selection buttons -->
+                    <div class="mb-8">
+                        <h4 class="font-semibold text-sm text-slate-400 uppercase tracking-wider mb-4">Select Size</h4>
+                        <div id="size-options" class="flex flex-wrap gap-3">
+                            <button data-size="250g" class="size-btn px-6 py-3.5 rounded-2xl border-2 border-amber-750 bg-amber-700 text-white font-semibold shadow-sm transition">
+                                250g
+                            </button>
+                            <button data-size="500g" class="size-btn px-6 py-3.5 rounded-2xl border-2 border-slate-300 hover:border-amber-700 text-slate-700 dark:border-white/10 dark:text-slate-300 font-semibold transition">
+                                500g
+                            </button>
+                            <button data-size="1kg" class="size-btn px-6 py-3.5 rounded-2xl border-2 border-slate-300 hover:border-amber-700 text-slate-700 dark:border-white/10 dark:text-slate-300 font-semibold transition">
+                                1kg
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quantity & Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 mb-10">
+                        <!-- Qty Selector -->
+                        <div class="flex items-center border border-slate-300 dark:border-white/10 rounded-2xl overflow-hidden bg-white dark:bg-slate-900 shrink-0 w-fit">
+                            <button id="qty-minus" class="w-12 h-12 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition text-lg font-bold select-none cursor-pointer" aria-label="Decrease quantity">
+                                −
+                            </button>
+                            <div id="qty-display" class="w-12 h-12 flex items-center justify-center font-semibold text-base">
+                                1
+                            </div>
+                            <button id="qty-plus" class="w-12 h-12 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition text-lg font-bold select-none cursor-pointer" aria-label="Increase quantity">
+                                +
+                            </button>
+                        </div>
+
+                        <!-- Add to Cart CTA -->
+                        <button id="add-to-cart-btn" class="flex-grow h-12 rounded-2xl bg-amber-700 hover:bg-amber-600 active:scale-95 transition-all text-white font-semibold shadow-xl flex items-center justify-center gap-2 select-none cursor-pointer">
+                            <i data-lucide="shopping-cart" class="w-4 h-4"></i> Add to Cart
+                        </button>
+
+                        <!-- Add to Wishlist CTA -->
+                        <button id="wishlist-btn" class="w-12 h-12 rounded-2xl border border-slate-350 dark:border-white/10 flex items-center justify-center text-slate-500 hover:text-red-500 hover:border-red-400 dark:hover:text-red-400 transition" aria-label="Add to wishlist">
+                            <i id="wishlist-icon" data-lucide="heart" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <!-- Guarantees Grid -->
+                    <div class="grid sm:grid-cols-2 gap-4 border-t border-slate-200 dark:border-white/5 pt-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-600/10 text-amber-700 dark:text-amber-500 flex items-center justify-center shrink-0">
+                                <i data-lucide="truck" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xs uppercase tracking-wider">Fresh Delivery</h4>
+                                <p class="text-xs text-slate-500">Shipped fresh within 24h of roast</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-600/10 text-amber-700 dark:text-amber-500 flex items-center justify-center shrink-0">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xs uppercase tracking-wider">Premium Quality</h4>
+                                <p class="text-xs text-slate-500">Specialty grade direct-trade beans</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TABS AREA (Description, Reviews, Brewing Guide) -->
+            <div class="mt-20 border-t border-slate-200 dark:border-white/5 pt-12">
+                <div class="flex border-b border-slate-200 dark:border-white/10 gap-6 sm:gap-10">
+                    <button id="tab-btn-desc" class="tab-btn active pb-4 text-sm sm:text-base tracking-wider uppercase font-semibold">Description</button>
+                    <button id="tab-btn-reviews" class="tab-btn pb-4 text-sm sm:text-base tracking-wider uppercase font-semibold">Reviews (<span id="reviews-count-label">0</span>)</button>
+                    <button id="tab-btn-guide" class="tab-btn pb-4 text-sm sm:text-base tracking-wider uppercase font-semibold">Brewing Guide</button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="py-8">
+                    <!-- Description Tab -->
+                    <div id="tab-content-desc" class="tab-content leading-relaxed text-slate-650 dark:text-slate-350 space-y-4">
+                        <p id="product-full-desc"></p>
+                    </div>
+
+                    <!-- Reviews Tab -->
+                    <div id="tab-content-reviews" class="tab-content hidden space-y-6">
+                        <div class="max-w-2xl divide-y divide-slate-150 dark:divide-slate-800" id="reviews-list-container">
+                            <!-- Dynamic reviews injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Brewing Guide Tab -->
+                    <div id="tab-content-guide" class="tab-content hidden leading-relaxed text-slate-655 dark:text-slate-350">
+                        <div class="p-6 rounded-2xl bg-amber-500/5 border border-amber-500/15 max-w-3xl flex items-start gap-4">
+                            <i data-lucide="coffee" class="w-6 h-6 text-amber-600 shrink-0 mt-0.5 animate-pulse"></i>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2 heading-font text-amber-700 dark:text-amber-500">Master Roaster Recommended Method</h4>
+                                <p id="product-brewing-guide" class="text-sm sm:text-base"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RELATED PRODUCTS ROW -->
+            <div class="mt-24 border-t border-slate-200 dark:border-white/5 pt-16">
+                <div class="text-center mb-12">
+                    <p class="uppercase tracking-[0.3em] text-xs text-amber-700 dark:text-amber-500 font-semibold mb-2">Related Collection</p>
+                    <h2 class="heading-font text-4xl sm:text-5xl font-bold">You May Also Enjoy</h2>
+                </div>
+                
+                <div id="related-products-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Related cards injected here -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer></footer>
+
+    <!-- PRODUCT DETAIL DYNAMIC SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const products = window.coffeeProducts || [];
+
+            // Get product ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id') || 'yirgacheffe-reserve';
+
+            // Find current product in catalog
+            const product = products.find(p => p.id === productId) || products[0];
+
+            if (!product) return;
+
+            // Page title update
+            document.title = `${product.name} | Veloura Reserve`;
+
+            // DOM Elements
+            const mainImg = document.getElementById('main-product-img');
+            const galleryThumbs = document.getElementById('gallery-thumbnails');
+            const pMeta = document.getElementById('product-meta');
+            const pName = document.getElementById('product-name');
+            const pPrice = document.getElementById('product-price');
+            const pShortDesc = document.getElementById('product-short-desc');
+            const pTastingNotes = document.getElementById('product-tasting-notes');
+            const pFullDesc = document.getElementById('product-full-desc');
+            const pBrewingGuide = document.getElementById('product-brewing-guide');
+            const reviewsLabel = document.getElementById('reviews-count-label');
+            const reviewsContainer = document.getElementById('reviews-list-container');
+            const sizeBtns = document.querySelectorAll('.size-btn');
+            const qtyDisplay = document.getElementById('qty-display');
+            const relatedGrid = document.getElementById('related-products-grid');
+
+            // Render Product Details
+            mainImg.src = product.image;
+            mainImg.alt = product.name;
+
+            pMeta.textContent = `${product.origin} • ${product.roast}`;
+            pName.textContent = product.name;
+            pShortDesc.textContent = product.description;
+            pFullDesc.textContent = product.fullDescription;
+            pBrewingGuide.textContent = product.brewingGuide || "No specific brewing guide available. Brew using your favorite method!";
+
+            // Tasting Notes badges
+            pTastingNotes.innerHTML = product.tastingNotes.map(note => `
+                <span class="px-4 py-2 rounded-full bg-amber-100 dark:bg-slate-900 text-amber-700 dark:text-amber-500 text-xs font-medium">${note}</span>
+            `).join('');
+
+            // Render Image Gallery
+            const allImages = [product.image, ...(product.thumbnails || [])];
+            galleryThumbs.innerHTML = allImages.map(img => `
+                <button class="overflow-hidden rounded-2xl cursor-pointer hover:border-amber-700 border-2 border-transparent transition h-24 select-none shrink-0" onclick="document.getElementById('main-product-img').src='${img}'">
+                    <img src="${img}" class="w-full h-full object-cover">
+                </button>
+            `).join('');
+
+            // Price Calculation & Sizes State
+            let basePrice = product.salePrice || product.price;
+            let currentSize = '250g';
+            let quantity = 1;
+
+            function updatePriceDisplay() {
+                let sizeMultiplier = 1;
+                if (currentSize === '500g') sizeMultiplier = 1.7; // discount per g
+                else if (currentSize === '1kg') sizeMultiplier = 3.0; // steeper discount per g
+
+                const sizePrice = Math.round(basePrice * sizeMultiplier);
+                pPrice.textContent = `₹${sizePrice.toLocaleString('en-IN')}`;
+                return sizePrice;
+            }
+
+            updatePriceDisplay();
+
+            // Sizing Button Clicks
+            const activeSizeClass = ['border-amber-700', 'bg-amber-700', 'text-white'];
+            const inactiveSizeClass = ['border-slate-300', 'text-slate-700', 'dark:border-white/10', 'dark:text-slate-300'];
+
+            sizeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    sizeBtns.forEach(b => {
+                        b.classList.remove(...activeSizeClass);
+                        b.classList.add(...inactiveSizeClass);
+                    });
+                    btn.classList.add(...activeSizeClass);
+                    btn.classList.remove(...inactiveSizeClass);
+
+                    currentSize = btn.dataset.size;
+                    updatePriceDisplay();
+                });
+            });
+
+            // Quantity increments
+            document.getElementById('qty-minus').addEventListener('click', () => {
+                if (quantity > 1) {
+                    quantity--;
+                    qtyDisplay.textContent = quantity;
+                }
+            });
+            document.getElementById('qty-plus').addEventListener('click', () => {
+                if (quantity < 99) {
+                    quantity++;
+                    qtyDisplay.textContent = quantity;
+                }
+            });
+
+            // Shared Add to Cart CTA click
+            document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+                const calculatedPrice = updatePriceDisplay();
+                window.addCoffeeToCart({
+                    id: product.id,
+                    name: product.name,
+                    price: calculatedPrice,
+                    size: currentSize,
+                    quantity: quantity,
+                    image: product.image
+                });
+            });
+
+            // Wishlist Toggle Flow
+            const wishlistBtn = document.getElementById('wishlist-btn');
+            const wishlistIcon = document.getElementById('wishlist-icon');
+            
+            function checkWishlistState() {
+                const list = JSON.parse(localStorage.getItem('velouraWishlist') || '[]');
+                const isSaved = list.includes(product.id);
+                if (wishlistIcon) {
+                    if (isSaved) {
+                        wishlistIcon.setAttribute('class', 'w-5 h-5 fill-red-500 text-red-500');
+                    } else {
+                        wishlistIcon.setAttribute('class', 'w-5 h-5 text-slate-500');
+                    }
+                }
+            }
+            checkWishlistState();
+
+            wishlistBtn.addEventListener('click', () => {
+                let list = JSON.parse(localStorage.getItem('velouraWishlist') || '[]');
+                if (list.includes(product.id)) {
+                    list = list.filter(id => id !== product.id);
+                } else {
+                    list.push(product.id);
+                }
+                localStorage.setItem('velouraWishlist', JSON.stringify(list));
+                checkWishlistState();
+            });
+
+            // Tab Switching Flow
+            const tabDesc = document.getElementById('tab-btn-desc');
+            const tabReviews = document.getElementById('tab-btn-reviews');
+            const tabGuide = document.getElementById('tab-btn-guide');
+
+            const contentDesc = document.getElementById('tab-content-desc');
+            const contentReviews = document.getElementById('tab-content-reviews');
+            const contentGuide = document.getElementById('tab-content-guide');
+
+            function clearActiveTabs() {
+                [tabDesc, tabReviews, tabGuide].forEach(btn => btn.classList.remove('active'));
+                [contentDesc, contentReviews, contentGuide].forEach(cont => cont.classList.add('hidden'));
+            }
+
+            tabDesc.addEventListener('click', () => {
+                clearActiveTabs();
+                tabDesc.classList.add('active');
+                contentDesc.classList.remove('hidden');
+            });
+            tabReviews.addEventListener('click', () => {
+                clearActiveTabs();
+                tabReviews.classList.add('active');
+                contentReviews.classList.remove('hidden');
+            });
+            tabGuide.addEventListener('click', () => {
+                clearActiveTabs();
+                tabGuide.classList.add('active');
+                contentGuide.classList.remove('hidden');
+            });
+
+            // Render Reviews
+            const reviews = product.reviews || [];
+            reviewsLabel.textContent = reviews.length;
+            if (reviews.length === 0) {
+                reviewsContainer.innerHTML = `<p class="text-slate-500 py-4">No reviews yet. Be the first to share your thoughts!</p>`;
+            } else {
+                reviewsContainer.innerHTML = reviews.map(r => `
+                    <div class="py-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-semibold text-slate-900 dark:text-white">${r.name}</h4>
+                            <div class="flex items-center gap-0.5 text-amber-500">
+                                ${Array(r.rating).fill('<i data-lucide="star" class="w-3.5 h-3.5 fill-amber-500 text-amber-500"></i>').join('')}
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">${r.comment}</p>
+                    </div>
+                `).join('');
+            }
+
+            // Render Related products
+            const related = products.filter(p => p.id !== product.id).slice(0, 3);
+            relatedGrid.innerHTML = related.map(p => `
+                <div class="bg-white dark:bg-slate-900 rounded-[2rem] overflow-hidden border border-slate-200/40 dark:border-slate-800/40 shadow-lg card-hover flex flex-col h-full group">
+                    <a href="./product.html?id=${p.id}" class="h-[200px] overflow-hidden block relative">
+                        <img src="${p.image}" class="w-full h-full object-cover image-hover">
+                        <span class="absolute top-4 left-4 bg-amber-700/80 backdrop-blur-md text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">${p.badge || 'Popular'}</span>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="text-[10px] text-slate-450 uppercase tracking-wider block mb-1 font-semibold">${p.origin} • ${p.roast}</span>
+                        <h3 class="heading-font text-xl font-bold mb-3">
+                            <a href="./product.html?id=${p.id}" class="hover:text-amber-700 transition">${p.name}</a>
+                        </h3>
+                        <p class="text-slate-500 text-xs mb-4 line-clamp-2">${p.description}</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-lg font-bold">₹${(p.salePrice || p.price).toLocaleString('en-IN')}</span>
+                            <a href="./product.html?id=${p.id}" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-700 hover:text-white transition text-xs font-semibold select-none">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>

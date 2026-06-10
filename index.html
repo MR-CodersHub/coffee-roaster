@@ -96,6 +96,7 @@
 
 
     <!-- VELOURA UNIFIED NAVBAR & FOOTER -->
+    <script src="./src/products.js" defer></script>
     <script src="./src/navbar-footer.js" defer></script>
 </head>
 
@@ -117,40 +118,40 @@
         <div class="absolute inset-0 hero-overlay"></div>
 
         <!-- CONTENT -->
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pb-16 sm:pb-28 w-full">
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-32 lg:pt-0 pb-16 sm:pb-28 w-full flex flex-col items-center justify-center text-center">
 
-            <div class="max-w-4xl fade-up">
+            <div class="max-w-4xl fade-up flex flex-col items-center text-center mx-auto">
 
-                <span class="inline-flex px-5 py-2 rounded-full glass text-sm uppercase tracking-[0.2em]  mb-8">
+                <span class="inline-flex px-5 py-2 rounded-full glass text-sm uppercase tracking-[0.2em] mb-8">
                     Specialty Coffee Roaster
                 </span>
 
-                <h1 class="heading-font text-3xl sm:text-5xl md:text-8xl font-bold leading-none text-white mb-8">
+                <h1 class="heading-font text-3xl sm:text-5xl md:text-8xl font-bold leading-none text-white mb-8 text-center">
 
                     Crafted Coffee
                     for Modern Living
 
                 </h1>
 
-                <p class="text-base sm:text-lg md:text-2xl text-slate-200 leading-relaxed max-w-3xl">
+                <p class="text-base sm:text-lg md:text-2xl text-slate-200 leading-relaxed max-w-3xl text-center mx-auto">
 
                     Premium specialty coffee roasted in small batches,
                     sourced ethically, and delivered fresh to your door.
 
                 </p>
 
-                <div class="flex flex-col sm:flex-row gap-5 mt-12">
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-5 mt-12 w-full">
 
                     <a
-                        href="./pages/service.html"
-                        class="px-8 py-4 rounded-2xl bg-amber-600 hover:bg-amber-500 transition text-white font-semibold w-fit"
+                        href="./pages/shop.html"
+                        class="px-8 py-4 rounded-2xl bg-amber-600 hover:bg-amber-500 transition text-white font-semibold w-fit text-center"
                     >
-                        Explore Services
+                        Explore Shop
                     </a>
 
                     <a
                         href="./pages/about.html"
-                        class="px-8 py-4 rounded-2xl border border-white/20 text-white hover:bg-white/10 transition w-fit"
+                        class="px-8 py-4 rounded-2xl border border-white/20 text-white hover:bg-white/10 transition w-fit text-center"
                     >
                         Learn More
                     </a>
@@ -162,6 +163,21 @@
         </div>
 
     </section>
+
+    <!-- SHOPPING SECTIONS -->
+    <div id="shopping-experience" class="bg-[#f8f5f1] dark:bg-slate-950">
+        <!-- New Flavour Launches Section -->
+        <section id="new-launches" class="py-16 sm:py-24 bg-white dark:bg-slate-950 border-t border-slate-200/50 dark:border-slate-900"></section>
+        
+        <!-- Special Offers / Deals Section -->
+        <section id="special-offers" class="py-16 sm:py-24 bg-[#fcfaf7] dark:bg-slate-900/40 border-t border-slate-200/50 dark:border-slate-900"></section>
+        
+        <!-- Featured Products Section -->
+        <section id="featured-products" class="py-16 sm:py-24 bg-white dark:bg-slate-950 border-t border-slate-200/50 dark:border-slate-900"></section>
+        
+        <!-- Best Sellers Section -->
+        <section id="best-sellers" class="py-16 sm:py-24 bg-[#f3ede7]/60 dark:bg-slate-900 border-t border-slate-250/50 dark:border-slate-900 border-b border-slate-250/50 dark:border-slate-900"></section>
+    </div>
 
     <!-- ABOUT -->
     <section id="about" class="py-16 sm:py-28 bg-white dark:bg-slate-950">
@@ -492,7 +508,253 @@
     <footer></footer>
 
     <!-- SCRIPT -->
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const products = window.coffeeProducts || [];
+
+            // Helper to render rating stars
+            function getStarsHTML(rating) {
+                let stars = '';
+                const fullStars = Math.floor(rating);
+                const hasHalf = rating % 1 >= 0.5;
+                for (let i = 0; i < 5; i++) {
+                    if (i < fullStars) {
+                        stars += '<i data-lucide="star" class="w-4 h-4 fill-amber-400 text-amber-400"></i>';
+                    } else if (i === fullStars && hasHalf) {
+                        stars += '<i data-lucide="star-half" class="w-4 h-4 fill-amber-400 text-amber-400 animate-pulse"></i>';
+                    } else {
+                        stars += '<i data-lucide="star" class="w-4 h-4 text-slate-300 dark:text-slate-700"></i>';
+                    }
+                }
+                return stars;
+            }
+
+            // 1. New Flavour Launches (Show New Launches category)
+            const launchesSection = document.getElementById('new-launches');
+            if (launchesSection) {
+                const launchProducts = products.filter(p => p.category === 'New Launches');
+                launchesSection.innerHTML = `
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                            <div>
+                                <p class="uppercase tracking-[0.3em] text-amber-600 dark:text-amber-500 text-sm mb-3">Freshly Sourced</p>
+                                <h2 class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">New Flavour Launches</h2>
+                                <p class="text-slate-500 dark:text-slate-400 mt-2">Discover the latest arrivals in our premium coffee catalog.</p>
+                            </div>
+                            <a href="./pages/shop.html" class="inline-flex items-center gap-2 text-amber-700 dark:text-amber-500 hover:text-amber-600 font-semibold group mt-4 md:mt-0 transition">
+                                View All Coffees
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${launchProducts.map(p => `
+                                <div class="bg-[#fcfaf7] dark:bg-slate-900 rounded-[2rem] overflow-hidden shadow-md border border-slate-200/40 dark:border-slate-800/40 card-hover flex flex-col h-full group">
+                                    <div class="h-[280px] overflow-hidden relative">
+                                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover image-hover">
+                                        <span class="absolute top-4 left-4 bg-amber-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider">${p.badge || 'New'}</span>
+                                    </div>
+                                    <div class="p-8 flex flex-col flex-grow">
+                                        <div class="flex items-center justify-between text-xs text-slate-400 mb-2 uppercase tracking-wider">
+                                            <span>${p.origin} • ${p.roast}</span>
+                                        </div>
+                                        <h3 class="heading-font text-2xl font-bold mb-3 text-slate-900 dark:text-white">${p.name}</h3>
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-6 flex-grow line-clamp-2">${p.description}</p>
+                                        <div class="flex items-center justify-between mt-auto">
+                                            <span class="text-xl font-bold text-slate-900 dark:text-white">₹${p.price.toLocaleString('en-IN')}</span>
+                                            <a href="./pages/product.html?id=${p.id}" class="px-6 py-3 rounded-xl bg-amber-700 hover:bg-amber-600 transition text-white text-sm font-semibold select-none">Shop Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // 2. Special Offers / Deals (Show Deals category with Countdown Timer)
+            const offersSection = document.getElementById('special-offers');
+            if (offersSection) {
+                const dealProducts = products.filter(p => p.category === 'Deals');
+                offersSection.innerHTML = `
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                            <div>
+                                <p class="uppercase tracking-[0.3em] text-amber-600 dark:text-amber-500 text-sm mb-3">Limited Time Promotions</p>
+                                <h2 class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">Special Offers & Deals</h2>
+                                <p class="text-slate-500 dark:text-slate-400 mt-2">Premium roasts at unmatched pricing. Hurry, while stocks last!</p>
+                            </div>
+                            <div class="flex items-center gap-4 mt-4 md:mt-0">
+                                <div class="flex items-center gap-2 bg-amber-600/10 dark:bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-500 px-4 py-2 rounded-xl text-sm font-semibold select-none">
+                                    <i data-lucide="clock" class="w-4 h-4 animate-pulse"></i>
+                                    <span>ENDS IN: </span>
+                                    <span id="countdown-timer" class="font-mono">08h 24m 10s</span>
+                                </div>
+                                <a href="./pages/shop.html" class="inline-flex items-center gap-2 text-amber-700 dark:text-amber-500 hover:text-amber-600 font-semibold group transition">
+                                    View All
+                                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            ${dealProducts.map(p => `
+                                <div class="bg-white dark:bg-slate-900/60 rounded-[2.5rem] p-6 sm:p-8 border border-slate-200/60 dark:border-slate-800 shadow-xl flex flex-col sm:flex-row gap-6 sm:gap-8 items-center card-hover relative overflow-hidden">
+                                    <div class="absolute -top-1 -right-1 bg-amber-600 text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-2xl uppercase tracking-wider shadow-sm">${p.badge}</div>
+                                    <div class="w-full sm:w-[160px] h-[160px] rounded-2xl overflow-hidden shrink-0">
+                                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="flex-grow flex flex-col justify-between h-full w-full">
+                                        <div>
+                                            <span class="text-[10px] text-slate-400 uppercase tracking-wider block mb-1">${p.origin} • ${p.roast}</span>
+                                            <h3 class="heading-font text-2xl font-bold mb-2 text-slate-900 dark:text-white">${p.name}</h3>
+                                            <p class="text-slate-500 dark:text-slate-400 text-xs mb-4 line-clamp-2">${p.description}</p>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-auto gap-4">
+                                            <div class="flex items-baseline gap-2">
+                                                <span class="text-xl font-bold text-slate-900 dark:text-white">₹${p.salePrice.toLocaleString('en-IN')}</span>
+                                                <span class="text-xs text-slate-400 line-through">₹${p.price.toLocaleString('en-IN')}</span>
+                                            </div>
+                                            <button onclick="window.addCoffeeToCart({id: '${p.id}', name: '${p.name}', price: ${p.salePrice}, size: '250g', image: '${p.image}'})" class="px-5 py-2.5 rounded-xl bg-amber-700 hover:bg-amber-600 active:scale-95 transition text-white text-xs font-semibold flex items-center gap-2 select-none shadow-md">
+                                                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                                Add to Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
+                // Countdown Timer Logic
+                let hours = 8, minutes = 24, seconds = 10;
+                const timerEl = document.getElementById('countdown-timer');
+                if (timerEl) {
+                    setInterval(() => {
+                        seconds--;
+                        if (seconds < 0) {
+                            seconds = 59;
+                            minutes--;
+                            if (minutes < 0) {
+                                minutes = 59;
+                                hours--;
+                                if (hours < 0) {
+                                    hours = 12; // loop back
+                                }
+                            }
+                        }
+                        const hStr = String(hours).padStart(2, '0');
+                        const mStr = String(minutes).padStart(2, '0');
+                        const sStr = String(seconds).padStart(2, '0');
+                        timerEl.textContent = `${hStr}h ${mStr}m ${sStr}s`;
+                    }, 1000);
+                }
+            }
+
+            // 3. Featured Products (Show Featured category)
+            const featuredSection = document.getElementById('featured-products');
+            if (featuredSection) {
+                const featuredProducts = products.filter(p => p.category === 'Featured');
+                featuredSection.innerHTML = `
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                            <div>
+                                <p class="uppercase tracking-[0.3em] text-amber-600 dark:text-amber-500 text-sm mb-3">Our Flagships</p>
+                                <h2 class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">Featured Collections</h2>
+                                <p class="text-slate-500 dark:text-slate-400 mt-2">Ethically sourced, small-batch roasted single-origins.</p>
+                            </div>
+                            <a href="./pages/shop.html" class="inline-flex items-center gap-2 text-amber-700 dark:text-amber-500 hover:text-amber-600 font-semibold group mt-4 md:mt-0 transition">
+                                View All
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${featuredProducts.map(p => `
+                                <div class="bg-[#fcfaf7] dark:bg-slate-900 rounded-[2rem] overflow-hidden shadow-md border border-slate-200/40 dark:border-slate-800/40 card-hover flex flex-col h-full group">
+                                    <a href="./pages/product.html?id=${p.id}" class="h-[280px] overflow-hidden block relative">
+                                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover image-hover">
+                                        <span class="absolute top-4 left-4 bg-amber-700/85 backdrop-blur-md text-white text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider">${p.badge}</span>
+                                    </a>
+                                    <div class="p-8 flex flex-col flex-grow">
+                                        <div class="flex items-center justify-between text-xs text-slate-400 mb-2 uppercase tracking-wider">
+                                            <span>${p.origin} • ${p.roast}</span>
+                                        </div>
+                                        <h3 class="heading-font text-2xl font-bold mb-2 text-slate-900 dark:text-white">
+                                            <a href="./pages/product.html?id=${p.id}" class="hover:text-amber-700 transition">${p.name}</a>
+                                        </h3>
+                                        <div class="flex items-center gap-1 mb-4">
+                                            ${getStarsHTML(p.rating)}
+                                            <span class="text-xs text-slate-400 ml-1">(${p.reviewsCount})</span>
+                                        </div>
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-6 flex-grow line-clamp-2">${p.description}</p>
+                                        <div class="flex items-center justify-between mt-auto">
+                                            <span class="text-xl font-bold text-slate-900 dark:text-white">₹${p.price.toLocaleString('en-IN')}</span>
+                                            <button onclick="window.addCoffeeToCart({id: '${p.id}', name: '${p.name}', price: ${p.price}, size: '250g', image: '${p.image}'})" class="px-5 py-3 rounded-xl bg-amber-700 hover:bg-amber-600 active:scale-95 transition text-white text-sm font-semibold flex items-center gap-2 select-none">
+                                                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                                Add to Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // 4. Best Sellers (Show Best Sellers category ranked)
+            const sellersSection = document.getElementById('best-sellers');
+            if (sellersSection) {
+                // filter best sellers
+                const sellerProducts = products.filter(p => p.category === 'Best Sellers' || p.badge === 'Best Seller').slice(0, 4);
+                sellersSection.innerHTML = `
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                            <div>
+                                <p class="uppercase tracking-[0.3em] text-amber-600 dark:text-amber-500 text-sm mb-3">Popular Choice</p>
+                                <h2 class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">Best Sellers</h2>
+                                <p class="text-slate-500 dark:text-slate-400 mt-2">The highest-rated roasts loved by our loyal community.</p>
+                            </div>
+                            <a href="./pages/shop.html" class="inline-flex items-center gap-2 text-amber-700 dark:text-amber-500 hover:text-amber-600 font-semibold group mt-4 md:mt-0 transition">
+                                View All
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            ${sellerProducts.map((p, idx) => `
+                                <div class="bg-white dark:bg-slate-950 rounded-[2rem] overflow-hidden shadow-lg border border-slate-200/40 dark:border-slate-800/40 card-hover flex flex-col h-full group relative">
+                                    <div class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-amber-600 text-white font-bold text-xs flex items-center justify-center shadow-md select-none">#${idx + 1}</div>
+                                    <a href="./pages/product.html?id=${p.id}" class="h-[200px] overflow-hidden block relative">
+                                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover image-hover">
+                                    </a>
+                                    <div class="p-6 flex flex-col flex-grow">
+                                        <span class="text-[10px] text-slate-400 uppercase tracking-wider block mb-1">${p.origin} • ${p.roast}</span>
+                                        <h3 class="heading-font text-lg font-bold mb-2 text-slate-900 dark:text-white line-clamp-1">
+                                            <a href="./pages/product.html?id=${p.id}" class="hover:text-amber-700 transition">${p.name}</a>
+                                        </h3>
+                                        <div class="flex items-center gap-1 mb-3">
+                                            ${getStarsHTML(p.rating)}
+                                        </div>
+                                        <p class="text-slate-500 dark:text-slate-400 text-[11px] mb-6 flex-grow line-clamp-2">${p.description}</p>
+                                        <div class="flex items-center justify-between mt-auto">
+                                            <span class="text-base font-bold text-slate-900 dark:text-white">₹${p.price.toLocaleString('en-IN')}</span>
+                                            <button onclick="window.addCoffeeToCart({id: '${p.id}', name: '${p.name}', price: ${p.price}, size: '250g', image: '${p.image}'})" class="w-8 h-8 rounded-lg bg-amber-700 hover:bg-amber-600 active:scale-95 transition text-white flex items-center justify-center select-none shadow-sm" aria-label="Add to cart">
+                                                <i data-lucide="plus" class="w-4 h-4"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        });
+    </script>
 
 </body>
 </html>

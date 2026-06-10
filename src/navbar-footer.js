@@ -1,9 +1,21 @@
 /**
- * Veloura Coffee - Shared Navbar and Footer Injector
- * Ensures uniform header and footer layouts across all pages with functional theme and navigation logic.
+ * Veloura Coffee - Shared Navbar, Footer, and Cart Drawer Injector
+ * Ensures uniform header, footer, and cart layouts across all pages.
  */
 
 (function () {
+    // Pre-apply saved or preferred theme/RTL to avoid Flash of Unstyled Content (FOUC)
+    const darkModePreference = localStorage.getItem('theme') || 
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (darkModePreference === 'dark') {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+
+    const savedRtl = localStorage.getItem('rtl') || 'ltr';
+    document.documentElement.setAttribute('dir', savedRtl);
+
     // Identify current page filename
     const currentFile = window.location.pathname.split('/').pop() || 'index.html';
 
@@ -24,7 +36,7 @@
             isActive = true;
         } else if (pageName === 'about.html' && currentFile === 'about.html') {
             isActive = true;
-        } else if (pageName === 'service.html' && currentFile.startsWith('service')) {
+        } else if (pageName === 'shop.html' && (currentFile.startsWith('shop') || currentFile.startsWith('product'))) {
             isActive = true;
         } else if (pageName === 'blog.html' && currentFile.startsWith('blog')) {
             isActive = true;
@@ -33,7 +45,7 @@
         }
 
         return isActive 
-            ? 'text-amber-600 font-semibold' 
+            ? 'text-amber-600 font-semibold border-b-2 border-amber-600 pb-1' 
             : 'text-slate-800 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-500 transition font-medium';
     }
 
@@ -47,7 +59,7 @@
             isActive = true;
         } else if (pageName === 'about.html' && currentFile === 'about.html') {
             isActive = true;
-        } else if (pageName === 'service.html' && currentFile.startsWith('service')) {
+        } else if (pageName === 'shop.html' && (currentFile.startsWith('shop') || currentFile.startsWith('product'))) {
             isActive = true;
         } else if (pageName === 'blog.html' && currentFile.startsWith('blog')) {
             isActive = true;
@@ -56,8 +68,8 @@
         }
 
         return isActive 
-            ? 'text-amber-600 font-semibold text-sm sm:text-base' 
-            : 'text-sm sm:text-base font-medium text-slate-800 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-500 transition';
+            ? 'text-amber-600 font-semibold text-sm sm:text-base bg-amber-50 dark:bg-slate-800/50 px-4 py-2 rounded-xl' 
+            : 'text-sm sm:text-base font-medium text-slate-800 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-500 transition px-4 py-2 rounded-xl';
     }
 
     // HTML templates for injected navbar & footer
@@ -70,7 +82,7 @@
                         <img src="${prefix}assets/brand-logo.png" alt="brand-logo" class="w-full h-full object-cover">
                     </div>
                     <div class="sm:block">
-                        <h2 class="heading-font text-xl sm:text-3xl font-bold">
+                        <h2 class="heading-font text-xl sm:text-3xl font-bold text-slate-900 dark:text-white">
                             Veloura
                         </h2>
                     </div>
@@ -81,27 +93,46 @@
                     <a href="${prefix}index.html" class="${getActiveNavClass('index.html')}">Home</a>
                     <a href="${prefix}pages/home.html" class="${getActiveNavClass('home.html')}">Home 2</a>
                     <a href="${prefix}pages/about.html" class="${getActiveNavClass('about.html')}">About</a>
-                    <a href="${prefix}pages/service.html" class="${getActiveNavClass('service.html')}">Services</a>
+                    <a href="${prefix}pages/shop.html" class="${getActiveNavClass('shop.html')}">Shop</a>
                     <a href="${prefix}pages/blog.html" class="${getActiveNavClass('blog.html')}">Blog</a>
                     <a href="${prefix}pages/contact.html" class="${getActiveNavClass('contact.html')}">Contact</a>
                 </nav>
 
                 <!-- RIGHT -->
                 <div class="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+                    <!-- RTL TOGGLE -->
+                    <button
+                        id="rtl-toggle"
+                        class="w-8 sm:w-11 h-8 sm:h-11 rounded-lg sm:rounded-xl bg-white dark:bg-slate-900 shadow-md flex items-center justify-center hover:scale-105 transition border border-slate-200 dark:border-slate-800"
+                        aria-label="Toggle language direction"
+                    >
+                        <span id="rtl-toggle-text" class="text-xs sm:text-sm font-bold text-slate-800 dark:text-white select-none">A↔</span>
+                    </button>
+
                     <!-- THEME TOGGLE -->
                     <button
                         id="theme-toggle"
-                        class="w-8 sm:w-11 h-8 sm:h-11 rounded-lg sm:rounded-xl bg-white dark:bg-slate-900 shadow-md flex items-center justify-center hover:scale-105 transition"
+                        class="w-8 sm:w-11 h-8 sm:h-11 rounded-lg sm:rounded-xl bg-white dark:bg-slate-900 shadow-md flex items-center justify-center hover:scale-105 transition border border-slate-200 dark:border-slate-800"
                         aria-label="Toggle theme"
                     >
                         <i id="theme-toggle-icon" data-lucide="moon" class="w-4 sm:w-5 h-4 sm:h-5 text-slate-800 dark:text-white"></i>
+                    </button>
+
+                    <!-- CART TOGGLE -->
+                    <button
+                        id="cart-toggle-btn"
+                        class="relative w-8 sm:w-11 h-8 sm:h-11 rounded-lg sm:rounded-xl bg-white dark:bg-slate-900 shadow-md flex items-center justify-center hover:scale-105 transition border border-slate-200 dark:border-slate-800"
+                        aria-label="Open cart"
+                    >
+                        <i data-lucide="shopping-cart" class="w-4 sm:w-5 h-4 sm:h-5 text-slate-800 dark:text-white"></i>
+                        <span id="cart-badge" class="absolute -top-1 -right-1 min-w-[1.25rem] h-5 px-1 rounded-full bg-amber-600 text-white text-[10px] font-bold flex items-center justify-center transition-transform scale-0 shadow-sm">0</span>
                     </button>
 
                     <!-- PROFILE -->
                     <div class="relative">
                         <button
                             id="profile-btn"
-                            class="w-8 sm:w-11 h-8 sm:h-11 rounded-full bg-amber-600 text-white flex items-center justify-center shadow-lg"
+                            class="w-8 sm:w-11 h-8 sm:h-11 rounded-full bg-amber-600 text-white flex items-center justify-center shadow-lg hover:scale-105 transition"
                             aria-label="User profile"
                         >
                             <i data-lucide="user" class="w-4 sm:w-5 h-4 sm:h-5"></i>
@@ -138,7 +169,7 @@
                     <!-- MOBILE BUTTON -->
                     <button
                         id="mobile-btn"
-                        class="lg:hidden w-8 sm:w-11 h-8 sm:h-11 rounded-lg sm:rounded-xl bg-white dark:bg-slate-900 shadow-md flex items-center justify-center"
+                        class="lg:hidden w-8 sm:w-11 h-8 sm:h-11 rounded-lg sm:rounded-xl bg-white dark:bg-slate-900 shadow-md flex items-center justify-center border border-slate-200 dark:border-slate-800"
                         aria-label="Toggle mobile menu"
                     >
                         <i data-lucide="menu" class="w-4 sm:w-5 h-4 sm:h-5 text-slate-800 dark:text-white"></i>
@@ -152,11 +183,11 @@
             id="mobile-menu"
             class="hidden lg:hidden mt-2 sm:mt-4 mx-2 sm:mx-6 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 shadow-2xl border border-slate-200 dark:border-slate-800 p-3 sm:p-6"
         >
-            <div class="flex flex-col gap-3 sm:gap-5">
+            <div class="flex flex-col gap-2">
                 <a href="${prefix}index.html" class="${getActiveMobileClass('index.html')}">Home</a>
                 <a href="${prefix}pages/home.html" class="${getActiveMobileClass('home.html')}">Home 2</a>
                 <a href="${prefix}pages/about.html" class="${getActiveMobileClass('about.html')}">About</a>
-                <a href="${prefix}pages/service.html" class="${getActiveMobileClass('service.html')}">Services</a>
+                <a href="${prefix}pages/shop.html" class="${getActiveMobileClass('shop.html')}">Shop</a>
                 <a href="${prefix}pages/blog.html" class="${getActiveMobileClass('blog.html')}">Blog</a>
                 <a href="${prefix}pages/contact.html" class="${getActiveMobileClass('contact.html')}">Contact</a>
             </div>
@@ -200,7 +231,7 @@
                         <h4 class="font-semibold text-lg mb-6 text-slate-900 dark:text-white">Quick Links</h4>
                         <ul class="space-y-3">
                             <li><a href="${prefix}index.html" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">Home</a></li>
-                            <li><a href="${prefix}pages/service.html" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">Services</a></li>
+                            <li><a href="${prefix}pages/shop.html" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">Shop</a></li>
                             <li><a href="${prefix}pages/about.html" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">About Us</a></li>
                             <li><a href="${prefix}pages/blog.html" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">Blog</a></li>
                             <li><a href="${prefix}pages/contact.html" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">Contact</a></li>
@@ -211,9 +242,9 @@
                     <div>
                         <h4 class="font-semibold text-lg mb-6 text-slate-900 dark:text-white">Our Products</h4>
                         <ul class="space-y-3">
-                            <li><a href="${prefix}pages/product1.html" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">Whole Beans</a></li>
-                            <li><a href="${prefix}pages/product2.html" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">Ground Coffee</a></li>
-                            <li><a href="${prefix}pages/product3.html" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">Subscriptions</a></li>
+                            <li><a href="${prefix}pages/product.html?id=yirgacheffe-reserve" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">Whole Beans</a></li>
+                            <li><a href="${prefix}pages/product.html?id=highland-blend" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">Ground Coffee</a></li>
+                            <li><a href="${prefix}pages/product.html?id=nightowl-espresso" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">Subscriptions</a></li>
                             <li><a href="${prefix}pages/booking.html" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition text-sm sm:text-base">Reservations</a></li>
                         </ul>
                     </div>
@@ -228,11 +259,11 @@
                             </li>
                             <li class="flex gap-3 text-sm sm:text-base">
                                 <i data-lucide="phone" class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5"></i>
-                                <a href="tel:+1234567890" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-600 transition">+1 (234) 567-8900</a>
+                                <a href="tel:+1234567890" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-650 transition">+1 (234) 567-8900</a>
                             </li>
                             <li class="flex gap-3 text-sm sm:text-base">
                                 <i data-lucide="mail" class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5"></i>
-                                <a href="mailto:info@veloura.com" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-600 transition">info@veloura.com</a>
+                                <a href="mailto:info@veloura.com" class="text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-650 transition">info@veloura.com</a>
                             </li>
                         </ul>
                     </div>
@@ -257,7 +288,56 @@
         </div>
     `;
 
-    // Function to run when the DOM is ready to inject header and footer
+    const cartDrawerHTML = `
+        <div id="cart-drawer" class="fixed inset-0 z-[9999] hidden">
+            <!-- Backdrop -->
+            <div id="cart-drawer-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
+            <!-- Drawer Panel -->
+            <div id="cart-drawer-panel" class="absolute top-0 right-0 h-full w-full sm:max-w-md bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-850 flex flex-col transition-transform duration-300 translate-x-full text-slate-900 dark:text-white">
+                <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="shopping-cart" class="w-5 h-5 text-amber-600"></i>
+                        <h3 class="heading-font text-2xl font-bold">Your Cart</h3>
+                    </div>
+                    <button id="cart-drawer-close" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition flex items-center justify-center text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white" aria-label="Close cart">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <div id="cart-drawer-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Dynamic Cart Items Injected Here -->
+                </div>
+
+                <div class="p-6 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between text-sm text-slate-500 dark:text-slate-400">
+                            <span>Subtotal</span>
+                            <span id="cart-drawer-subtotal">₹0</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-slate-500 dark:text-slate-400">
+                            <span>Estimated Shipping</span>
+                            <span id="cart-drawer-shipping">₹0</span>
+                        </div>
+                        <div class="flex justify-between text-lg font-bold pt-3 border-t border-slate-200 dark:border-slate-800">
+                            <span>Total</span>
+                            <span id="cart-drawer-total">₹0</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-3">
+                        <a id="cart-drawer-checkout-btn" href="${prefix}pages/booking.html" class="w-full h-14 rounded-2xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold flex items-center justify-center shadow-lg">
+                            Proceed to Checkout
+                        </a>
+                        <button id="cart-drawer-continue" class="w-full py-3 text-sm font-medium text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-250 transition">
+                            Continue Shopping
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Function to run when the DOM is ready to inject header, footer, and cart drawer
     function injectElements() {
         if (isStandalone) {
             // For login, signup, admin, and user dashboards, just ensure Lucide icons are initialized
@@ -285,11 +365,19 @@
         footerEl.className = 'py-auto bg-[#f3ede7] dark:bg-slate-900 text-slate-800 dark:text-slate-100';
         footerEl.innerHTML = footerHTML;
 
+        // Inject Cart Drawer
+        const drawerDiv = document.createElement('div');
+        drawerDiv.innerHTML = cartDrawerHTML;
+        document.body.appendChild(drawerDiv.firstElementChild);
+
         // Setup theme toggle icon on inject based on current class
         syncThemeIcon();
 
         // Register interactive behaviors
         setupInteractions();
+
+        // Initial cart load and update
+        window.updateCartBadgeAndDrawer();
     }
 
     // Function to synchronize the theme toggle button's Lucide icon
@@ -304,9 +392,194 @@
         }
     }
 
+    // Open Cart Drawer
+    window.openCartDrawer = function () {
+        const drawer = document.getElementById('cart-drawer');
+        const overlay = document.getElementById('cart-drawer-overlay');
+        const panel = document.getElementById('cart-drawer-panel');
+        if (drawer && overlay && panel) {
+            drawer.classList.remove('hidden');
+            // Force reflow
+            drawer.offsetHeight;
+            overlay.classList.remove('opacity-0');
+            overlay.classList.add('opacity-100');
+            panel.classList.remove('translate-x-full');
+            panel.classList.add('translate-x-0');
+        }
+    };
+
+    // Close Cart Drawer
+    window.closeCartDrawer = function () {
+        const drawer = document.getElementById('cart-drawer');
+        const overlay = document.getElementById('cart-drawer-overlay');
+        const panel = document.getElementById('cart-drawer-panel');
+        if (drawer && overlay && panel) {
+            overlay.classList.remove('opacity-100');
+            overlay.classList.add('opacity-0');
+            panel.classList.remove('translate-x-0');
+            panel.classList.add('translate-x-full');
+            setTimeout(() => {
+                drawer.classList.add('hidden');
+            }, 300);
+        }
+    };
+
+    // Add Coffee to Cart Global Handler
+    window.addCoffeeToCart = function(product) {
+        const cart = JSON.parse(localStorage.getItem('velouraCart') || '[]');
+        const existingIndex = cart.findIndex(item => item.id === product.id && item.size === product.size);
+        if (existingIndex !== -1) {
+            cart[existingIndex].quantity += (product.quantity || 1);
+        } else {
+            cart.push({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                quantity: product.quantity || 1,
+                size: product.size || '250g',
+                image: product.image
+            });
+        }
+        localStorage.setItem('velouraCart', JSON.stringify(cart));
+        window.updateCartBadgeAndDrawer();
+        window.openCartDrawer();
+    };
+
+    // Update Cart Badge and Drawer Content
+    window.updateCartBadgeAndDrawer = function () {
+        const cart = JSON.parse(localStorage.getItem('velouraCart') || '[]');
+        const badge = document.getElementById('cart-badge');
+        const itemsContainer = document.getElementById('cart-drawer-items');
+        const subtotalEl = document.getElementById('cart-drawer-subtotal');
+        const shippingEl = document.getElementById('cart-drawer-shipping');
+        const totalEl = document.getElementById('cart-drawer-total');
+        const checkoutBtn = document.getElementById('cart-drawer-checkout-btn');
+
+        // Total count logic
+        const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+        if (badge) {
+            badge.textContent = totalQty;
+            if (totalQty > 0) {
+                badge.classList.remove('scale-0');
+                badge.classList.add('scale-100');
+            } else {
+                badge.classList.remove('scale-100');
+                badge.classList.add('scale-0');
+            }
+        }
+
+        if (!itemsContainer) return;
+
+        if (cart.length === 0) {
+            itemsContainer.innerHTML = `
+                <div class="flex flex-col items-center justify-center h-full text-center p-6 mt-10">
+                    <i data-lucide="shopping-bag" class="w-16 h-16 text-slate-300 dark:text-slate-700 mb-4"></i>
+                    <p class="text-slate-500 dark:text-slate-400 mb-6">Your cart is empty. Add some premium roasts to get started!</p>
+                    <a href="${prefix}pages/shop.html" class="px-6 py-3 rounded-xl bg-amber-700 text-white font-semibold hover:bg-amber-600 transition">Shop Our Coffees</a>
+                </div>
+            `;
+            subtotalEl.textContent = '₹0';
+            shippingEl.textContent = '₹0';
+            totalEl.textContent = '₹0';
+            if (checkoutBtn) {
+                checkoutBtn.classList.add('opacity-50', 'pointer-events-none');
+            }
+            if (window.lucide) window.lucide.createIcons();
+            return;
+        }
+
+        // Enable checkout button
+        if (checkoutBtn) {
+            checkoutBtn.classList.remove('opacity-50', 'pointer-events-none');
+        }
+
+        let subtotal = 0;
+        itemsContainer.innerHTML = '';
+
+        cart.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+
+            const itemHTML = `
+                <div class="flex items-center gap-4 p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-150 dark:border-slate-800">
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover">
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-sm line-clamp-1">${item.name}</h4>
+                        <p class="text-xs text-slate-500 mb-1">Size: ${item.size}</p>
+                        <div class="flex items-center gap-2">
+                            <button class="w-6 h-6 rounded-md bg-slate-200 dark:bg-slate-800 hover:bg-slate-350 dark:hover:bg-slate-700 transition flex items-center justify-center text-xs font-bold" onclick="window.changeCartQty(${index}, -1)">-</button>
+                            <span class="text-sm font-semibold">${item.quantity}</span>
+                            <button class="w-6 h-6 rounded-md bg-slate-200 dark:bg-slate-800 hover:bg-slate-350 dark:hover:bg-slate-700 transition flex items-center justify-center text-xs font-bold" onclick="window.changeCartQty(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-end gap-2 shrink-0">
+                        <span class="font-bold text-sm">₹${itemTotal.toLocaleString('en-IN')}</span>
+                        <button class="text-red-500 hover:text-red-600 transition" onclick="window.removeCartItem(${index})" aria-label="Remove item">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            itemsContainer.insertAdjacentHTML('beforeend', itemHTML);
+        });
+
+        // Shipping and totals
+        const shipping = subtotal > 1500 ? 0 : 150;
+        const total = subtotal + shipping;
+
+        subtotalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+        shippingEl.textContent = shipping === 0 ? 'Free' : `₹${shipping}`;
+        totalEl.textContent = `₹${total.toLocaleString('en-IN')}`;
+
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+    };
+
+    // Change Cart Item Quantity
+    window.changeCartQty = function (index, change) {
+        const cart = JSON.parse(localStorage.getItem('velouraCart') || '[]');
+        if (cart[index]) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            localStorage.setItem('velouraCart', JSON.stringify(cart));
+            window.updateCartBadgeAndDrawer();
+            // Sync with reservation page if open
+            if (typeof window.syncBookingSummary === 'function') {
+                window.syncBookingSummary();
+            }
+        }
+    };
+
+    // Remove Cart Item
+    window.removeCartItem = function (index) {
+        const cart = JSON.parse(localStorage.getItem('velouraCart') || '[]');
+        cart.splice(index, 1);
+        localStorage.setItem('velouraCart', JSON.stringify(cart));
+        window.updateCartBadgeAndDrawer();
+        // Sync with reservation page if open
+        if (typeof window.syncBookingSummary === 'function') {
+            window.syncBookingSummary();
+        }
+    };
+
     // Function to register theme toggle, mobile nav menu, profile dropdown, and clicks outside
     function setupInteractions() {
-        // 1. Theme Toggle
+        // 1. RTL Toggle
+        const rtlToggle = document.getElementById('rtl-toggle');
+        if (rtlToggle) {
+            rtlToggle.addEventListener('click', () => {
+                const currentDir = document.documentElement.getAttribute('dir') || 'ltr';
+                const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+                document.documentElement.setAttribute('dir', newDir);
+                localStorage.setItem('rtl', newDir);
+                window.dispatchEvent(new Event('rtl-toggle-event'));
+            });
+        }
+
+        // 2. Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
         if (themeToggle) {
             themeToggle.addEventListener('click', () => {
@@ -314,10 +587,30 @@
                 const isDark = document.documentElement.classList.contains('dark');
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
                 syncThemeIcon();
+                window.dispatchEvent(new Event('theme-toggle-event'));
             });
         }
 
-        // 2. Profile Dropdown
+        // 3. Cart Drawer Toggle
+        const cartBtn = document.getElementById('cart-toggle-btn');
+        const cartClose = document.getElementById('cart-drawer-close');
+        const cartOverlay = document.getElementById('cart-drawer-overlay');
+        const cartContinue = document.getElementById('cart-drawer-continue');
+
+        if (cartBtn) {
+            cartBtn.addEventListener('click', window.openCartDrawer);
+        }
+        if (cartClose) {
+            cartClose.addEventListener('click', window.closeCartDrawer);
+        }
+        if (cartOverlay) {
+            cartOverlay.addEventListener('click', window.closeCartDrawer);
+        }
+        if (cartContinue) {
+            cartContinue.addEventListener('click', window.closeCartDrawer);
+        }
+
+        // 4. Profile Dropdown
         const profileBtn = document.getElementById('profile-btn');
         const profileMenu = document.getElementById('profile-menu');
         if (profileBtn && profileMenu) {
@@ -327,7 +620,7 @@
             });
         }
 
-        // 3. Mobile Menu Toggle
+        // 5. Mobile Menu Toggle
         const mobileBtn = document.getElementById('mobile-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileBtn && mobileMenu) {
@@ -337,7 +630,7 @@
             });
         }
 
-        // 4. Click outside to close menus
+        // 6. Click outside to close menus
         document.addEventListener('click', (e) => {
             if (profileMenu && !profileMenu.classList.contains('hidden') && !profileBtn.contains(e.target) && !profileMenu.contains(e.target)) {
                 profileMenu.classList.add('hidden');
@@ -348,7 +641,7 @@
         });
     }
 
-    // Ensure external resources (Bootstrap Icons & Lucide Icons) are imported if not present
+    // Ensure external resources (Bootstrap & Lucide Icons) are imported if not present
     function loadStylesAndScripts() {
         // Load Bootstrap Icons if missing
         if (!document.querySelector('link[href*="bootstrap-icons"]')) {
@@ -370,15 +663,6 @@
             // Already loaded, just inject
             injectElements();
         }
-    }
-
-    // Pre-apply saved or preferred theme to avoid Flash of Unstyled Content (FOUC)
-    const darkModePreference = localStorage.getItem('theme') || 
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    if (darkModePreference === 'dark') {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
     }
 
     // Initialize injection
