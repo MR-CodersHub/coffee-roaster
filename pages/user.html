@@ -37,9 +37,16 @@
         }
 
         .glass{
-            background:rgba(15,23,42,0.58);
+            background:rgba(255, 255, 255, 0.7);
             backdrop-filter:blur(18px);
+            border:1px solid rgba(0, 0, 0, 0.06);
+            color:#1e293b;
+        }
+
+        .dark .glass{
+            background:rgba(15,23,42,0.55);
             border:1px solid rgba(255,255,255,0.06);
+            color:#ffffff;
         }
 
         .card-hover{
@@ -55,23 +62,30 @@
         }
 
         .sidebar-link:hover{
+            background:rgba(0, 0, 0, 0.04);
+        }
+
+        .dark .sidebar-link:hover{
             background:rgba(255,255,255,0.06);
         }
 
         .active-link{
             background:#b45309;
-            color:white;
+            color:white !important;
         }
 
     </style>
 </head>
 
-<body class="bg-slate-950 text-white">
+<body class="bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white transition-colors duration-300 min-h-screen">
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden lg:hidden"></div>
 
     <div class="flex min-h-screen">
 
         <!-- SIDEBAR -->
-        <aside class="hidden lg:flex flex-col w-[300px] border-r border-white/10 bg-black/30 backdrop-blur-xl p-8">
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-[300px] -translate-x-full lg:translate-x-0 lg:static lg:flex flex-col border-r border-slate-200 dark:border-white/10 bg-white/95 dark:bg-black/30 backdrop-blur-xl p-8 transition-transform duration-300 ease-in-out">
 
             <!-- LOGO -->
             <div class="flex flex-col items-center text-center gap-4 mb-16">
@@ -83,11 +97,11 @@
 
                 <div>
 
-                    <h2 class="heading-font text-3xl font-bold uppercase tracking-wider">
+                    <h2 class="heading-font text-3xl font-bold uppercase tracking-wider text-slate-800 dark:text-white">
                         Veloura
                     </h2>
 
-                    <p class="uppercase tracking-[0.2em] text-xs text-slate-400 mt-2">
+                    <p class="uppercase tracking-[0.2em] text-xs text-slate-500 dark:text-slate-400 mt-2">
                         User Dashboard
                     </p>
 
@@ -100,32 +114,32 @@
 
                 <p class="uppercase tracking-[0.1em] text-xs text-slate-500 font-semibold mb-2 ml-2">Menu</p>
 
-                <a href="#"
-                    class="sidebar-link active-link flex items-center gap-4 px-5 py-4 rounded-2xl font-medium">
+                <a href="#" data-section="overview"
+                    class="nav-link sidebar-link active-link flex items-center gap-4 px-5 py-4 rounded-2xl font-medium text-slate-800 dark:text-white">
 
                     <i data-lucide="layout-dashboard"></i>
                     Overview
 
                 </a>
 
-                <a href="#"
-                    class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-300">
+                <a href="#" data-section="orders"
+                    class="nav-link sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
 
                     <i data-lucide="shopping-bag"></i>
                     Orders
 
                 </a>
 
-                <a href="#"
-                    class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-300">
+                <a href="#" data-section="wishlist"
+                    class="nav-link sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
 
                     <i data-lucide="heart"></i>
                     Wishlist
 
                 </a>
 
-                <a href="#"
-                    class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-300">
+                <a href="#" data-section="settings"
+                    class="nav-link sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
 
                     <i data-lucide="settings"></i>
                     Settings
@@ -138,24 +152,24 @@
             <div class="mt-auto flex flex-col gap-3">
                 <p class="uppercase tracking-[0.1em] text-xs text-slate-500 font-semibold mb-1 ml-2">Preferences</p>
                 
-                <button id="theme-toggle" class="sidebar-link flex items-center justify-between px-5 py-4 rounded-2xl text-slate-300 w-full text-left">
+                <button id="theme-toggle" class="sidebar-link flex items-center justify-between px-5 py-4 rounded-2xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white w-full text-left">
                     <span class="flex items-center gap-4">
-                        <i data-lucide="moon" class="dark-icon"></i>
-                        <span class="theme-text">Dark Mode</span>
+                        <i data-lucide="moon" id="theme-icon"></i>
+                        <span id="theme-text">Dark Mode</span>
                     </span>
-                    <div class="w-10 h-6 bg-slate-700 rounded-full relative">
-                        <div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full transition-all theme-switch"></div>
+                    <div class="w-10 h-6 bg-slate-300 dark:bg-slate-700 rounded-full relative">
+                        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all theme-switch"></div>
                     </div>
                 </button>
 
-                <button id="rtl-toggle" class="sidebar-link flex items-center justify-between px-5 py-4 rounded-2xl text-slate-300 w-full text-left">
+                <button id="rtl-toggle" class="sidebar-link flex items-center justify-between px-5 py-4 rounded-2xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white w-full text-left">
                     <span class="flex items-center gap-4">
                         <i data-lucide="align-right"></i>
                         <span>RTL Mode</span>
                     </span>
                 </button>
 
-                <a href="../index.html" id="logout-btn" class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-red-400 hover:text-red-300 hover:bg-red-500/10 mt-2">
+                <a href="../index.html" id="logout-btn" class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-red-500 hover:text-red-400 hover:bg-red-500/10 mt-2">
                     <i data-lucide="log-out"></i>
                     Logout
                 </a>
@@ -167,450 +181,608 @@
         <main class="flex-1 overflow-hidden flex flex-col">
 
             <!-- TOPBAR -->
-            <header class="h-24 px-10 flex items-center justify-between border-b border-white/10 bg-black/30 backdrop-blur-xl shrink-0">
-                <div>
-                    <h1 class="text-3xl font-bold heading-font" id="welcome-headline">Welcome back!</h1>
+            <header class="h-24 px-6 md:px-10 flex items-center justify-between border-b border-slate-200 dark:border-white/10 bg-slate-100/50 dark:bg-black/30 backdrop-blur-xl shrink-0">
+                <div class="flex items-center gap-4">
+                    <!-- Mobile Menu Trigger -->
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl hover:bg-slate-200 dark:hover:bg-white/5 text-slate-600 dark:text-slate-300">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <h1 class="text-2xl md:text-3xl font-bold heading-font text-slate-800 dark:text-white" id="welcome-headline">Welcome back!</h1>
                 </div>
-                <div class="relative group cursor-pointer z-50">
+                <div class="relative group z-50">
                     <div class="w-12 h-12 rounded-full bg-amber-700 flex items-center justify-center font-bold text-lg text-white" id="profile-avatar">
                         U
-                    </div>
-                    <!-- Dropdown -->
-                    <div class="absolute right-0 mt-2 w-48 bg-slate-900 border border-white/10 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                        <div class="p-4 border-b border-white/10">
-                            <p class="font-bold text-sm text-white" id="dropdown-name">User</p>
-                        </div>
-                        <div class="p-2">
-                            <a href="#" class="block px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition">Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition">Settings</a>
-                        </div>
                     </div>
                 </div>
             </header>
 
-            <!-- CONTENT -->
-            <section class="p-6 md:p-10">
-
-                <!-- HERO CARD -->
-                <div class="relative rounded-[2.5rem] overflow-hidden mb-10 min-h-[420px]">
-
-                    <!-- BG -->
-                    <img
-                        src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2070&auto=format&fit=crop"
-                        class="absolute inset-0 w-full h-full object-cover"
-                    >
-
-                    <div class="absolute inset-0 bg-black/70"></div>
-
-                    <!-- CONTENT -->
-                    <div class="relative z-10 h-full p-10 md:p-16 flex flex-col justify-end">
-
-                        <p class="uppercase tracking-[0.3em] text-sm text-amber-400 mb-5">
-                            Reserve Collection
-                        </p>
-
-                        <h2 class="heading-font text-5xl md:text-7xl leading-none font-bold mb-8 max-w-4xl">
-
-                            Discover Rare
-                            Coffee Experiences
-
-                        </h2>
-
-                        <p class="text-xl text-slate-300 leading-relaxed max-w-2xl mb-10">
-
-                            Curated reserve beans, artisan roasting,
-                            and premium coffee crafted for enthusiasts.
-
-                        </p>
-
-                        <div class="flex flex-wrap gap-5">
-
-                            <button
-                                class="px-8 py-4 rounded-2xl bg-amber-700 hover:bg-amber-600 transition font-semibold"
-                            >
-                                Explore Collection
-                            </button>
-
-                            <button
-                                class="px-8 py-4 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-xl hover:bg-white/10 transition"
-                            >
-                                View Membership
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- STATS -->
-                <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-10">
-
-                    <!-- CARD -->
-                    <div class="glass rounded-[2rem] p-8 card-hover">
-
-                        <div class="flex items-center justify-between mb-10">
-
-                            <div>
-
-                                <p class="uppercase tracking-[0.2em] text-sm text-slate-400 mb-3">
-                                    Orders
-                                </p>
-
-                                <h2 class="text-5xl font-bold">
-                                    28
-                                </h2>
-
-                            </div>
-
-                           
-
-                        </div>
-
-                        <p class="text-green-400 text-sm">
-                            +4 this month
-                        </p>
-
-                    </div>
-
-                    <!-- CARD -->
-                    <div class="glass rounded-[2rem] p-8 card-hover">
-
-                        <div class="flex items-center justify-between mb-10">
-
-                            <div>
-
-                                <p class="uppercase tracking-[0.2em] text-sm text-slate-400 mb-3">
-                                    Reward Points
-                                </p>
-
-                                <h2 class="text-5xl font-bold">
-                                    3.8K
-                                </h2>
-
-                            </div>
-
-                        </div>
-
-                        <p class="text-green-400 text-sm">
-                            Premium member benefits
-                        </p>
-
-                    </div>
-
-                    <!-- CARD -->
-                    <div class="glass rounded-[2rem] p-8 card-hover">
-
-                        <div class="flex items-center justify-between mb-10">
-
-                            <div>
-
-                                <p class="uppercase tracking-[0.2em] text-sm text-slate-400 mb-3">
-                                    Membership
-                                </p>
-
-                                <h2 class="text-4xl font-bold">
-                                    Gold
-                                </h2>
-
-                            </div>
-
-                        </div>
-
-                        <p class="text-green-400 text-sm">
-                            Active subscription
-                        </p>
-
-                    </div>
-
-                    <!-- CARD -->
-                    <div class="glass rounded-[2rem] p-8 card-hover">
-
-                        <div class="flex items-center justify-between mb-10">
-
-                            <div>
-
-                                <p class="uppercase tracking-[0.2em] text-sm text-slate-400 mb-3">
-                                    Wishlist
-                                </p>
-
-                                <h2 class="text-5xl font-bold">
-                                    12
-                                </h2>
-
-                            </div>
-
-                        </div>
-
-                        <p class="text-green-400 text-sm">
-                            Saved reserve items
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <!-- SECOND ROW -->
-                <div class="grid xl:grid-cols-3 gap-8 mb-10">
-
-                    <!-- RECENT ORDERS -->
-                    <div class="xl:col-span-2 glass rounded-[2rem] overflow-hidden">
-
-                        <!-- HEADER -->
-                        <div class="p-8 border-b border-white/10 flex items-center justify-between">
-
-                            <div>
-
-                                <p class="uppercase tracking-[0.2em] text-amber-400 text-sm mb-3">
-                                    Order Activity
-                                </p>
-
-                                <h2 class="heading-font text-5xl font-bold">
-                                    Recent Orders
-                                </h2>
-
-                            </div>
-
-                            <button
-                                class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-sm"
-                            >
-                                View All
-                            </button>
-
-                        </div>
-
-                        <!-- TABLE -->
-                        <div class="overflow-x-auto">
-
-                            <table class="w-full min-w-[850px]">
-
-                                <thead>
-
-                                    <tr class="border-b border-white/10 text-left">
-
-                                        <th class="p-6 text-slate-400 font-medium">
-                                            Product
-                                        </th>
-
-                                        <th class="p-6 text-slate-400 font-medium">
-                                            Date
-                                        </th>
-
-                                        <th class="p-6 text-slate-400 font-medium">
-                                            Price
-                                        </th>
-
-                                        <th class="p-6 text-slate-400 font-medium">
-                                            Status
-                                        </th>
-
-                                    </tr>
-
-                                </thead>
-
-                                <tbody>
-
-                                    <!-- ROW -->
-                                    <tr class="border-b border-white/5 hover:bg-white/5 transition">
-
-                                        <td class="p-6 font-semibold">
-                                            Geisha Signature
-                                        </td>
-
-                                        <td class="p-6">
-                                            Jan 10, 2026
-                                        </td>
-
-                                        <td class="p-6">
-                                            ₹4,500
-                                        </td>
-
-                                        <td class="p-6">
-
-                                            <span class="px-4 py-2 rounded-full bg-green-500/20 text-green-400 text-sm">
-                                                Delivered
-                                            </span>
-
-                                        </td>
-
-                                    </tr>
-
-                                    <!-- ROW -->
-                                    <tr class="border-b border-white/5 hover:bg-white/5 transition">
-
-                                        <td class="p-6 font-semibold">
-                                            Reserve Subscription
-                                        </td>
-
-                                        <td class="p-6">
-                                            Jan 08, 2026
-                                        </td>
-
-                                        <td class="p-6">
-                                            ₹2,800
-                                        </td>
-
-                                        <td class="p-6">
-
-                                            <span class="px-4 py-2 rounded-full bg-yellow-500/20 text-yellow-400 text-sm">
-                                                Processing
-                                            </span>
-
-                                        </td>
-
-                                    </tr>
-
-                                    <!-- ROW -->
-                                    <tr class="hover:bg-white/5 transition">
-
-                                        <td class="p-6 font-semibold">
-                                            Ethiopian Reserve
-                                        </td>
-
-                                        <td class="p-6">
-                                            Jan 02, 2026
-                                        </td>
-
-                                        <td class="p-6">
-                                            ₹3,100
-                                        </td>
-
-                                        <td class="p-6">
-
-                                            <span class="px-4 py-2 rounded-full bg-blue-500/20 text-blue-400 text-sm">
-                                                Shipped
-                                            </span>
-
-                                        </td>
-
-                                    </tr>
-
-                                </tbody>
-
-                            </table>
-
-                        </div>
-
-                    </div>
-
-                    <!-- MEMBERSHIP -->
-                    <div class="glass rounded-[2rem] p-8">
-
-                        <p class="uppercase tracking-[0.2em] text-amber-400 text-sm mb-3">
-                            Membership Status
-                        </p>
-
-                        <h2 class="heading-font text-5xl font-bold mb-10">
-                            Gold Tier
-                        </h2>
-
-                        <!-- PROGRESS -->
-                        <div class="mb-10">
-
-                            <div class="flex items-center justify-between mb-4">
-
-                                <span class="text-slate-400">
-                                    Progress to Platinum
-                                </span>
-
-                                <span class="font-semibold">
-                                    78%
-                                </span>
-
-                            </div>
-
-                            <div class="h-3 rounded-full bg-white/10 overflow-hidden">
-
-                                <div class="h-full w-[78%] bg-amber-700 rounded-full"></div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- BENEFITS -->
-                        <div class="space-y-6">
-
-                            <div class="flex items-start gap-4">
-
-                                <div class="w-10 h-10 rounded-xl bg-amber-700 flex items-center justify-center shrink-0">
-
-                                    <i data-lucide="check"></i>
-
-                                </div>
-
-                                <div>
-
-                                    <h4 class="font-semibold mb-1">
-                                        Exclusive Reserve Access
-                                    </h4>
-
-                                    <p class="text-sm text-slate-400">
-                                        Early access to rare collections
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <div class="flex items-start gap-4">
-
-                                <div class="w-10 h-10 rounded-xl bg-amber-700 flex items-center justify-center shrink-0">
-
-                                    <i data-lucide="check"></i>
-
-                                </div>
-
-                                <div>
-
-                                    <h4 class="font-semibold mb-1">
-                                        Monthly Deliveries
-                                    </h4>
-
-                                    <p class="text-sm text-slate-400">
-                                        Personalized reserve selections
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <div class="flex items-start gap-4">
-
-                                <div class="w-10 h-10 rounded-xl bg-amber-700 flex items-center justify-center shrink-0">
-
-                                    <i data-lucide="check"></i>
-
-                                </div>
-
-                                <div>
-
-                                    <h4 class="font-semibold mb-1">
-                                        Priority Support
-                                    </h4>
-
-                                    <p class="text-sm text-slate-400">
-                                        Dedicated premium assistance
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <button
-                            class="w-full mt-10 py-4 rounded-2xl bg-amber-700 hover:bg-amber-600 transition font-semibold"
+            <!-- SCROLL CONTAINER -->
+            <div class="flex-1 overflow-y-auto">
+
+                <!-- SECTION: OVERVIEW -->
+                <section id="section-overview" class="p-6 md:p-10 space-y-10">
+
+                    <!-- HERO CARD -->
+                    <div class="relative rounded-[2.5rem] overflow-hidden min-h-[420px] flex flex-col justify-end">
+
+                        <!-- BG -->
+                        <img
+                            src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2070&auto=format&fit=crop"
+                            class="absolute inset-0 w-full h-full object-cover"
                         >
-                            Upgrade Plan
-                        </button>
+
+                        <div class="absolute inset-0 bg-black/70"></div>
+
+                        <!-- CONTENT -->
+                        <div class="relative z-10 p-10 md:p-16">
+
+                            <p class="uppercase tracking-[0.3em] text-sm text-amber-400 mb-5 font-bold">
+                                Reserve Collection
+                            </p>
+
+                            <h2 class="heading-font text-5xl md:text-7xl leading-none font-bold mb-8 max-w-4xl text-white">
+                                Discover Rare Coffee Experiences
+                            </h2>
+
+                            <p class="text-xl text-slate-300 leading-relaxed max-w-2xl mb-10">
+                                Curated reserve beans, artisan roasting, and premium coffee crafted for enthusiasts.
+                            </p>
+
+                            <div class="flex flex-wrap gap-5">
+
+                                <button onclick="document.querySelector('[data-section=\'wishlist\']').click()"
+                                    class="px-8 py-4 rounded-2xl bg-amber-700 hover:bg-amber-600 transition font-semibold text-white"
+                                >
+                                    Explore Collection
+                                </button>
+
+                                <button onclick="document.querySelector('[data-section=\'orders\']').click()"
+                                    class="px-8 py-4 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-xl hover:bg-white/10 transition text-white"
+                                >
+                                    View Membership
+                                </button>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
-                
+                    <!-- STATS -->
+                    <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
 
-                </div>
+                        <!-- CARD -->
+                        <div class="glass rounded-[2rem] p-8 card-hover">
 
-            </section>
+                            <div class="flex items-center justify-between mb-10">
+
+                                <div>
+
+                                    <p class="uppercase tracking-[0.2em] text-sm text-slate-500 dark:text-slate-400 mb-3">
+                                        Orders
+                                    </p>
+
+                                    <h2 class="text-5xl font-bold text-slate-800 dark:text-white">
+                                        28
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+                            <p class="text-green-500 dark:text-green-400 text-sm">
+                                +4 this month
+                            </p>
+
+                        </div>
+
+                        <!-- CARD -->
+                        <div class="glass rounded-[2rem] p-8 card-hover">
+
+                            <div class="flex items-center justify-between mb-10">
+
+                                <div>
+
+                                    <p class="uppercase tracking-[0.2em] text-sm text-slate-500 dark:text-slate-400 mb-3">
+                                        Reward Points
+                                    </p>
+
+                                    <h2 class="text-5xl font-bold text-slate-800 dark:text-white">
+                                        3.8K
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+                            <p class="text-green-500 dark:text-green-400 text-sm font-medium">
+                                Premium member benefits
+                            </p>
+
+                        </div>
+
+                        <!-- CARD -->
+                        <div class="glass rounded-[2rem] p-8 card-hover">
+
+                            <div class="flex items-center justify-between mb-10">
+
+                                <div>
+
+                                    <p class="uppercase tracking-[0.2em] text-sm text-slate-500 dark:text-slate-400 mb-3">
+                                        Membership
+                                    </p>
+
+                                    <h2 class="text-4xl font-bold text-slate-800 dark:text-white">
+                                        Gold
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+                            <p class="text-green-500 dark:text-green-400 text-sm font-medium">
+                                Active subscription
+                            </p>
+
+                        </div>
+
+                        <!-- CARD -->
+                        <div class="glass rounded-[2rem] p-8 card-hover">
+
+                            <div class="flex items-center justify-between mb-10">
+
+                                <div>
+
+                                    <p class="uppercase tracking-[0.2em] text-sm text-slate-500 dark:text-slate-400 mb-3">
+                                        Wishlist
+                                    </p>
+
+                                    <h2 class="text-5xl font-bold text-slate-800 dark:text-white">
+                                        12
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+                            <p class="text-green-500 dark:text-green-400 text-sm font-medium">
+                                Saved reserve items
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- SECOND ROW -->
+                    <div class="grid xl:grid-cols-3 gap-8">
+
+                        <!-- RECENT ORDERS -->
+                        <div class="xl:col-span-2 glass rounded-[2rem] overflow-hidden">
+
+                            <!-- HEADER -->
+                            <div class="p-8 border-b border-slate-200 dark:border-white/10 flex items-center justify-between">
+
+                                <div>
+
+                                    <p class="uppercase tracking-[0.2em] text-amber-700 dark:text-amber-400 text-sm mb-3">
+                                        Order Activity
+                                    </p>
+
+                                    <h2 class="heading-font text-5xl font-bold text-slate-800 dark:text-white">
+                                        Recent Orders
+                                    </h2>
+
+                                </div>
+
+                                <button onclick="document.querySelector('[data-section=\'orders\']').click()"
+                                    class="px-5 py-3 rounded-xl bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-sm text-slate-700 dark:text-white hover:bg-slate-300 dark:hover:bg-white/10 transition"
+                                >
+                                    View All
+                                </button>
+
+                            </div>
+
+                            <!-- TABLE -->
+                            <div class="overflow-x-auto">
+
+                                <table class="w-full min-w-[850px]">
+
+                                    <thead>
+
+                                        <tr class="border-b border-slate-200 dark:border-white/10 text-left">
+
+                                            <th class="p-6 text-slate-500 dark:text-slate-400 font-medium">
+                                                Product
+                                            </th>
+
+                                            <th class="p-6 text-slate-500 dark:text-slate-400 font-medium">
+                                                Date
+                                            </th>
+
+                                            <th class="p-6 text-slate-500 dark:text-slate-400 font-medium">
+                                                Price
+                                            </th>
+
+                                            <th class="p-6 text-slate-500 dark:text-slate-400 font-medium">
+                                                Status
+                                            </th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <!-- ROW -->
+                                        <tr class="border-b border-slate-100 dark:border-white/5 hover:bg-slate-100/50 dark:hover:bg-white/5 transition">
+
+                                            <td class="p-6 font-semibold text-slate-800 dark:text-white">
+                                                Geisha Signature
+                                            </td>
+
+                                            <td class="p-6 text-slate-700 dark:text-slate-300">
+                                                Jan 10, 2026
+                                            </td>
+
+                                            <td class="p-6 text-slate-700 dark:text-slate-300">
+                                                ₹4,500
+                                            </td>
+
+                                            <td class="p-6">
+
+                                                <span class="px-4 py-2 rounded-full bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 text-sm">
+                                                    Delivered
+                                                </span>
+
+                                            </td>
+
+                                        </tr>
+
+                                        <!-- ROW -->
+                                        <tr class="border-b border-slate-100 dark:border-white/5 hover:bg-slate-100/50 dark:hover:bg-white/5 transition">
+
+                                            <td class="p-6 font-semibold text-slate-800 dark:text-white">
+                                                Reserve Subscription
+                                            </td>
+
+                                            <td class="p-6 text-slate-700 dark:text-slate-300">
+                                                Jan 08, 2026
+                                            </td>
+
+                                            <td class="p-6 text-slate-700 dark:text-slate-300">
+                                                ₹2,800
+                                            </td>
+
+                                            <td class="p-6">
+
+                                                <span class="px-4 py-2 rounded-full bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400 text-sm">
+                                                    Processing
+                                                </span>
+
+                                            </td>
+
+                                        </tr>
+
+                                        <!-- ROW -->
+                                        <tr class="hover:bg-slate-100/50 dark:hover:bg-white/5 transition border-b border-slate-100 dark:border-white/5">
+
+                                            <td class="p-6 font-semibold text-slate-800 dark:text-white">
+                                                Ethiopian Reserve
+                                            </td>
+
+                                            <td class="p-6 text-slate-700 dark:text-slate-300">
+                                                Jan 02, 2026
+                                            </td>
+
+                                            <td class="p-6 text-slate-700 dark:text-slate-300">
+                                                ₹3,100
+                                            </td>
+
+                                            <td class="p-6">
+
+                                                <span class="px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400 text-sm">
+                                                    Shipped
+                                                </span>
+
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <!-- MEMBERSHIP -->
+                        <div class="glass rounded-[2rem] p-8">
+
+                            <p class="uppercase tracking-[0.2em] text-amber-700 dark:text-amber-400 text-sm mb-3">
+                                Membership Status
+                            </p>
+
+                            <h2 class="heading-font text-5xl font-bold mb-10 text-slate-800 dark:text-white">
+                                Gold Tier
+                            </h2>
+
+                            <!-- PROGRESS -->
+                            <div class="mb-10">
+
+                                <div class="flex items-center justify-between mb-4">
+
+                                    <span class="text-slate-500 dark:text-slate-400">
+                                        Progress to Platinum
+                                    </span>
+
+                                    <span class="font-semibold text-slate-800 dark:text-white">
+                                        78%
+                                    </span>
+
+                                </div>
+
+                                <div class="h-3 rounded-full bg-slate-200 dark:bg-white/10 overflow-hidden">
+
+                                    <div class="h-full w-[78%] bg-amber-700 rounded-full"></div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- BENEFITS -->
+                            <div class="space-y-6">
+
+                                <div class="flex items-start gap-4">
+
+                                    <div class="w-10 h-10 rounded-xl bg-amber-700 text-white flex items-center justify-center shrink-0">
+
+                                        <i data-lucide="check" class="w-5 h-5"></i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <h4 class="font-semibold mb-1 text-slate-800 dark:text-white">
+                                            Exclusive Reserve Access
+                                        </h4>
+
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">
+                                            Early access to rare collections
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="flex items-start gap-4">
+
+                                    <div class="w-10 h-10 rounded-xl bg-amber-700 text-white flex items-center justify-center shrink-0">
+
+                                        <i data-lucide="check" class="w-5 h-5"></i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <h4 class="font-semibold mb-1 text-slate-800 dark:text-white">
+                                            Monthly Deliveries
+                                        </h4>
+
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">
+                                            Personalized reserve selections
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="flex items-start gap-4">
+
+                                    <div class="w-10 h-10 rounded-xl bg-amber-700 text-white flex items-center justify-center shrink-0">
+
+                                        <i data-lucide="check" class="w-5 h-5"></i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <h4 class="font-semibold mb-1 text-slate-800 dark:text-white">
+                                            Priority Support
+                                        </h4>
+
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">
+                                            Dedicated premium assistance
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <button onclick="alert('Subscription upgrade flow: function loading...')"
+                                class="w-full mt-10 py-4 rounded-2xl bg-amber-700 hover:bg-amber-600 transition font-semibold text-white"
+                            >
+                                Upgrade Plan
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- SECTION: ORDERS -->
+                <section id="section-orders" class="p-6 md:p-10 hidden space-y-8">
+                    <div>
+                        <p class="uppercase tracking-[0.2em] text-amber-700 dark:text-amber-400 text-sm mb-2">Purchase History</p>
+                        <h2 class="heading-font text-5xl font-bold text-slate-800 dark:text-white">Your Orders</h2>
+                    </div>
+
+                    <!-- Active Order Tracker -->
+                    <div class="glass rounded-[2rem] p-8 border border-amber-500/20 bg-amber-500/5">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+                            <div>
+                                <span class="px-3 py-1 rounded-full bg-amber-700/10 text-amber-700 dark:text-amber-400 text-xs font-semibold uppercase">Active Delivery</span>
+                                <h3 class="font-bold text-2xl text-slate-800 dark:text-white mt-2">Order #VR1025</h3>
+                                <p class="text-sm text-slate-500">Reserve Subscription — Estimated delivery: Jan 14, 2026</p>
+                            </div>
+                            <button onclick="alert('Tracking number: VR987654321IN')" class="px-5 py-3 rounded-xl bg-amber-700 hover:bg-amber-600 transition text-white font-medium text-sm flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-4 h-4"></i> Track Shipment
+                            </button>
+                        </div>
+                        
+                        <!-- Timeline -->
+                        <div class="relative pl-8 border-l border-slate-200 dark:border-white/10 ml-4 space-y-8">
+                            <div class="relative">
+                                <div class="absolute -left-12 top-1.5 w-8 h-8 rounded-full bg-amber-700 flex items-center justify-center text-white"><i data-lucide="package" class="w-4 h-4"></i></div>
+                                <h4 class="font-semibold text-slate-800 dark:text-white">Order Confirmed</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Jan 08, 2026 - 10:15 AM</p>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">We have received your order and are preparing your monthly subscription coffee bags.</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -left-12 top-1.5 w-8 h-8 rounded-full bg-amber-700/20 dark:bg-white/10 flex items-center justify-center text-amber-700 dark:text-slate-300"><i data-lucide="cog" class="w-4 h-4 animate-spin"></i></div>
+                                <h4 class="font-semibold text-slate-800 dark:text-white">Processing & Roasting</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Jan 09, 2026 - 02:30 PM</p>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">Beans are selected and roasted in micro-batches to guarantee peak aroma and freshness.</p>
+                            </div>
+                            <div class="relative opacity-50">
+                                <div class="absolute -left-12 top-1.5 w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-400"><i data-lucide="truck" class="w-4 h-4"></i></div>
+                                <h4 class="font-semibold text-slate-800 dark:text-white">Shipped</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">Awaiting dispatch from roasting warehouse.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Past Orders Table -->
+                    <div class="glass rounded-[2rem] overflow-hidden">
+                        <div class="p-8 border-b border-slate-200 dark:border-white/10">
+                            <h3 class="font-bold text-2xl text-slate-800 dark:text-white">Order History</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full min-w-[800px]">
+                                <thead>
+                                    <tr class="border-b border-slate-200 dark:border-white/10 text-left">
+                                        <th class="p-6 text-slate-500 dark:text-slate-400 font-medium">Product</th>
+                                        <th class="p-6 text-slate-500 dark:text-slate-400 font-medium">Date</th>
+                                        <th class="p-6 text-slate-500 dark:text-slate-400 font-medium">Price</th>
+                                        <th class="p-6 text-slate-500 dark:text-slate-400 font-medium">Status</th>
+                                        <th class="p-6 text-slate-500 dark:text-slate-400 font-medium">Invoice</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-slate-100 dark:border-white/5 hover:bg-slate-100/50 dark:hover:bg-white/5 transition">
+                                        <td class="p-6 font-semibold text-slate-800 dark:text-white">Geisha Signature</td>
+                                        <td class="p-6 text-slate-700 dark:text-slate-300">Jan 10, 2026</td>
+                                        <td class="p-6 text-slate-700 dark:text-slate-300">₹4,500</td>
+                                        <td class="p-6"><span class="px-4 py-2 rounded-full bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 text-sm">Delivered</span></td>
+                                        <td class="p-6"><button onclick="alert('Downloading invoice...')" class="text-amber-700 dark:text-amber-400 hover:underline flex items-center gap-1"><i data-lucide="download" class="w-4 h-4"></i> Download</button></td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100 dark:border-white/5 hover:bg-slate-100/50 dark:hover:bg-white/5 transition">
+                                        <td class="p-6 font-semibold text-slate-800 dark:text-white">Ethiopian Reserve</td>
+                                        <td class="p-6 text-slate-700 dark:text-slate-300">Jan 02, 2026</td>
+                                        <td class="p-6 text-slate-700 dark:text-slate-300">₹3,100</td>
+                                        <td class="p-6"><span class="px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400 text-sm">Shipped</span></td>
+                                        <td class="p-6"><button onclick="alert('Downloading invoice...')" class="text-amber-700 dark:text-amber-400 hover:underline flex items-center gap-1"><i data-lucide="download" class="w-4 h-4"></i> Download</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION: WISHLIST -->
+                <section id="section-wishlist" class="p-6 md:p-10 hidden space-y-8">
+                    <div>
+                        <p class="uppercase tracking-[0.2em] text-amber-700 dark:text-amber-400 text-sm mb-2">Saved Items</p>
+                        <h2 class="heading-font text-5xl font-bold text-slate-800 dark:text-white">Your Wishlist</h2>
+                    </div>
+
+                    <div class="glass rounded-[2rem] p-8">
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Item 1 -->
+                            <div class="border border-slate-200 dark:border-white/10 rounded-2xl p-6 bg-slate-50/50 dark:bg-white/5 relative group flex flex-col justify-between">
+                                <button onclick="alert('Removed Panama Geisha from Wishlist')" class="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-red-500/10 text-slate-400 hover:text-red-500 transition"><i data-lucide="heart" class="w-5 h-5 fill-red-500 text-red-500"></i></button>
+                                <div>
+                                    <div class="w-full h-40 bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden mb-4 flex items-center justify-center text-slate-400">
+                                        <i data-lucide="coffee" class="w-12 h-12"></i>
+                                    </div>
+                                    <h3 class="font-bold text-xl text-slate-800 dark:text-white mb-1">Panama Geisha</h3>
+                                    <p class="text-xs text-amber-700 dark:text-amber-400 tracking-wider uppercase mb-3">Reserve Single Origin</p>
+                                    <p class="text-slate-500 dark:text-slate-400 text-sm mb-4">Exceptionally sweet and floral taste profile with complex citric flavor notes.</p>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between items-center mb-4">
+                                        <span class="font-bold text-lg text-slate-800 dark:text-white">₹5,200</span>
+                                        <span class="text-xs text-green-500">In Stock</span>
+                                    </div>
+                                    <button onclick="alert('Added Panama Geisha to Cart')" class="w-full py-3 rounded-xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold text-sm flex items-center justify-center gap-2">
+                                        <i data-lucide="shopping-cart" class="w-4 h-4"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="border border-slate-200 dark:border-white/10 rounded-2xl p-6 bg-slate-50/50 dark:bg-white/5 relative group flex flex-col justify-between">
+                                <button onclick="alert('Removed Sumatra Mandheling from Wishlist')" class="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-red-500/10 text-slate-400 hover:text-red-500 transition"><i data-lucide="heart" class="w-5 h-5 fill-red-500 text-red-500"></i></button>
+                                <div>
+                                    <div class="w-full h-40 bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden mb-4 flex items-center justify-center text-slate-400">
+                                        <i data-lucide="coffee" class="w-12 h-12"></i>
+                                    </div>
+                                    <h3 class="font-bold text-xl text-slate-800 dark:text-white mb-1">Sumatra Mandheling</h3>
+                                    <p class="text-xs text-amber-700 dark:text-amber-400 tracking-wider uppercase mb-3">Dark Roast Single Origin</p>
+                                    <p class="text-slate-500 dark:text-slate-400 text-sm mb-4">Heavy, smooth body with low acidity and rich, earthy notes of cedar and spices.</p>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between items-center mb-4">
+                                        <span class="font-bold text-lg text-slate-800 dark:text-white">₹2,400</span>
+                                        <span class="text-xs text-green-500">In Stock</span>
+                                    </div>
+                                    <button onclick="alert('Added Sumatra Mandheling to Cart')" class="w-full py-3 rounded-xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold text-sm flex items-center justify-center gap-2">
+                                        <i data-lucide="shopping-cart" class="w-4 h-4"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION: SETTINGS -->
+                <section id="section-settings" class="p-6 md:p-10 hidden space-y-8">
+                    <div>
+                        <p class="uppercase tracking-[0.2em] text-amber-700 dark:text-amber-400 text-sm mb-2">Control Panel</p>
+                        <h2 class="heading-font text-5xl font-bold text-slate-800 dark:text-white">Profile Settings</h2>
+                    </div>
+
+                    <div class="glass rounded-[2rem] p-8 max-w-2xl">
+                        <form id="settings-form" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Full Name</label>
+                                <input type="text" id="settings-username" required class="w-full px-4 py-3 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white focus:outline-none focus:border-amber-700">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
+                                <input type="email" value="user@veloura.com" required class="w-full px-4 py-3 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white focus:outline-none focus:border-amber-700">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">New Password</label>
+                                <input type="password" placeholder="••••••••" class="w-full px-4 py-3 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white focus:outline-none focus:border-amber-700">
+                            </div>
+                            <div class="pt-4 border-t border-slate-200 dark:border-white/10">
+                                <h4 class="font-semibold text-slate-800 dark:text-white mb-4">Email Notifications</h4>
+                                <label class="flex items-center gap-3 cursor-pointer">
+                                    <input type="checkbox" checked class="w-5 h-5 rounded border-slate-300 text-amber-700 focus:ring-amber-500 bg-slate-100 dark:bg-white/5">
+                                    <span class="text-sm text-slate-600 dark:text-slate-300">Notify me about rare batch drops and reserve releases</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="px-6 py-3 rounded-xl bg-amber-700 hover:bg-amber-600 transition text-white font-semibold flex items-center gap-2">
+                                <i data-lucide="save" class="w-4 h-4"></i> Save Settings
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
+            </div>
 
         </main>
 
@@ -628,21 +800,42 @@
             // Theme Toggle
             const themeToggle = document.getElementById('theme-toggle');
             const themeSwitch = themeToggle.querySelector('.theme-switch');
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
             const htmlElement = document.documentElement;
 
-            const isDark = localStorage.getItem('velouraTheme') !== 'light';
-            if (isDark) {
-                htmlElement.classList.add('dark');
-                themeSwitch.classList.add('translate-x-4');
-            } else {
-                htmlElement.classList.remove('dark');
-                themeSwitch.classList.remove('translate-x-4');
+            function updateThemeUI(isDark) {
+                if (isDark) {
+                    htmlElement.classList.add('dark');
+                    if (themeSwitch) {
+                        themeSwitch.classList.add('translate-x-4');
+                        themeSwitch.classList.remove('translate-x-0');
+                    }
+                    if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+                    if (themeText) themeText.textContent = 'Dark Mode';
+                } else {
+                    htmlElement.classList.remove('dark');
+                    if (themeSwitch) {
+                        themeSwitch.classList.remove('translate-x-4');
+                        themeSwitch.classList.add('translate-x-0');
+                    }
+                    if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+                    if (themeText) themeText.textContent = 'Light Mode';
+                }
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
             }
 
+            // Init Theme - align with site-wide 'theme' key
+            const isDark = localStorage.getItem('theme') !== 'light';
+            updateThemeUI(isDark);
+
             themeToggle.addEventListener('click', () => {
-                htmlElement.classList.toggle('dark');
-                themeSwitch.classList.toggle('translate-x-4');
-                localStorage.setItem('velouraTheme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+                const currentDark = htmlElement.classList.contains('dark');
+                const nextDark = !currentDark;
+                updateThemeUI(nextDark);
+                localStorage.setItem('theme', nextDark ? 'dark' : 'light');
             });
 
             // RTL Toggle
@@ -658,6 +851,101 @@
                 localStorage.setItem('velouraRtl', newDir === 'rtl' ? 'true' : 'false');
             });
 
+            // Sidebar navigation & Section switching
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = {
+                overview: document.getElementById('section-overview'),
+                orders: document.getElementById('section-orders'),
+                wishlist: document.getElementById('section-wishlist'),
+                settings: document.getElementById('section-settings')
+            };
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetSection = link.getAttribute('data-section');
+                    if (!sections[targetSection]) return;
+
+                    // Update active classes on nav link
+                    navLinks.forEach(l => {
+                        l.classList.remove('active-link', 'font-medium', 'text-slate-800', 'dark:text-white');
+                        l.classList.add('text-slate-600', 'dark:text-slate-300');
+                    });
+                    link.classList.add('active-link', 'font-medium', 'text-slate-800', 'dark:text-white');
+                    link.classList.remove('text-slate-600', 'dark:text-slate-300');
+
+                    // Switch visible section
+                    Object.keys(sections).forEach(key => {
+                        if (key === targetSection) {
+                            sections[key].classList.remove('hidden');
+                        } else {
+                            sections[key].classList.add('hidden');
+                        }
+                    });
+
+                    // Update main title in header
+                    const welcomeHeadline = document.getElementById('welcome-headline');
+                    if (targetSection === 'overview') {
+                        const curName = localStorage.getItem('velouraUserName') || 'User';
+                        welcomeHeadline.textContent = `Welcome back, ${curName}!`;
+                    } else {
+                        // Capitalize first letter
+                        const title = targetSection.charAt(0).toUpperCase() + targetSection.slice(1);
+                        welcomeHeadline.textContent = `${title}`;
+                    }
+
+                    // Auto close mobile drawer
+                    closeMobileSidebar();
+                });
+            });
+
+            // Settings Form Handler
+            const settingsForm = document.getElementById('settings-form');
+            const settingsUsername = document.getElementById('settings-username');
+            if (settingsUsername) {
+                settingsUsername.value = userName;
+            }
+
+            if (settingsForm) {
+                settingsForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const newName = settingsUsername.value.trim();
+                    if (newName) {
+                        localStorage.setItem('velouraUserName', newName);
+                        document.getElementById('dropdown-name').textContent = newName;
+                        document.getElementById('profile-avatar').textContent = newName.charAt(0).toUpperCase();
+                        alert('Settings saved successfully!');
+                        // Update header title if on Overview tab
+                        const activeLink = document.querySelector('.active-link');
+                        if (activeLink && activeLink.getAttribute('data-section') === 'overview') {
+                            document.getElementById('welcome-headline').textContent = `Welcome back, ${newName}!`;
+                        }
+                    }
+                });
+            }
+
+            // Mobile Sidebar Drawer Functionality
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+            function openMobileSidebar() {
+                sidebar.classList.remove('-translate-x-full');
+                sidebarOverlay.classList.remove('hidden');
+            }
+
+            function closeMobileSidebar() {
+                sidebar.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            }
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', openMobileSidebar);
+            }
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', closeMobileSidebar);
+            }
+
             // Logout
             document.getElementById('logout-btn').addEventListener('click', (e) => {
                 e.preventDefault();
@@ -666,5 +954,5 @@
             });
         });
     </script>
-</body>
+</body>/body>
 </html>
