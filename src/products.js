@@ -238,5 +238,30 @@ window.coffeeProducts = [
             { name: 'Amit G.', rating: 5, comment: 'For lovers of deep, rich, low-acid dark roasts. Bold flavor that holds up to cream.' }
         ],
         brewingGuide: 'French Press or Espresso. Use 20g coarse coffee to 300g water at 96°C. Steep 5m for french press.'
+    },
+    {
+        id: 'guatemala-antigua',
+        name: 'Guatemala Antigua',
+        origin: 'Guatemala',
+        roast: 'Medium Roast',
+        format: 'Whole Bean',
+        price: 1399,
+        salePrice: null,
+        image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1974&auto=format&fit=crop',
+        thumbnails: [
+            'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop'
+        ],
+        description: 'Complex spice notes, cocoa, and bright apple acidity.',
+        fullDescription: 'Cultivated in the volcanic soil of the Antigua Valley, this coffee is known for its complex flavor profile. It features rich cocoa, warm spice notes, and a signature bright apple-like acidity that creates a perfectly balanced cup.',
+        tastingNotes: ['Cocoa', 'Warm Spice', 'Apple Acidity', 'Balanced'],
+        category: 'Best Sellers',
+        badge: 'Best Seller',
+        isReserve: false,
+        rating: 4.7,
+        reviewsCount: 215,
+        reviews: [
+            { name: 'Daniel K.', rating: 5, comment: 'Incredible balance! The chocolate and spice notes are perfect for a morning brew.' }
+        ],
+        brewingGuide: 'Drip machine or Pour Over. 1:15 ratio with water at 94°C.'
     }
 ];

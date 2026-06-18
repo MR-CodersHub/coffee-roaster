@@ -61,11 +61,11 @@
             transition:all .3s ease;
         }
 
-        .sidebar-link:hover{
+        .sidebar-link:not(.active-link):hover{
             background:rgba(0, 0, 0, 0.04);
         }
 
-        .dark .sidebar-link:hover{
+        .dark .sidebar-link:not(.active-link):hover{
             background:rgba(255,255,255,0.06);
         }
 
@@ -90,10 +90,12 @@
             <!-- LOGO -->
             <div class="flex flex-col items-center text-center gap-4 mb-16">
 
-                <img
-                    src="../assets/brand-logo.png"
-                    class="w-16 h-16 object-contain"
-                >
+                <a href="../index.html">
+                    <img
+                        src="../assets/brand-logo.png"
+                        class="w-16 h-16 object-contain"
+                    >
+                </a>
 
                 <div>
 
@@ -148,9 +150,9 @@
 
             </nav>
 
-            <!-- BOTTOM CONTROLS -->
+           <!-- BOTTOM CONTROLS -->
             <div class="mt-auto flex flex-col gap-3">
-                <p class="uppercase tracking-[0.1em] text-xs text-slate-500 font-semibold mb-1 ml-2">Preferences</p>
+                <p class="uppercase tracking-[0.1em] text-xs text-slate-500 font-semibold mb-1 ml-2">System</p>
                 
                 <button id="theme-toggle" class="sidebar-link flex items-center justify-between px-5 py-4 rounded-2xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white w-full text-left">
                     <span class="flex items-center gap-4">
@@ -794,7 +796,8 @@
             // User Data
             const userName = localStorage.getItem('velouraUserName') || 'User';
             document.getElementById('welcome-headline').textContent = `Welcome back, ${userName}!`;
-            document.getElementById('dropdown-name').textContent = userName;
+            const dropdownNameEl = document.getElementById('dropdown-name');
+            if (dropdownNameEl) dropdownNameEl.textContent = userName;
             document.getElementById('profile-avatar').textContent = userName.charAt(0).toUpperCase();
 
             // Theme Toggle
@@ -912,7 +915,8 @@
                     const newName = settingsUsername.value.trim();
                     if (newName) {
                         localStorage.setItem('velouraUserName', newName);
-                        document.getElementById('dropdown-name').textContent = newName;
+                        const dropdownNameEl = document.getElementById('dropdown-name');
+                        if (dropdownNameEl) dropdownNameEl.textContent = newName;
                         document.getElementById('profile-avatar').textContent = newName.charAt(0).toUpperCase();
                         alert('Settings saved successfully!');
                         // Update header title if on Overview tab
@@ -954,5 +958,5 @@
             });
         });
     </script>
-</body>/body>
+</body>
 </html>
